@@ -1,68 +1,163 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  line-height: normal;
+  color: #fbfbfb;
+  background-color: #101010;
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  font-weight: 400;
+  color: #fbfbfb;
+  text-decoration: none;
+}
+a:hover {
+  font-weight: 700;
+  color: #fbfbfb;
 }
 
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* !button big (for example Register) mobile ------------------------ */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #fbfbfb;
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  padding: 13px auto;
+  font-size: 18px;
+  color: #623f8b;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.15s ease-in 0s;
 }
-button:hover {
-  border-color: #646cff;
+button:active {
+  background-color: linear-gradient(
+    97deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
+  color: #fbfbfb;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* !tablet ------------------------ */
+@media only screen and (min-width: 768px) {
+  button {
+    width: 280px;
+  }
+}
+/* !Desktop ------------------------ */
+@media only screen and (min-width: 1280px) {
+  button {
+    width: 3000px;
+  }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* !button Delete mobile ------------------------ */
+.button-delete {
+  width: 69px;
+  height: 29px;
+  border-radius: 18px;
+  background-color: linear-gradient(
+    97deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  padding: 4px 12px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+}
+/* !Desktop ------------------------ */
+@media only screen and (min-width: 1280px) {
+  .button-delete {
+    border-radius: 20px;
   }
-  a:hover {
-    color: #747bff;
+}
+
+/* Container !mobile ------------------------ */
+.container {
+  max-width: 320px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/* !tablet ------------------------ */
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
-  button {
-    background-color: #f9f9f9;
+}
+/* !Desktop ------------------------ */
+@media only screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* !Modal big form mobile ------------------------ */
+.modal {
+  width: 280px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(
+    0deg,
+    rgba(83, 61, 186, 0.7) 0%,
+    rgba(80, 48, 154, 0.7) 43.14%,
+    rgba(106, 70, 165, 0.52) 73.27%,
+    rgba(133, 93, 175, 0.13) 120.03%
+  );
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/* !tablet ------------------------ */
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 394px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-<<<<<<< HEAD
 import { login, logout, registered } from "./operations";
-=======
-import { login, logout, register } from "./operations";
->>>>>>> 678129a (Add redux)
 import { toast } from "sonner";
 
 const authSlice = createSlice({
@@ -21,17 +17,10 @@ const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-<<<<<<< HEAD
       .addCase(registered.fulfilled, () => {
         toast.success("Successfull registration!");
       })
       .addCase(registered.rejected, () => {
-=======
-      .addCase(register.fulfilled, () => {
-        toast.success("Successfull registration!");
-      })
-      .addCase(register.rejected, () => {
->>>>>>> 678129a (Add redux)
         toast.error("Error registration!");
       })
 

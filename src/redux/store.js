@@ -3,7 +3,6 @@ import authReducer from "./auth/slice";
 import transactionReducer from "./transactions/slice";
 import userReducer from "./user/slice";
 
-<<<<<<< HEAD
 import {
   persistStore,
   persistReducer,
@@ -40,12 +39,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-=======
-export const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    transaction: transactionReducer,
-    user: userReducer,
-  },
-});
->>>>>>> 678129a (Add redux)

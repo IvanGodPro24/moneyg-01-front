@@ -11,7 +11,7 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
 };
 
-export const register = createAsyncThunk(
+export const registered = createAsyncThunk(
   "auth/register",
   async (user, { rejectWithValue }) => {
     try {

@@ -1,0 +1,22 @@
+.openModalBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  background-color: #5e60ce;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}

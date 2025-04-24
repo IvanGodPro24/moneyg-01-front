@@ -1,0 +1,66 @@
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  text-align: right;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.activeIncome {
+  color: yellow;
+  font-weight: bold;
+}
+
+.activeExpense {
+  color: #ff6596;
+  font-weight: bold;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.left .circle {
+  transform: translateX(0);
+}
+
+.right .circle {
+  transform: translateX(30px);
+}
+
+.incomeColor {
+  background-color: orange;
+}
+
+.expenseColor {
+  background-color: red;
+}

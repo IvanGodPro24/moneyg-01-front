@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import PasswordStrengthBar from "react-password-strength-bar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./RegistrationForm.css";
+import { useDispatch } from "react-redux";
+import { registered } from "../../redux/auth/operations";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -12,14 +14,14 @@ const schema = yup.object().shape({
     .string()
     .email("Please enter a valid email")
     .required("Email is required"),
-  password: yup
+  newPassword: yup
     .string()
     .min(6, "Password must be at least 6 characters")
     .max(12, "Password must be at most 12 characters")
     .required("Password is required"),
-  confirmPassword: yup
+  password: yup
     .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
+    .oneOf([yup.ref("newPassword")], "Passwords must match")
     .required("Password confirmation is required"),
 });
 
@@ -27,6 +29,10 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [passwordStrength, setPasswordStrength] = useState(0);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -36,9 +42,11 @@ const RegistrationForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async ({ name, email, password }) => {
     try {
-      console.log("Form data:", data);
+      dispatch(registered({ name, email, password }));
+
+      navigate("/");
     } catch (err) {
       setError(err.message || "An error occurred during registration");
     }
@@ -86,30 +94,30 @@ const RegistrationForm = () => {
           <div className="form-group">
             <input
               type="password"
-              id="password"
-              {...register("password")}
+              id="newPassword"
+              {...register("newPassword")}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
             <svg className="input-icon">
               <use href="/src/img/icons.svg#icon-lock" />
             </svg>
-            {errors.password && (
-              <span className="error">{errors.password.message}</span>
+            {errors.newPassword && (
+              <span className="error">{errors.newPassword.message}</span>
             )}
           </div>
           <div className="form-group">
             <input
               type="password"
-              id="confirmPassword"
-              {...register("confirmPassword")}
+              id="password"
+              {...register("password")}
               placeholder="Confirm password"
             />
             <svg className="input-icon">
               <use href="/src/img/icons.svg#icon-lock" />
             </svg>
-            {errors.confirmPassword && (
-              <span className="error">{errors.confirmPassword.message}</span>
+            {errors.password && (
+              <span className="error">{errors.password.message}</span>
             )}
             <div className="custom-strength-bar">
               <div

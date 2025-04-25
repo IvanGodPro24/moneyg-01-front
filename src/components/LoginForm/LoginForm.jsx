@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./LoginForm.css";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/operations";
 
 const schema = yup.object().shape({
   email: yup
@@ -19,7 +21,8 @@ const schema = yup.object().shape({
 
 const LoginForm = () => {
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -29,10 +32,9 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async ({ email, password }) => {
     try {
-      console.log("Form data:", data);
-      navigate("/dashboard");
+      dispatch(login({ email, password }));
     } catch (err) {
       setError(err.message || "An error occurred during login");
     }

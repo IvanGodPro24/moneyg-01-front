@@ -1,0 +1,48 @@
+.registration-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-image: url("/src/img/desktop/desktop-Gradient2.png"),
+    url("/src/img/desktop/desktop-Ellipse.png");
+  background-size: cover, contain;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+@media (min-resolution: 2dppx) {
+  .registration-page {
+    background-image: url("/src/img/desktop/desktop-Gradient2@2x.png"),
+      url("/src/img/desktop/desktop-Ellipse@2x.png");
+  }
+}
+
+@media (max-width: 1279px) {
+  .registration-page {
+    background-image: url("/src/img/tablet/tablet-Gradient2.png"),
+      url("/src/img/tablet/tablet-Ellipse.png");
+  }
+
+  @media (min-resolution: 2dppx) {
+    .registration-page {
+      background-image: url("/src/img/tablet/tablet-Gradient2@2x.png"),
+        url("/src/img/tablet/tablet-Ellipse@2x.png");
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .registration-page {
+    padding: 0;
+    background-image: url("/src/img/mobile/mobile-Gradient.png"),
+      url("/src/img/mobile/mobile-Ellipse.png");
+  }
+
+  @media (min-resolution: 2dppx) {
+    .registration-page {
+      background-image: url("/src/img/mobile/mobile-Gradient@2x.png"),
+        url("/src/img/mobile/mobile-Ellipse@2x.png");
+    }
+  }
+}

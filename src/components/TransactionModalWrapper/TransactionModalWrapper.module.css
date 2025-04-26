@@ -1,11 +1,19 @@
 .openModalBtn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 12px;
-  background-color: #5e60ce;
-  color: white;
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  border-radius: 50%;
+  background: linear-gradient(96.76deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%);
   border: none;
   cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.openModalBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 182, 39, 0.3);
 }
 
 .modalBackdrop {
@@ -19,4 +27,16 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+.plusTransaction {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .openModalBtn {
+    bottom: 41px;
+    right: 40px;
+  }
 }

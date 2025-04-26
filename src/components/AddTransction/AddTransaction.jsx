@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import icon from '../../img/icons.svg';
 
 const categories = [
   'Products',
@@ -60,16 +61,22 @@ const AddTransaction = ({ onClose }) => {
   };
 
   return (
-    <div className={css.AddModal}>
+    <div className={`${css.AddModal} ${transactionType !== 'expense' && css.smallWindow}`}>
       <button className={css.closeButton} onClick={onClose}>
-        x
+        <svg className={css.closeSvg} width='16' height='16'>
+          <use href={`${icon}#icon-close`}></use>
+        </svg>
       </button>
-      <h2 className={css.AddText}>Add transaction</h2>
+      <h2 className={`${css.AddText} ${transactionType === 'expense' && css.expenseMobileText}`}>Add transaction</h2>
 
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {({ setFieldValue, values }) => (
           <Form>
-            <div className={css.transactionTypeContainer}>
+            <div
+              className={`${css.transactionTypeContainer} ${
+                transactionType !== 'income' ? css.expenseMobileMargin : ''
+              }`}
+            >
               <TransactionToggle onChange={handleToggle} />
             </div>
 
@@ -80,7 +87,11 @@ const AddTransaction = ({ onClose }) => {
                   onClick={() => setDropdownOpen(!isDropdownOpen)}
                 >
                   <span className={css.selected}>{selectedCategory || 'Select a category'}</span>
-                  <span className={css.arrow}>&#9650;</span>
+                  <span className={css.arrow}>
+                    <svg width='18' height='9'>
+                      <use href={`${icon}#icon-arrow-down`}></use>
+                    </svg>
+                  </span>
 
                   {isDropdownOpen && (
                     <ul className={css.options}>
@@ -110,12 +121,18 @@ const AddTransaction = ({ onClose }) => {
                 <ErrorMessage name='sum' component='div' className={css.errorText} />
               </div>
 
-              <div>
+              <div className={css.datePickerWrapper}>
                 <DatePicker
                   selected={values.date}
                   onChange={(date) => setFieldValue('date', date)}
+                  dateFormat='dd.MM.yyyy'
+                  minDate={new Date('2025-01-01')}
+                  maxDate={new Date()}
                   className={css.datePicker}
                 />
+                <svg className={css.celndar} width='24' height='24'>
+                  <use href={`${icon}#icon-date-range`}></use>
+                </svg>
                 <ErrorMessage name='date' component='div' className={css.errorText} />
               </div>
 

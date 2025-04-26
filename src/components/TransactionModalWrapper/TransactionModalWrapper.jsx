@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AddTransaction from '../AddTransction/AddTransaction';
 import css from './TransactionModalWrapper.module.css';
+import icon from '../../img/icons.svg';
 
 const TransactionModalWrapper = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,7 +13,9 @@ const TransactionModalWrapper = () => {
   return (
     <div>
       <button onClick={handleToggleModal} className={css.openModalBtn}>
-        Add Transaction
+        <svg className={css.plusTransaction}>
+          <use href={`${icon}#icon-sign-plus`}></use>
+        </svg>
       </button>
 
       {isModalOpen && (

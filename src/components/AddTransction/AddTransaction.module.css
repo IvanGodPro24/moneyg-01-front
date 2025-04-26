@@ -7,7 +7,7 @@
   max-height: 589px;
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-  background-color: blue;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .closeButton {
@@ -18,6 +18,15 @@
   right: 20px;
   width: 16px;
   height: 16px;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.closeSvg {
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
 .AddText {
@@ -55,14 +64,18 @@
 .addSumTransaction {
   width: 181px;
   height: 35px;
-  font-family: var(--font-family);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   text-align: center;
   border: 0;
-  outline: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   background: transparent;
-  color: var(--white-600);
+  outline: none;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.addSumTransaction::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .addDateTransaction {
@@ -80,13 +93,18 @@
 .addCommentTransaction {
   width: 394px;
   height: 32px;
-  font-family: var(--font-family);
+  padding-left: 8px;
   font-weight: 400;
   font-size: 18px;
-  color: var(--white-600);
+  color: rgba(255, 255, 255, 0.6);
   border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
   background: transparent;
+}
+
+.addCommentTransaction::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .addTransactionButtonContainer {
@@ -104,13 +122,12 @@
   border-radius: 20px;
   border: none;
   background: linear-gradient(167deg, #ffc727 0%, #9e40ba 61.46%, #7000ff 90.54%);
-  font-family: var(--font-family);
   font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
-  color: var(--white);
+  color: #fbfbfb;
   cursor: pointer;
   transition: 0.3s ease;
 }
@@ -120,8 +137,7 @@
   height: 50px;
   border-radius: 20px;
   border: none;
-  background-color: white;
-  font-family: var(--font-family);
+  background-color: #fbfbfb;
   font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
@@ -133,16 +149,26 @@
 }
 
 .addButton:hover {
-  font-weight: 500;
-  border: 2px solid black;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 182, 39, 0.3);
 }
 
 .cencelButton:hover {
-  font-weight: 500;
-  border: 2px solid black;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
 }
 
-.date {
+.datePickerWrapper {
+  width: 181px;
+  height: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.datePicker {
   background-color: transparent;
   outline: none;
   border: none;
@@ -151,13 +177,18 @@
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
-  width: 181px;
+  width: 140px;
   height: 35px;
+  padding-left: 20px;
 
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 18px;
   color: var(--white);
+}
+
+.celendar {
+  padding-right: 10px;
 }
 
 .sumField {
@@ -166,7 +197,7 @@
 }
 
 .errorText {
-  color: red;
+  color: #ff868d;
   font-weight: 500;
   font-size: small;
 }
@@ -184,8 +215,7 @@
   width: 394px;
   height: 35px;
   background: transparent;
-  border-radius: 8px;
-  color: white;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
   cursor: pointer;
   position: relative;
@@ -194,10 +224,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.dropdown:hover {
-  background: rgba(95, 52, 125, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .arrow {
@@ -211,7 +238,13 @@
   top: 100%;
   left: 0;
   width: 100%;
-  background: rgba(74, 35, 90, 0.9);
+  background: linear-gradient(
+    360deg,
+    rgba(83, 61, 186, 0.7) 0%,
+    rgba(80, 48, 154, 0.7) 35.94%,
+    rgba(106, 70, 165, 0.7) 61.04%,
+    rgba(133, 93, 175, 0.7) 100%
+  );
   border-radius: 16px;
   margin-top: 8px;
   padding: 8px 0;
@@ -222,17 +255,20 @@
   backdrop-filter: blur(10px);
 }
 
+.options::-webkit-scrollbar {
+  display: none;
+}
+
 .selected {
   font-weight: 400;
   font-size: 18px;
-  color: var(--white-600);
   padding-left: 10px;
 }
 
 .option {
   text-align: left;
   padding: 12px 20px;
-  color: #ffffff;
+  color: #fbfbfb;
   cursor: pointer;
   transition: background 0.3s ease;
   font-size: 16px;
@@ -240,7 +276,7 @@
 
 .option:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #ff6c00;
+  color: #ff868d;
 }
 
 .activeOption {
@@ -251,17 +287,44 @@
 @media screen and (max-width: 768px) {
   .AddModal {
     width: 320px;
+    max-height: 691px;
     height: 691px;
   }
+  .smallWindow {
+    height: 600px;
+  }
+
+  .closeButton {
+    display: none;
+  }
+  .closeSvg {
+    display: none;
+  }
+
   .AddText {
     margin-top: 28px;
   }
-  .transactionTypeContainer {
+  .expenseMobileText {
+    margin-top: 40px;
+  }
+  .expenseMobileMargin {
     margin-top: 32px;
   }
+
+  .sumField {
+    width: 280px;
+  }
+  .addSumTransaction {
+    width: 280px;
+  }
+
+  .datePickerWrapper {
+    width: 280px;
+  }
+
   .addCommentTransaction {
     width: 280px;
-    height: 70px;
+    height: 79px;
   }
   .selectWrapper {
     width: 320px;

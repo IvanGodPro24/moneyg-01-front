@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchExchangeRates } from "./apiService";
 
-const ExchangeRates = () => {
+const CurrencyTab = () => {
   const [rates, setRates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -55,4 +55,4 @@ const ExchangeRates = () => {
   );
 };
 
-export default ExchangeRates;
+export default CurrencyTab;

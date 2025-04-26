@@ -63,7 +63,12 @@ button {
   transition: all 0.15s ease-in 0s;
 }
 button:active {
-  background-color: linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%);
+  background-color: linear-gradient(
+    97deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
   color: #fbfbfb;
 }
 /* !tablet ------------------------ */
@@ -84,7 +89,12 @@ button:active {
   width: 69px;
   height: 29px;
   border-radius: 18px;
-  background-color: linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%);
+  background-color: linear-gradient(
+    97deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   padding: 4px 12px;
   font-size: 14px;

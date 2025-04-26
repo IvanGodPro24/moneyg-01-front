@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, logout, registered } from "./operations";
+import { current, login, logout, registered } from "./operations";
 import { toast } from "sonner";
 
 const authSlice = createSlice({
@@ -9,6 +9,7 @@ const authSlice = createSlice({
     user: {
       name: null,
       email: null,
+      balance: 0,
     },
     token: null,
     isLoggedIn: false,
@@ -37,6 +38,19 @@ const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+      })
+
+      .addCase(current.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(current.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(current.rejected, (state) => {
+        state.isRefreshing = false;
+        toast.error("Please log in again!");
       });
   },
 });

@@ -3,11 +3,12 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
 import Loader from "./components/Loader/Loader";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { current } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Toaster } from "sonner";
+import TransactionEditForm from "./components/TransactionEditForm/TransactionEditForm";
 
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -20,7 +21,6 @@ const DashboardPage = lazy(() =>
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);

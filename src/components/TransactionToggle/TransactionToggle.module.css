@@ -1,0 +1,31 @@
+.toggleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.toggleButton {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.toggleButton:hover {
+  color: #ffbe76;
+}
+
+.active {
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.separator {
+  color: #aaa;
+  font-size: 16px;
+}

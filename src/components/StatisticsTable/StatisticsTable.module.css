@@ -1,0 +1,58 @@
+/* src/pages/StatisticsPage/components/StatisticsTable/StatisticsTable.module.css */
+
+.table {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.name {
+  flex-grow: 1;
+  margin-left: 8px;
+  color: #fff;
+}
+
+.sum {
+  font-weight: 700;
+  color: #fff;
+}
+
+.totalBlock {
+  margin-top: 20px;
+}
+
+.expenses,
+.income {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.expenses span {
+  color: #ff6596;
+}
+
+.income span {
+  color: #24cca7;
+}

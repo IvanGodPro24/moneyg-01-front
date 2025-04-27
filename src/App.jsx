@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
+import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         path="/dashboard"
         element={<PrivateRoute component={<DashboardPage />} />}
       ></Route>
+      <Route path="/statistics" element={<StatisticsPage />} />
     </Routes>
   );
 }

@@ -1,9 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { addTransaction } from './operations';
-import { toast } from 'sonner';
+import { createSlice } from "@reduxjs/toolkit";
+import { addTransaction } from "./operations";
+import { toast } from "sonner";
+
+const handlePending = (state) => {
+  state.isLoading = true;
+};
 
 const transactionsSlice = createSlice({
-  name: 'transactions',
+  name: "transactions",
 
   initialState: {
     items: [],
@@ -13,19 +17,20 @@ const transactionsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(addTransaction.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items.push(action.payload);
-        toast.success('Transaction added successfully!');
+        toast.success("Transaction added successfully!");
       })
       .addCase(addTransaction.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        toast.error('Failed to add transaction!');
-      });
+        toast.error("Failed to add transaction!");
+      })
+
+      .addMatcher((action) => {
+        return action.type.endsWith("pending");
+      }, handlePending);
   },
 });
 

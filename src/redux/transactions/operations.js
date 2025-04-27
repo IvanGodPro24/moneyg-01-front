@@ -8,7 +8,7 @@ export const addTransaction = createAsyncThunk(
       const response = await axios.post('/transactions', transactionData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || error.message);
+      return rejectWithValue(error.message);
     }
   }
 );

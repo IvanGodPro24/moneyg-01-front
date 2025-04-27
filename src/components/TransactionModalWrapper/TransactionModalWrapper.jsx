@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import AddTransaction from '../AddTransction/AddTransaction';
+import AddTransaction from '../AddTransaction/AddTransaction';
 import css from './TransactionModalWrapper.module.css';
 import icon from '../../img/icons.svg';
 

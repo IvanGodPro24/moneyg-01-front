@@ -126,7 +126,7 @@ const AddTransaction = ({ onClose }) => {
 
             <div className={css.transactionInfoContainer}>
               <div className={css.sumField}>
-                <Field type='text' id='sum' name='sum' placeholder='0.00' className={css.addSumTransaction} />
+                <Field type='number' id='sum' name='sum' placeholder='0.00' className={css.addSumTransaction} />
                 <ErrorMessage name='sum' component='div' className={css.errorText} />
               </div>
 

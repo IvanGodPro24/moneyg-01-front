@@ -124,7 +124,10 @@ const AddTransaction = ({ onClose }) => {
               <div className={css.datePickerWrapper}>
                 <DatePicker
                   selected={values.date}
-                  onChange={(date) => setFieldValue('date', date)}
+                  onChange={(date) => {
+                    const formattedDate = date.toISOString().split('T')[0];
+                    setFieldValue('date', formattedDate);
+                  }}
                   dateFormat='dd.MM.yyyy'
                   minDate={new Date('2025-01-01')}
                   maxDate={new Date()}

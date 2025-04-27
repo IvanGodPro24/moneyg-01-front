@@ -1,0 +1,348 @@
+.AddModal {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 8px;
+  max-width: 540px;
+  max-height: 589px;
+  backdrop-filter: blur(100px);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.closeButton {
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.closeSvg {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.AddText {
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  color: var(--white);
+  margin-top: 40px;
+}
+
+.transactionTypeText {
+  margin: 0;
+}
+
+.transactionTypeContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.transactionInfoContainer {
+  margin-top: 40px;
+  justify-content: center;
+  row-gap: 20px;
+  gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.addSumTransaction {
+  width: 181px;
+  height: 35px;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  outline: none;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.addSumTransaction::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.addDateTransaction {
+  width: 181px;
+  height: 35px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--white);
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+.addCommentTransaction {
+  width: 394px;
+  height: 32px;
+  padding-left: 8px;
+  font-weight: 400;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  outline: none;
+  background: transparent;
+}
+
+.addCommentTransaction::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.addTransactionButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.addButton {
+  width: 300px;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(167deg, #ffc727 0%, #9e40ba 61.46%, #7000ff 90.54%);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fbfbfb;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.cencelButton {
+  width: 300px;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  background-color: #fbfbfb;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.addButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 182, 39, 0.3);
+}
+
+.cencelButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+}
+
+.datePickerWrapper {
+  width: 181px;
+  height: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.datePicker {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  display: flex;
+  gap: 33px;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 35px;
+  padding-left: 20px;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--white);
+}
+
+.celendar {
+  padding-right: 10px;
+}
+
+.sumField {
+  display: flex;
+  flex-direction: column;
+}
+
+.addSumTransaction::-webkit-outer-spin-button,
+.addSumTransaction::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.errorText {
+  color: #ff868d;
+  font-weight: 500;
+  font-size: small;
+}
+
+.selectWrapper {
+  margin: 0 auto;
+  width: 394px;
+  height: 35px;
+  margin-top: 40px;
+  background-color: transparent;
+  position: relative;
+}
+
+.dropdown {
+  width: 394px;
+  height: 35px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.arrow {
+  font-size: 14px;
+  color: #bfbfbf;
+  padding-right: 10px;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(
+    360deg,
+    rgba(83, 61, 186, 0.7) 0%,
+    rgba(80, 48, 154, 0.7) 35.94%,
+    rgba(106, 70, 165, 0.7) 61.04%,
+    rgba(133, 93, 175, 0.7) 100%
+  );
+  border-radius: 16px;
+  margin-top: 8px;
+  padding: 8px 0;
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  max-height: 260px;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+}
+
+.options::-webkit-scrollbar {
+  display: none;
+}
+
+.selected {
+  font-weight: 400;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.option {
+  text-align: left;
+  padding: 12px 20px;
+  color: #fbfbfb;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ff868d;
+}
+
+.activeOption {
+  color: #ff6c00;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .AddModal {
+    width: 320px;
+    max-height: 691px;
+    height: 691px;
+  }
+  .smallWindow {
+    height: 600px;
+  }
+
+  .closeButton {
+    display: none;
+  }
+  .closeSvg {
+    display: none;
+  }
+
+  .AddText {
+    margin-top: 28px;
+  }
+  .expenseMobileText {
+    margin-top: 40px;
+  }
+  .expenseMobileMargin {
+    margin-top: 32px;
+  }
+
+  .sumField {
+    width: 280px;
+  }
+  .addSumTransaction {
+    width: 280px;
+  }
+
+  .datePickerWrapper {
+    width: 280px;
+  }
+
+  .addCommentTransaction {
+    width: 280px;
+    height: 79px;
+  }
+  .selectWrapper {
+    width: 320px;
+  }
+  .dropdown {
+    width: 280px;
+    margin: 0 auto;
+  }
+  .addButton {
+    width: 280px;
+  }
+  .cencelButton {
+    width: 280px;
+  }
+}

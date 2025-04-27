@@ -16,6 +16,9 @@ const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const DashboardPage = lazy(() =>
   import("./components/DashboardPage/DashboardPage")
 );
+const StatisticsPage = lazy(() =>
+  import("./pages/StatisticsPage/StatisticsPage")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +49,10 @@ function App() {
           <Route
             path="/dashboard"
             element={<PrivateRoute component={<DashboardPage />} />}
+          ></Route>
+          <Route
+            path="/statistics"
+            element={<PrivateRoute component={<StatisticsPage />} />}
           ></Route>
           <Route path="*" element={<Navigate to="/" replace />}></Route>
         </Routes>

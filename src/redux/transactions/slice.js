@@ -1,13 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import { addTransaction } from './operations';
+import { toast } from 'sonner';
 
-const transactionSlice = createSlice({
-  name: "transactions",
+const transactionsSlice = createSlice({
+  name: 'transactions',
 
-  initialState: {},
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
 
   extraReducers: (builder) => {
-    builder.addCase;
+    builder
+      .addCase(addTransaction.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addTransaction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items.push(action.payload);
+        toast.success('Transaction added successfully!');
+      })
+      .addCase(addTransaction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        toast.error('Failed to add transaction!');
+      });
   },
 });
 
-export default transactionSlice.reducer;
+export default transactionsSlice.reducer;

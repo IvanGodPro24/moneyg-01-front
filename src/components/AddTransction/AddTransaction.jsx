@@ -6,22 +6,25 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import icon from '../../img/icons.svg';
+import { addTransaction } from '../../redux/transactions/operations.js';
+import { useDispatch } from 'react-redux';
 
 const categories = [
+  'Main expenses',
   'Products',
-  'Health',
-  'Transport',
-  'Alcohol',
-  'Entertainment',
-  'Housing',
-  'Technique',
-  'Communal',
-  'Sports',
+  'Car',
+  'Self care',
+  'Child care',
+  'Household products',
   'Education',
-  'Other',
+  'Leisure',
+  'Other expenses',
+  'Entertainment',
 ];
 
 const AddTransaction = ({ onClose }) => {
+  const dispatch = useDispatch();
+
   const [transactionType, setTransactionType] = useState('expense');
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -51,7 +54,12 @@ const AddTransaction = ({ onClose }) => {
       type: transactionType,
     };
 
-    console.log('Submitted data:', finalData);
+    if (transactionType === 'income') {
+      delete finalData.category;
+    }
+
+    dispatch(addTransaction(finalData));
+
     resetForm();
     onClose();
   };
@@ -112,6 +120,7 @@ const AddTransaction = ({ onClose }) => {
                     </ul>
                   )}
                 </div>
+                <ErrorMessage name='category' component='div' className={css.errorText} />
               </div>
             )}
 
@@ -125,7 +134,7 @@ const AddTransaction = ({ onClose }) => {
                 <DatePicker
                   selected={values.date}
                   onChange={(date) => {
-                    const formattedDate = date.toISOString().split('T')[0];
+                    const formattedDate = date.toISOString();
                     setFieldValue('date', formattedDate);
                   }}
                   dateFormat='dd.MM.yyyy'

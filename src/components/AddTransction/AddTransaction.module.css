@@ -196,7 +196,12 @@
   flex-direction: column;
 }
 
-.errorText {
+.addSumTransaction::-webkit-outer-spin-button,
+.addSumTransaction::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+ч .errorText {
   color: #ff868d;
   font-weight: 500;
   font-size: small;

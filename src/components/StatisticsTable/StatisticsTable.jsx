@@ -4,36 +4,23 @@ const StatisticsTable = ({ data }) => {
   const categories = data || [];
 
   return (
-    // <div className="wrapper">
-    //   <table className="table">
-    //     <thead>
-    //       <tr>
-    //         <th className="border-b p-2 text-left">Category</th>
-    //         <th className="border-b p-2 text-right">Sum</th>
-    //       </tr>
-    //     </thead>
-    //     <tbody>
-    //       {categories.map((item) => (
-    //         <tr key={item._id}>
-    //           <td className="border-b p-2">{item.category}</td>
-    //           <td className="border-b p-2 text-right">
-    //             ${item.sum.toFixed(2)}
-    //           </td>
-    //         </tr>
-    //       ))}
-    //     </tbody>
-    //   </table>
-    // </div>
-
     <div className={styles.table}>
       <ul className={styles.list}>
+        <li className={styles.listHeader}>
+          <div>
+            <span>Category</span>
+            <span>Sum</span>
+          </div>
+        </li>
         {categories.map((item) => (
           <li key={item._id} className={styles.item}>
-            <span
-              className={styles.color}
-              style={{ backgroundColor: item.color }}
-            ></span>
-            <span className={styles.name}>{item.name}</span>
+            <div className={styles.label}>
+              <span
+                className={styles.color}
+                style={{ backgroundColor: item.color }}
+              ></span>
+              <span className={styles.name}>{item.category}</span>
+            </div>
             <span className={styles.sum}>{item.sum.toFixed(2)}</span>
           </li>
         ))}

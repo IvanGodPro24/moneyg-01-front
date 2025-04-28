@@ -28,6 +28,7 @@ const customStyles = {
       : "1px solid rgba(255, 255, 255, 0.6)",
     boxShadow: "none",
     height: "50px",
+    width: "100%",
     cursor: "pointer",
     padding: "0 20px",
     transition: "all 0.3s",
@@ -59,7 +60,6 @@ const customStyles = {
       rgba(106, 70, 165, 1) 73.27%, 
       rgba(133, 93, 175, 1) 120.03%);`,
     borderRadius: "8px",
-    marginTop: "8px",
     overflow: "hidden",
     top: 42,
   }),
@@ -75,11 +75,11 @@ const customStyles = {
     backgroundColor: state.isSelected
       ? "rgba(255, 255, 255, 0.1);"
       : state.isFocused
-      ? "rgba(255, 255, 255, 0.2)" // Чуть прозрачная подсветка при ховере
+      ? "rgba(255, 255, 255, 0.2)"
       : "transparent",
     color: state.isSelected ? "rgba(255, 134, 141, 1);" : "#fff",
     cursor: "pointer",
-    padding: "12px 20px",
+    padding: "4px 20px",
     fontSize: 16,
     textAlign: "left",
     transition: "all 0.3s",
@@ -94,9 +94,6 @@ const customStyles = {
   dropdownIndicator: (provided, state) => ({
     color: "#fff",
     transform: state.isOpen ? "rotate(180deg)" : "rotate(0deg)",
-    // "&:hover": {
-    //   color: "#1DB3A5",
-    // },
   }),
 };
 

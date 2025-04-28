@@ -1,9 +1,5 @@
-/* src/pages/StatisticsPage/components/StatisticsTable/StatisticsTable.module.css */
-
 .table {
-  background-color: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
-  padding: 20px;
   width: 100%;
 }
 
@@ -13,10 +9,19 @@
   gap: 12px;
 }
 
+.listHeader div {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(82, 59, 126, 0.6);
+  padding: 16px;
+  border-radius: 8px;
+}
+
 .item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.082);
+  padding: 13px;
 }
 
 .color {
@@ -26,7 +31,6 @@
 }
 
 .name {
-  flex-grow: 1;
   margin-left: 8px;
   color: #fff;
 }

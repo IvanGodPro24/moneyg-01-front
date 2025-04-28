@@ -1,10 +1,10 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
   width: 100%;
-  max-width: 300px;
-  margin: 20px auto;
+  margin: 32px auto 20px;
+  max-height: min-content;
 }
 
 .react-select__control {
@@ -13,11 +13,13 @@
 
 .select {
   color: black;
+  flex: 1;
 }
 
 @media (min-width: 768px) {
   .dashboard {
     flex-direction: row;
     justify-content: center;
+    margin: 0px auto 20px;
   }
 }

@@ -4,11 +4,7 @@ import styles from "./Chart.module.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-import React from "react";
-
 const Chart = ({ data }) => {
-  const categories = data?.category || [];
-
   const chartData = {
     labels: data.map((item) => item.category),
     datasets: [
@@ -32,8 +28,6 @@ const Chart = ({ data }) => {
     plugins: {
       legend: { display: false },
     },
-    responsive: false,
-    maintainAspectRatio: false,
   };
 
   return (
@@ -42,13 +36,11 @@ const Chart = ({ data }) => {
         <Doughnut
           className={styles.chartDiagram}
           data={chartData}
-          width={200}
-          height={200}
           options={options}
         />
-      </div>
       <div className={styles.centeredText}>
         <p>₴ {2300}</p>
+      </div>
       </div>
     </div>
   );

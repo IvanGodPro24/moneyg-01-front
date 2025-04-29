@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import Navigation from "../Navigation/Navigation";
 import CurrencyTab from "../CurrencyTab/CurrencyTab";
 import s from "./DashboardPage.module.css";
+import TransactionModalWrapper from "../TransactionModalWrapper/TransactionModalWrapper";
 
 const DashboardPage = () => {
   return (
@@ -18,6 +19,7 @@ const DashboardPage = () => {
             <Balance />
           </div>
           <CurrencyTab className={s.currency} />
+          <TransactionModalWrapper/>
         </div>
       </main>
       <Outlet />

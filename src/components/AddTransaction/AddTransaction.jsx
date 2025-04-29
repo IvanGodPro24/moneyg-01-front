@@ -1,26 +1,17 @@
 import css from "./AddTransaction.module.css";
 import TransactionToggle from "../TransactionToggle/TransactionToggle.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import icon from "../../img/icons.svg";
-import { addTransaction } from "../../redux/transactions/operations.js";
-import { useDispatch } from "react-redux";
-
-const categories = [
-  "Main expenses",
-  "Products",
-  "Car",
-  "Self care",
-  "Child care",
-  "Household products",
-  "Education",
-  "Leisure",
-  "Other expenses",
-  "Entertainment",
-];
+import {
+  addTransaction,
+  getAllCategories,
+} from "../../redux/transactions/operations.js";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategories } from "../../redux/transactions/selectors.js";
 
 const AddTransaction = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -29,6 +20,14 @@ const AddTransaction = ({ onClose }) => {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  const categories = useSelector(selectCategories);
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(getAllCategories());
+    }
+  }, [dispatch, categories]);
 
   const initialValues = {
     sum: "",
@@ -58,7 +57,8 @@ const AddTransaction = ({ onClose }) => {
     };
 
     if (transactionType === "income") {
-      delete finalData.category;
+      finalData.category = "Income";
+      setSelectedCategory("Income");
     }
 
     dispatch(addTransaction(finalData));
@@ -124,22 +124,24 @@ const AddTransaction = ({ onClose }) => {
 
                   {isDropdownOpen && (
                     <ul className={css.options}>
-                      {categories.map((cat) => (
-                        <li
-                          key={cat}
-                          className={`${css.option} ${
-                            selectedCategory === cat ? css.activeOption : ""
-                          }`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedCategory(cat);
-                            setFieldValue("category", cat);
-                            setDropdownOpen(false);
-                          }}
-                        >
-                          {cat}
-                        </li>
-                      ))}
+                      {categories
+                        .filter((cat) => !(cat === "Income"))
+                        .map((cat) => (
+                          <li
+                            key={cat}
+                            className={`${css.option} ${
+                              selectedCategory === cat ? css.activeOption : ""
+                            }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedCategory(cat);
+                              setFieldValue("category", cat);
+                              setDropdownOpen(false);
+                            }}
+                          >
+                            {cat}
+                          </li>
+                        ))}
                     </ul>
                   )}
                 </div>

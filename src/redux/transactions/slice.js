@@ -4,6 +4,7 @@ import {
   deleteTransaction,
   editTransaction,
   fetchTransactions,
+  getAllCategories
 } from "./operations";
 import { toast } from "sonner";
 
@@ -57,6 +58,7 @@ const transactionsSlice = createSlice({
         type: "+",
       },
     ],
+    categories: [],
     isLoading: false,
     error: null,
   },
@@ -111,6 +113,16 @@ const transactionsSlice = createSlice({
       .addCase(editTransaction.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+
+      .addCase(getAllCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.categories = action.payload;
+      })
+      .addCase(getAllCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        toast.error("Failed to fetch categories!");
       })
 
       .addMatcher((action) => {

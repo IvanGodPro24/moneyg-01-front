@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import TransactionModalWrapper from '../TransactionModalWrapper/TransactionModalWrapper';
 
 const DashboardPage = () => {
   return (
-    <div>
-      <Link to="/statistics">Statistics</Link>
-    </div>
+    <>
+      <div>DashboardPage</div>
+      <TransactionModalWrapper />
+    </>
   );
 };
 

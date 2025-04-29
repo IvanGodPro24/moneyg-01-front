@@ -16,6 +16,7 @@ import { fetchSummary } from "../../redux/summary/operations";
 import { assignColors } from "../../utils/assignColors";
 
 import styles from "./StatisticsTab.module.css";
+import Loader from "../Loader/Loader";
 
 const StatisticsTab = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const StatisticsTab = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loader />;
   }
 
   return (

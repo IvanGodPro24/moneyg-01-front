@@ -1,35 +1,41 @@
+import css from "./AddTransaction.module.css";
+import TransactionToggle from "../TransactionToggle/TransactionToggle.jsx";
 import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import css from "./TransactionEditForm.module.css";
-import TransactionToggle from "../TransactionToggle/TransactionToggle";
 import icon from "../../img/icons.svg";
-import EditTransactionToggle from "../EditTransactionToggle/EditTransactionToggle";
+import { addTransaction } from "../../redux/transactions/operations.js";
+import { useDispatch } from "react-redux";
 
 const categories = [
+  "Main expenses",
   "Products",
-  "Health",
-  "Transport",
-  "Alcohol",
-  "Entertainment",
-  "Housing",
-  "Technique",
-  "Communal",
-  "Sports",
+  "Car",
+  "Self care",
+  "Child care",
+  "Household products",
   "Education",
-  "Other",
+  "Leisure",
+  "Other expenses",
+  "Entertainment",
 ];
 
-export default function TransactionEditForm({ onClose, initialTransaction }) {
-  const [transactionType, setTransactionType] = useState(
-    initialTransaction.type
-  );
+const AddTransaction = ({ onClose }) => {
+  const dispatch = useDispatch();
+
+  const [transactionType, setTransactionType] = useState("expense");
+
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(
-    initialTransaction.category || ""
-  );
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const initialValues = {
+    sum: "",
+    comment: "",
+    date: new Date(),
+    category: "",
+  };
 
   const validationSchema = Yup.object({
     sum: Yup.number()
@@ -46,26 +52,28 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
   });
 
   const onSubmit = (values, { resetForm }) => {
-    const updatedTransaction = {
+    const finalData = {
       ...values,
       type: transactionType,
     };
 
-    console.log("Updated transaction:", updatedTransaction);
+    if (transactionType === "income") {
+      delete finalData.category;
+    }
+
+    dispatch(addTransaction(finalData));
+
     resetForm();
     onClose();
   };
 
-  const handleToggle = (type) => {
-    setTransactionType(type);
-    if (type === "income") {
-      setSelectedCategory("");
-    }
+  const handleToggle = (selectedType) => {
+    setTransactionType(selectedType);
   };
 
   return (
     <div
-      className={`${css.EditModal} ${
+      className={`${css.AddModal} ${
         transactionType !== "expense" && css.smallWindow
       }`}
     >
@@ -74,26 +82,27 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
           <use href={`${icon}#icon-close`}></use>
         </svg>
       </button>
-
-      <h2 className={css.editText}>Edit transaction</h2>
+      <h2
+        className={`${css.AddText} ${
+          transactionType === "expense" && css.expenseMobileText
+        }`}
+      >
+        Add transaction
+      </h2>
 
       <Formik
-        initialValues={{
-          sum: initialTransaction.sum || "",
-          comment: initialTransaction.comment || "",
-          date: new Date(initialTransaction.date),
-          category: initialTransaction.category || "",
-        }}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {({ setFieldValue, values }) => (
           <Form>
-            <div className={css.transactionTypeContainer}>
-              <EditTransactionToggle
-                currentType={transactionType}
-                onChange={handleToggle}
-              />
+            <div
+              className={`${css.transactionTypeContainer} ${
+                transactionType !== "income" ? css.expenseMobileMargin : ""
+              }`}
+            >
+              <TransactionToggle onChange={handleToggle} />
             </div>
 
             {transactionType === "expense" && (
@@ -107,7 +116,11 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
                   <span className={css.selected}>
                     {selectedCategory || "Select a category"}
                   </span>
-                  <span className={css.arrow}></span>
+                  <span className={css.arrow}>
+                    <svg width="18" height="9">
+                      <use href={`${icon}#icon-arrow-down`}></use>
+                    </svg>
+                  </span>
 
                   {isDropdownOpen && (
                     <ul className={css.options}>
@@ -145,7 +158,7 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
                   id="sum"
                   name="sum"
                   placeholder="0.00"
-                  className={css.editSumTransaction}
+                  className={css.addSumTransaction}
                 />
                 <ErrorMessage
                   name="sum"
@@ -158,11 +171,11 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
                 <DatePicker
                   selected={values.date}
                   onChange={(date) => {
-                    const formattedDate = date.toISOString().split("T")[0];
+                    const formattedDate = date.toISOString();
                     setFieldValue("date", formattedDate);
                   }}
                   dateFormat="dd.MM.yyyy"
-                  minDate={new Date("2023-01-01")}
+                  minDate={new Date("2025-01-01")}
                   maxDate={new Date()}
                   className={css.datePicker}
                 />
@@ -182,7 +195,7 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
                   id="comment"
                   name="comment"
                   placeholder="Comment"
-                  className={css.editCommentTransaction}
+                  className={css.addCommentTransaction}
                 />
                 <ErrorMessage
                   name="comment"
@@ -192,12 +205,12 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
               </div>
             </div>
 
-            <div className={css.editTransactionButtonContainer}>
-              <button className={css.saveButton} type="submit">
-                SAVE
+            <div className={css.addTransactionButtonContainer}>
+              <button className={css.addButton} type="submit">
+                ADD
               </button>
               <button
-                className={css.cancelButton}
+                className={css.cencelButton}
                 type="button"
                 onClick={onClose}
               >
@@ -209,4 +222,6 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
       </Formik>
     </div>
   );
-}
+};
+
+export default AddTransaction;

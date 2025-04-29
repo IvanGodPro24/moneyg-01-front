@@ -1,27 +1,46 @@
+import React, { useState } from "react";
 import css from "./TransactionToggle.module.css";
+import icon from "../../img/icons.svg";
 
-export default function TransactionToggle({ currentType, onChange }) {
+const TransactionToggle = ({ onChange }) => {
+  const [isIncome, setIsIncome] = useState(false);
+
+  const handleToggle = () => {
+    const newType = isIncome ? "expense" : "income";
+    setIsIncome(!isIncome);
+    onChange(newType);
+  };
+
   return (
-    <div className={css.toggleWrapper}>
-      <button
-        type="button"
-        className={`${css.toggleButton} ${
-          currentType === "income" ? css.active : ""
-        }`}
-        onClick={() => onChange("income")}
-      >
+    <div className={css.toggleContainer}>
+      <span className={`${css.label} ${isIncome ? css.activeIncome : ""}`}>
         Income
-      </button>
-      <span className={css.separator}>/</span>
-      <button
-        type="button"
-        className={`${css.toggleButton} ${
-          currentType === "expense" ? css.active : ""
-        }`}
-        onClick={() => onChange("expense")}
+      </span>
+      <div
+        className={`${css.toggle} ${isIncome ? css.left : css.right}`}
+        onClick={handleToggle}
       >
+        <div
+          className={`${css.circle} ${
+            isIncome ? css.incomeColor : css.expenseColor
+          }`}
+        >
+          {isIncome ? (
+            <svg width="20" height="20">
+              <use href={`${icon}#icon-sign-plus`}></use>
+            </svg>
+          ) : (
+            <svg width="20" height="20">
+              <use href={`${icon}#icon-sign-minus`}></use>
+            </svg>
+          )}
+        </div>
+      </div>
+      <span className={`${css.label} ${!isIncome ? css.activeExpense : ""}`}>
         Expense
-      </button>
+      </span>
     </div>
   );
-}
+};
+
+export default TransactionToggle;

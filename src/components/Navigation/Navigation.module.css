@@ -66,12 +66,31 @@
     color: var(--white);
   }
 
-  .link {
-    display: flex;
+  .title:hover,
+  .title:focus {
+    font-weight: 700;
   }
 
-  .active {
+  .link {
+    display: flex;
+    outline: none;
+    background-color: transparent;
+  }
+
+  .active .title {
+    font-weight: 700;
+  }
+
+  .active .icon {
     fill: #fff;
+    background-color: transparent;
+    box-shadow: 0 3px 10px 0 rgba(74, 86, 226, 0.5);
     background-color: var(--icon-violet);
+  }
+
+  .icon:focus,
+  .icon:active {
+    outline: none;
+    background-color: transparent;
   }
 }

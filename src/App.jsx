@@ -21,7 +21,10 @@ function App() {
         path="/dashboard"
         element={<PrivateRoute component={<DashboardPage />} />}
       ></Route>
-      <Route path="/statistics" element={<StatisticsPage />} />
+      <Route
+        path="/statistics"
+        element={<PrivateRoute component={<StatisticsPage />} />}
+      />
     </Routes>
   );
 }

@@ -1,6 +1,6 @@
 import styles from "./StatisticsTable.module.css";
 
-const StatisticsTable = ({ data }) => {
+const StatisticsTable = ({ data, totalExpenses, totalIncome }) => {
   const categories = data || [];
 
   return (
@@ -13,25 +13,25 @@ const StatisticsTable = ({ data }) => {
           </div>
         </li>
         {categories.map((item) => (
-          <li key={item._id} className={styles.item}>
+          <li key={item.name} className={styles.item}>
             <div className={styles.label}>
               <span
                 className={styles.color}
                 style={{ backgroundColor: item.color }}
               ></span>
-              <span className={styles.name}>{item.category}</span>
+              <span className={styles.name}>{item.name}</span>
             </div>
-            <span className={styles.sum}>{item.sum.toFixed(2)}</span>
+            <span className={styles.sum}>{item.value.toFixed(2)}</span>
           </li>
         ))}
       </ul>
       <div className={styles.totalBlock}>
-        {/* <p className={styles.expenses}>
-          Expenses: <span>{statistics?.expenses.toFixed(2)}</span>
+        <p className={styles.expenses}>
+          Expenses: <span>{totalExpenses.toFixed(2)}</span>
         </p>
         <p className={styles.income}>
-          Income: <span>{statistics?.income.toFixed(2)}</span>
-        </p> */}
+          Income: <span>{totalIncome.toFixed(2)}</span>
+        </p>
       </div>
     </div>
   );

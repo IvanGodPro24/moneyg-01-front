@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import Select from "react-select";
+
 import styles from "./StatisticsDashboard.module.css";
 
 const months = [
@@ -97,62 +96,34 @@ const customStyles = {
   }),
 };
 
-const StatisticsDashboard = () => {
-  const dispatch = useDispatch();
+const StatisticsDashboard = ({
+  selectedMonth,
+  selectedYear,
+  onMonthChange,
+  onYearChange,
+}) => {
   const now = new Date();
-
-  const [selectedMonth, setSelectedMonth] = useState({
-    value: now.getMonth(),
-    label: months[now.getMonth()].label,
-  });
-  const [selectedYear, setSelectedYear] = useState({
-    value: now.getFullYear(),
-    label: now.getFullYear().toString(),
-  });
 
   const years = Array.from({ length: 5 }, (_, i) => {
     const year = now.getFullYear() - i;
     return { value: year, label: year.toString() };
   });
 
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchStatistics({
-  //       month: selectedMonth.value + 1,
-  //       year: selectedYear.value,
-  //     })
-  //   );
-  // }, [selectedMonth, selectedYear, dispatch]);
-
-  // const handleMonthChange = (e) => {
-  //   const selectedMonth = Number(e.target.value);
-  //   setMonth(selectedMonth);
-  //   dispatch(fetchStatistics({ month: selectedMonth, year }));
-  // };
-
-  // const handleYearChange = (e) => {
-  //   const selectedYear = Number(e.target.value);
-  //   setYear(selectedYear);
-  //   dispatch(fetchStatistics({ month, year: selectedYear }));
-  // };
-
   return (
     <div className={styles.dashboard}>
       <Select
         styles={customStyles}
-        classNamePrefix="react-select"
         className={styles.select}
         options={months}
         value={selectedMonth}
-        onChange={setSelectedMonth}
+        onChange={onMonthChange}
       />
       <Select
         styles={customStyles}
-        classNamePrefix="react-select"
         className={styles.select}
         options={years}
         value={selectedYear}
-        onChange={setSelectedYear}
+        onChange={onYearChange}
       />
     </div>
   );

@@ -1,11 +1,11 @@
 import React from "react";
 import StatisticsTab from "../../components/StatisticsTab/StatisticsTab";
-import './StatisticsPage.css'
+import styles from "./StatisticsPage.module.css";
 
 const StatisticsPage = () => {
   return (
-    <div className="statistics-page container">
-      <h2 className="statistics-title">Statistics</h2>
+    <div className={`container`}>
+      <h2 className={styles.title}>Statistics</h2>
       <StatisticsTab />
     </div>
   );

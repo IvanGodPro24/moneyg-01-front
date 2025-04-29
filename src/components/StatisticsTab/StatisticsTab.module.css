@@ -1,12 +1,6 @@
-.tab {
-  display: grid;
-  grid-template-columns: 1fr;
-  /* grid-template-rows: 70px 1fr; */
-  grid-column-gap: 0px;
-}
-
 @media only screen and (min-width: 768px) {
   .tab {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 70px 1fr;
     grid-column-gap: 32px;

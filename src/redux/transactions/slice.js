@@ -4,7 +4,7 @@ import {
   deleteTransaction,
   editTransaction,
   fetchTransactions,
-  getAllCategories
+  getAllCategories,
 } from "./operations";
 import { toast } from "sonner";
 
@@ -16,48 +16,7 @@ const transactionsSlice = createSlice({
   name: "transactions",
 
   initialState: {
-    items: [
-      {
-        id: 1,
-        date: "04.01.23",
-        category: "Other",
-        comment: "Gift for your wife",
-        sum: 300.0,
-        type: "-",
-      },
-      {
-        id: 2,
-        date: "05.01.23",
-        category: "Income",
-        comment: "January bonus",
-        sum: 8000.0,
-        type: "+",
-      },
-      {
-        id: 3,
-        date: "07.01.23",
-        category: "Car",
-        comment: "Oil",
-        sum: 1000.0,
-        type: "-",
-      },
-      {
-        id: 4,
-        date: "07.01.23",
-        category: "Products",
-        comment: "Vegetables for the week",
-        sum: 280.0,
-        type: "-",
-      },
-      {
-        id: 5,
-        date: "07.01.23",
-        category: "Income",
-        comment: "Gift",
-        sum: 1000.0,
-        type: "+",
-      },
-    ],
+    items: [],
     categories: [],
     isLoading: false,
     error: null,
@@ -79,6 +38,8 @@ const transactionsSlice = createSlice({
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items.push(action.payload);
+
+        console.log("addTransaction.fulfilled:", action.payload);
         toast.success("Transaction added successfully!");
       })
       .addCase(addTransaction.rejected, (state, action) => {
@@ -90,7 +51,9 @@ const transactionsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
-        state.items = state.items.filter((item) => item.id !== action.payload);
+        state.items = state.items.filter(
+          (item) => item._id !== action.payload._id
+        );
       })
       .addCase(deleteTransaction.rejected, (state, action) => {
         state.isLoading = false;
@@ -117,6 +80,7 @@ const transactionsSlice = createSlice({
 
       .addCase(getAllCategories.fulfilled, (state, action) => {
         state.isLoading = false;
+        console.log("getAllCategories.fulfilled:", action.payload);
         state.categories = action.payload;
       })
       .addCase(getAllCategories.rejected, (state, action) => {

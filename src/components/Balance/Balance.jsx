@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
-import { selectTotalBalance } from "../../redux/transactions/selectors";
 import s from "./Balance.module.css";
+import { selectTotalBalance } from "../../redux/auth/selectors";
 
 const Balance = () => {
   const totalBalance = useSelector(selectTotalBalance);
@@ -12,7 +12,7 @@ const Balance = () => {
         <h2 className={s.title}>Your balance</h2>
         <p className={s.sum}>
           <span className={s.text}>₴</span>
-          {totalBalance || "0"}
+          {totalBalance}
         </p>
       </div>
     </section>

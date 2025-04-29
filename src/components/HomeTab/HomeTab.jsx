@@ -1,11 +1,11 @@
 import TransactionList from "../TransactionList/TransactionList";
-import AddTransaction from "../AddTransaction/AddTransaction";
+import TransactionModalWrapper from "../TransactionModalWrapper/TransactionModalWrapper";
 
 const HomeTab = () => {
   return (
     <>
       <TransactionList />
-      <AddTransaction />
+      <TransactionModalWrapper />
     </>
   );
 };

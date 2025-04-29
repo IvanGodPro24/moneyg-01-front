@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "../api/axiosInstance";
 
 export const addTransaction = createAsyncThunk(
   "transactions/addTransaction",
@@ -16,45 +15,37 @@ export const addTransaction = createAsyncThunk(
 
 export const fetchTransactions = createAsyncThunk(
   "transactions/fetchTransactions",
-  async (_, thunkAPI) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosInstance.get("/transactions");
+      const { data } = await axios.get("/transactions");
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response.data.message || error.message
-      );
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const deleteTransaction = createAsyncThunk(
   "transactions/deleteTransaction",
-  async (id, thunkAPI) => {
+  async (transaction, { rejectWithValue }) => {
     try {
-      await axiosInstance.delete(`/transactions/${id}`);
-      return id;
+      const response = await axios.delete(`/transactions/${transaction._id}`);
+
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response.data.message || error.message
-      );
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const editTransaction = createAsyncThunk(
   "transactions/editTransaction",
-  async ({ id, updateData }, thunkAPI) => {
+  async ({ id, updateData }, { rejectWithValue }) => {
     try {
-      const { data } = await axiosInstance.patch(
-        `/transactions/${id}`,
-        updateData
-      );
+      const { data } = await axios.patch(`/transactions/${id}`, updateData);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response.data.message || error.message
-      );
+      return rejectWithValue(error.message);
     }
   }
 );

@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import s from "./TransactionList.module.css";
-import TransactionCard from "../TransactionCard/TransactionCard";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import { fetchTransactions } from "../../redux/transactions/operations";
@@ -35,10 +34,10 @@ const TransactionList = () => {
         <tbody className={s.tbody}>
           {transactions.map((t) => (
             <TransactionsItem
-              key={t.id}
-              id={t.id}
+              key={t._id}
+              id={t._id}
               date={t.date}
-              category={t.category}
+              category={t.categoryId?.title || "Unknown"}
               comment={t.comment}
               sum={t.sum}
               type={t.type}
@@ -46,20 +45,6 @@ const TransactionList = () => {
           ))}
         </tbody>
       </table>
-
-      <ul className={s.list}>
-        {transactions.map((t) => (
-          <TransactionCard
-            key={t.id}
-            id={t.id}
-            date={t.date}
-            category={t.category}
-            comment={t.comment}
-            sum={t.sum}
-            type={t.type}
-          />
-        ))}
-      </ul>
     </>
   );
 };

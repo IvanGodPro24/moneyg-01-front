@@ -25,6 +25,7 @@
     min-width: 704px;
     margin-top: 20px;
     border-collapse: collapse;
+    margin: 0 auto;
   }
 
   .thead {

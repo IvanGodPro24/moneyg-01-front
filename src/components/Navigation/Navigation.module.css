@@ -69,4 +69,9 @@
   .link {
     display: flex;
   }
+
+  .active {
+    fill: #fff;
+    background-color: var(--icon-violet);
+  }
 }

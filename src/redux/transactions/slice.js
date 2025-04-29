@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTransaction } from "./operations";
+import { addTransaction, getAllCategories } from "./operations";
 import { toast } from "sonner";
 
 const handlePending = (state) => {
@@ -11,6 +11,7 @@ const transactionsSlice = createSlice({
 
   initialState: {
     items: [],
+    categories: [],
     isLoading: false,
     error: null,
   },
@@ -26,6 +27,16 @@ const transactionsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
         toast.error("Failed to add transaction!");
+      })
+
+      .addCase(getAllCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.categories = action.payload;
+      })
+      .addCase(getAllCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        toast.error("Failed to fetch categories!");
       })
 
       .addMatcher((action) => {

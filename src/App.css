@@ -3,3 +3,44 @@
   text-align: center;
 }
 
+:root {
+  --yellow: #ffb627;
+  --icon-violet: #734aef;
+  --white: #fbfbfb;
+  --white-400: rgba(255, 255, 255, 0.4);
+  --white-600: rgba(255, 255, 255, 0.6);
+  --text-button: #623f8b;
+  --dashboard-text: #ff868d;
+  --form-color: rgba(255, 255, 255, 0.1);
+}
+
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}

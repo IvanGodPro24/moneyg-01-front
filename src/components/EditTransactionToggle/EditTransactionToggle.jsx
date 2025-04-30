@@ -1,27 +1,28 @@
+import React from "react";
 import css from "./EditTransactionToggle.module.css";
 
-export default function EditTransactionToggle({ currentType, onChange }) {
+const TransactionToggle = ({ currentType, onChange }) => {
   return (
-    <div className={css.toggleWrapper}>
-      <button
-        type="button"
-        className={`${css.toggleButton} ${
-          currentType === "income" ? css.active : ""
-        }`}
+    <div className={css.toggleContainer}>
+      <span
+        className={`${css.label} ${currentType === "income" ? css.income : ""}`}
         onClick={() => onChange("income")}
       >
         Income
-      </button>
+      </span>
+
       <span className={css.separator}>/</span>
-      <button
-        type="button"
-        className={`${css.toggleButton} ${
-          currentType === "expense" ? css.active : ""
+
+      <span
+        className={`${css.label} ${
+          currentType === "expense" ? css.expense : ""
         }`}
         onClick={() => onChange("expense")}
       >
         Expense
-      </button>
+      </span>
     </div>
   );
-}
+};
+
+export default TransactionToggle;

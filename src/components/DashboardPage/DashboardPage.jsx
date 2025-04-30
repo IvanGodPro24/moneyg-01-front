@@ -1,4 +1,4 @@
-import TransactionModalWrapper from '../TransactionModalWrapper/TransactionModalWrapper';
+import TransactionModalWrapper from "../TransactionModalWrapper/TransactionModalWrapper";
 
 const DashboardPage = () => {
   return (

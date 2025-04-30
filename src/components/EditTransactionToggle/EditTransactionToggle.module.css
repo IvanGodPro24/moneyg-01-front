@@ -1,31 +1,31 @@
-.toggleWrapper {
+.toggleContainer {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 
-.toggleButton {
-  background: transparent;
-  border: none;
-  color: #fff;
+.label {
   font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.toggleButton:hover {
-  color: #ffbe76;
-}
-
-.active {
-  color: #ff6b6b;
+  font-family: var(--font-family);
   font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .separator {
-  color: #aaa;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.income {
+  color: #ffb627;
+}
+
+.expense {
+  color: #ff6596;
 }

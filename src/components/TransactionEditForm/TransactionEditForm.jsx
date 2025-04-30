@@ -49,6 +49,7 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
     const updatedTransaction = {
       ...values,
       type: transactionType,
+      date: values.date.toISOString(),
     };
 
     console.log("Updated transaction:", updatedTransaction);
@@ -158,8 +159,7 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
                 <DatePicker
                   selected={values.date}
                   onChange={(date) => {
-                    const formattedDate = date.toISOString().split("T")[0];
-                    setFieldValue("date", formattedDate);
+                    setFieldValue("date", date);
                   }}
                   dateFormat="dd.MM.yyyy"
                   minDate={new Date("2023-01-01")}
@@ -193,7 +193,7 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
             </div>
 
             <div className={css.editTransactionButtonContainer}>
-              <button className={css.saveButton} type="submit">
+              <button className={css.editButton} type="submit">
                 SAVE
               </button>
               <button

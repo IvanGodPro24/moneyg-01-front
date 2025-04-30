@@ -3,6 +3,12 @@
   grid-row: span 2 / span 2;
 }
 
+.title {
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: 30px;
+}
+
 .chartWrapper {
   display: flex;
   justify-content: center;
@@ -23,5 +29,12 @@
 @media only screen and (min-width: 768px) {
   .chartWrapper {
     width: 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .chart {
+    max-width: max-content;
+    width: 288px;
   }
 }

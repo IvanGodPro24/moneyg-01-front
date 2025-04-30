@@ -19,8 +19,8 @@ const DashboardPage = () => {
           </div>
           <CurrencyTab className={s.currency} />
         </div>
+        <Outlet />
       </main>
-      <Outlet />
     </>
   );
 };

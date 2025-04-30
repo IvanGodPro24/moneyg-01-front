@@ -25,7 +25,7 @@ const StatisticsTab = () => {
   const isLoading = useSelector(selectSummaryLoading);
   const totalExpenses = useSelector(selectTotalExpenses);
   const totalIncome = useSelector(selectTotalIncome);
-  const totalBalance = useSelector(selectTotalBalance)
+  const totalBalance = useSelector(selectTotalBalance);
 
   const coloredData = assignColors(data);
 
@@ -58,20 +58,22 @@ const StatisticsTab = () => {
   }
 
   return (
-    <section className={styles.tab}>
+    <div className={styles.tab}>
       <Chart data={coloredData} totalBalance={totalBalance} />
-      <StatisticsDashboard
-        selectedMonth={selectedMonth}
-        selectedYear={selectedYear}
-        onMonthChange={handleMonthChange}
-        onYearChange={handleYearChange}
-      />
-      <StatisticsTable
-        data={coloredData}
-        totalExpenses={totalExpenses}
-        totalIncome={totalIncome}
-      />
-    </section>
+      <div className={styles.dashboard}>
+        <StatisticsDashboard
+          selectedMonth={selectedMonth}
+          selectedYear={selectedYear}
+          onMonthChange={handleMonthChange}
+          onYearChange={handleYearChange}
+        />
+        <StatisticsTable
+          data={coloredData}
+          totalExpenses={totalExpenses}
+          totalIncome={totalIncome}
+        />
+      </div>
+    </div>
   );
 };
 

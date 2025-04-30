@@ -3,10 +3,10 @@ import styles from "./StatisticsPage.module.css";
 
 const StatisticsPage = () => {
   return (
-    <div className={`container`}>
+    <section className={styles.statistics}>
       <h2 className={styles.title}>Statistics</h2>
       <StatisticsTab />
-    </div>
+    </section>
   );
 };
 

@@ -16,10 +16,16 @@
   flex: 1;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .dashboard {
     flex-direction: row;
     justify-content: center;
-    margin: 0px auto 20px;
+    margin: -40px auto 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dashboard {
+    margin: 0 0 20px;
   }
 }

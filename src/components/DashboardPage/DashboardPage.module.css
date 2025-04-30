@@ -1,0 +1,56 @@
+.main {
+  position: relative;
+  padding: 15px 20px;
+  z-index: 1;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at top left, #8e2e79 -20%, transparent 20%),
+    radial-gradient(circle at bottom right, #9e40ba -20%, transparent 30%),
+    radial-gradient(circle at top right, #070522 5%, transparent 80%),
+    radial-gradient(circle at bottom left, #070522 10%, transparent 80%);
+  background-color: #7000ff;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    width: 768px;
+    margin: 0 auto;
+    padding-top: 0;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .main {
+    width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 1px solid var(--white-600);
+  }
+}

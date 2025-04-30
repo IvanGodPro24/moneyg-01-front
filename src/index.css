@@ -49,43 +49,12 @@ p {
   margin-bottom: 0;
 }
 
-/* !button big (for example Register) mobile ------------------------ */
 button {
-  width: 280px;
-  height: 50px;
-  border-radius: 20px;
-  background-color: #fbfbfb;
-  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
-  padding: 13px auto;
-  font-size: 18px;
-  color: #623f8b;
   cursor: pointer;
-  transition: all 0.15s ease-in 0s;
-}
-button:active {
-  background-color: linear-gradient(
-    97deg,
-    #ffc727 -16.42%,
-    #9e40ba 97.04%,
-    #7000ff 150.71%
-  );
-  color: #fbfbfb;
-}
-/* !tablet ------------------------ */
-@media only screen and (min-width: 768px) {
-  button {
-    width: 280px;
-  }
-}
-/* !Desktop ------------------------ */
-@media only screen and (min-width: 1280px) {
-  button {
-    width: 3000px;
-  }
 }
 
-/* !button Delete mobile ------------------------ */
-.button-delete {
+
+/* .button-delete {
   width: 69px;
   height: 29px;
   border-radius: 18px;
@@ -100,13 +69,7 @@ button:active {
   font-size: 14px;
   color: #fff;
   cursor: pointer;
-}
-/* !Desktop ------------------------ */
-@media only screen and (min-width: 1280px) {
-  .button-delete {
-    border-radius: 20px;
-  }
-}
+} */
 
 /* Container !mobile ------------------------ */
 .container {
@@ -115,7 +78,7 @@ button:active {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* !tablet ------------------------ */
+
 @media only screen and (min-width: 768px) {
   .container {
     max-width: 768px;
@@ -123,7 +86,7 @@ button:active {
     padding-right: 32px;
   }
 }
-/* !Desktop ------------------------ */
+
 @media only screen and (min-width: 1280px) {
   .container {
     max-width: 1280px;
@@ -138,8 +101,8 @@ button:active {
   margin: 0;
 }
 
-/* !Modal big form mobile ------------------------ */
-.modal {
+
+/* .modal {
   width: 280px;
   border: 0;
   border-radius: 8px;
@@ -155,11 +118,11 @@ button:active {
   padding-left: 20px;
   padding-right: 20px;
 }
-/* !tablet ------------------------ */
+
 @media only screen and (min-width: 768px) {
   .modal {
     width: 394px;
     padding-left: 20px;
     padding-right: 20px;
   }
-}
+} */

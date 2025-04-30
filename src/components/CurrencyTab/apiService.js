@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://api.monobank.ua/bank/currency";
+const API_BASE_URL = "http://localhost:3000/currency";
 
 export const fetchExchangeRates = async () => {
   try {

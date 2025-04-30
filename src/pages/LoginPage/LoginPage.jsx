@@ -1,9 +1,11 @@
-import LoginForm from "../../components/LoginForm/LoginForm";
-import "./LoginPage.css";
+import { LoginForm } from '../../components/LoginForm/LoginForm.jsx';
+
+import s from './LoginPage.module.css';
+
 
 const LoginPage = () => {
   return (
-    <div className="login-page">
+    <div className={s.container}>
       <LoginForm />
     </div>
   );

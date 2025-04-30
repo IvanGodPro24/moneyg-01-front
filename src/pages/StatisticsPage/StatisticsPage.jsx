@@ -1,4 +1,3 @@
-import React from "react";
 import StatisticsTab from "../../components/StatisticsTab/StatisticsTab";
 import styles from "./StatisticsPage.module.css";
 

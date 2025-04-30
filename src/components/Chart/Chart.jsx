@@ -5,7 +5,7 @@ import styles from "./Chart.module.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Chart = ({ data, totalExpenses }) => {
+const Chart = ({ data, totalBalance }) => {
   const chartData = {
     labels: data.map((item) => item.name),
     datasets: [
@@ -43,7 +43,7 @@ const Chart = ({ data, totalExpenses }) => {
           options={options}
         />
         <div className={styles.centeredText}>
-          <p>₴ {totalExpenses.toFixed(2)}</p>
+          <p>₴ {totalBalance.toFixed(2)}</p>
         </div>
       </div>
     </div>

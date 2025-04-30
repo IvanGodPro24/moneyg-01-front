@@ -12,7 +12,7 @@ const Balance = () => {
         <h2 className={s.title}>Your balance</h2>
         <p className={s.sum}>
           <span className={s.text}>₴</span>
-          {totalBalance}
+          {totalBalance.toFixed(2)}
         </p>
       </div>
     </section>

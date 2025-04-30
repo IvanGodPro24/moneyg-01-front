@@ -55,7 +55,7 @@ const RegistrationForm = () => {
   return (
     <div className="registration-form">
       <div className="logo">
-        <img src="/src/assets/logo.svg" alt="Money Guard" />
+        <img src="/logo.svg" alt="Money Guard" />
         <h1>Money Guard</h1>
       </div>
 

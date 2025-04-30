@@ -16,13 +16,8 @@ a {
   color: #fbfbfb;
   text-decoration: none;
 }
-a:hover {
-  font-weight: 700;
-  color: #fbfbfb;
-}
 
 img {
-  display: block;
   width: 100%;
   height: auto;
 }
@@ -49,73 +44,17 @@ p {
   margin-bottom: 0;
 }
 
-/* !button big (for example Register) mobile ------------------------ */
 button {
-  width: 280px;
-  height: 50px;
-  border-radius: 20px;
-  background-color: #fbfbfb;
-  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
-  padding: 13px auto;
-  font-size: 18px;
-  color: #623f8b;
-  cursor: pointer;
-  transition: all 0.15s ease-in 0s;
-}
-button:active {
-  background-color: linear-gradient(
-    97deg,
-    #ffc727 -16.42%,
-    #9e40ba 97.04%,
-    #7000ff 150.71%
-  );
-  color: #fbfbfb;
-}
-/* !tablet ------------------------ */
-@media only screen and (min-width: 768px) {
-  button {
-    width: 280px;
-  }
-}
-/* !Desktop ------------------------ */
-@media only screen and (min-width: 1280px) {
-  button {
-    width: 3000px;
-  }
-}
-
-/* !button Delete mobile ------------------------ */
-.button-delete {
-  width: 69px;
-  height: 29px;
-  border-radius: 18px;
-  background-color: linear-gradient(
-    97deg,
-    #ffc727 -16.42%,
-    #9e40ba 97.04%,
-    #7000ff 150.71%
-  );
-  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
-  padding: 4px 12px;
-  font-size: 14px;
-  color: #fff;
   cursor: pointer;
 }
-/* !Desktop ------------------------ */
-@media only screen and (min-width: 1280px) {
-  .button-delete {
-    border-radius: 20px;
-  }
-}
 
-/* Container !mobile ------------------------ */
 .container {
   max-width: 320px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
 }
-/* !tablet ------------------------ */
+
 @media only screen and (min-width: 768px) {
   .container {
     max-width: 768px;
@@ -123,7 +62,7 @@ button:active {
     padding-right: 32px;
   }
 }
-/* !Desktop ------------------------ */
+
 @media only screen and (min-width: 1280px) {
   .container {
     max-width: 1280px;
@@ -136,30 +75,4 @@ button:active {
   position: absolute;
   overflow: hidden;
   margin: 0;
-}
-
-/* !Modal big form mobile ------------------------ */
-.modal {
-  width: 280px;
-  border: 0;
-  border-radius: 8px;
-  background: linear-gradient(
-    0deg,
-    rgba(83, 61, 186, 0.7) 0%,
-    rgba(80, 48, 154, 0.7) 43.14%,
-    rgba(106, 70, 165, 0.52) 73.27%,
-    rgba(133, 93, 175, 0.13) 120.03%
-  );
-  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
-  padding-left: 20px;
-  padding-right: 20px;
-}
-/* !tablet ------------------------ */
-@media only screen and (min-width: 768px) {
-  .modal {
-    width: 394px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 }

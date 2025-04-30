@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { current, login, logout, registered } from "./operations";
 import { toast } from "sonner";
+import { addTransaction, deleteTransaction } from "../transactions/operations";
 
 const authSlice = createSlice({
   name: "auth",
@@ -51,6 +52,21 @@ const authSlice = createSlice({
       .addCase(current.rejected, (state) => {
         state.isRefreshing = false;
         toast.error("Please log in again!");
+      })
+
+      .addCase(addTransaction.fulfilled, (state, action) => {
+        const { type, sum } = action.payload;
+
+        type === "income"
+          ? (state.user.balance += sum)
+          : (state.user.balance -= sum);
+      })
+
+      .addCase(deleteTransaction.fulfilled, (state, action) => {
+        const { type, sum } = action.payload;
+        type === "income"
+          ? (state.user.balance -= sum)
+          : (state.user.balance += sum);
       });
   },
 });

@@ -1,0 +1,68 @@
+.table {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.listHeader div {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(82, 59, 126, 0.6);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.082);
+  padding: 13px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.color {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+}
+
+.name {
+  margin-left: 16px;
+  color: #fff;
+}
+
+.sum {
+  font-weight: 700;
+  color: #fff;
+}
+
+.totalBlock {
+  margin-top: 20px;
+}
+
+.expenses,
+.income {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-weight: 600;
+  padding: 0 13px;
+}
+
+.expenses span {
+  color: rgba(255, 134, 141, 1);
+}
+
+.income span {
+  color: rgba(255, 182, 39, 1);
+}

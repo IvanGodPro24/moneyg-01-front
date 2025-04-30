@@ -1,8 +1,13 @@
-import React from "react";
 import StatisticsTab from "../../components/StatisticsTab/StatisticsTab";
+import styles from "./StatisticsPage.module.css";
 
 const StatisticsPage = () => {
-  return <StatisticsTab />;
+  return (
+    <section className={styles.statistics}>
+      <h2 className={styles.title}>Statistics</h2>
+      <StatisticsTab />
+    </section>
+  );
 };
 
 export default StatisticsPage;

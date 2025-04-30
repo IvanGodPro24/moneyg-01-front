@@ -1,9 +1,9 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
-import "./LoginPage.css";
+import css from "./LoginPage.module.css";
 
 const LoginPage = () => {
   return (
-    <div className="login-page">
+    <div className={css["login-page"]}>
       <LoginForm />
     </div>
   );

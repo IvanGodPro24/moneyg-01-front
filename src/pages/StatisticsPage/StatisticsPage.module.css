@@ -1,0 +1,28 @@
+.statistics {
+  margin-top: 25px;
+}
+
+.title {
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  .statistics {
+    margin-top: 20px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .statistics {
+    padding: 0;
+    margin-top: 32px;
+    margin-left: 70px;
+    flex: 1;
+  }
+}

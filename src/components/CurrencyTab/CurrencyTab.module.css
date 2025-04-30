@@ -1,0 +1,167 @@
+/* ===== Base Container ===== */
+.container {
+  border-radius: 0 0 8px 8px;
+  width: 320px;
+  height: 214px;
+  background: rgba(74, 86, 226, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+/* ===== Table Styles ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.th {
+  padding: 12px 0;
+}
+
+.td {
+  padding-top: 8px;
+}
+
+/* ===== SVG Wrappers (Background Decorative SVG) ===== */
+.svgBackground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+/* ===== Mobile View SVGs ===== */
+.wrapperMob {
+  position: relative;
+  width: 100%;
+}
+
+.lineAboveMob {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  width: 100%;
+  height: auto;
+}
+
+.svgMob {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  fill: linear-gradient(
+      180deg,
+      #fff 0%,
+      rgba(255, 255, 255, 0.54) 37.49%,
+      rgba(255, 255, 255, 0.27) 60.91%,
+      rgba(255, 255, 255, 0.15) 76.6%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(57, 0, 150, 0.2);
+}
+
+/* ===== Tablet View SVGs ===== */
+.wrapperTablet {
+  display: none;
+}
+
+.lineAboveTablet,
+.svgTablet {
+  width: 100%;
+  height: auto;
+}
+
+.lineAboveTablet {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.svgTablet {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Desktop View SVGs ===== */
+.wrapperDesctop {
+  display: none;
+}
+
+.lineAboveDesctop,
+.svgDesctop {
+  width: 100%;
+  height: auto;
+}
+
+.lineAboveDesctop {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.svgDesctop {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Tablet Media Query ===== */
+@media screen and (min-width: 768px) {
+  .container {
+    width: 336px;
+    margin: 0;
+  }
+
+  .wrapperMob {
+    display: none;
+  }
+
+  .wrapperTablet {
+    display: block;
+  }
+
+  .th {
+    padding: 12px 0;
+  }
+
+  .td {
+    padding-top: 8px;
+  }
+}
+
+/* ===== Desktop Media Query ===== */
+@media screen and (min-width: 1280px) {
+  .container {
+    margin-top: 32px;
+    width: 480px;
+    height: 395px;
+  }
+
+  .wrapperTablet {
+    display: none;
+  }
+
+  .wrapperDesctop {
+    display: block;
+  }
+
+  .th {
+    padding: 16px 0;
+  }
+
+  .td {
+    padding-top: 24px;
+  }
+}

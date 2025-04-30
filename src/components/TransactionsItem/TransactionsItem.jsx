@@ -26,15 +26,15 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
 
   const formattedDate = format(new Date(date), "dd.MM.yy");
 
-  const typeClassName = type === "+" ? s.income : s.expense;
-
   return (
     <tr className={s.tr}>
       <td className={s.td}>{formattedDate}</td>
       <td className={s.td}>{type === "income" ? "+" : "-"}</td>
       <td className={s.td}>{category}</td>
-      <td className={s.td}>{comment}</td>
-      <td className={`${typeClassName}`}>{sum.toFixed(2)}</td>
+      <td className={s.td}>{comment || "-"}</td>
+      <td className={`${type === "income" ? s.income : s.expense}`}>
+        {sum.toFixed(2)}
+      </td>
       <td className={s.td}>
         <button className={s.edit} onClick={handleToggleModal}>
           <LuPencil />

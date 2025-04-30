@@ -1,4 +1,6 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import useDevice from "../../hooks/useDevice";
 
 import Balance from "../Balance/Balance";
 import Header from "../../components/Header/Header";
@@ -7,6 +9,16 @@ import CurrencyTab from "../CurrencyTab/CurrencyTab";
 import s from "./DashboardPage.module.css";
 
 const DashboardPage = () => {
+  const { isTablet, isDesktop } = useDevice();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isTablet && location.pathname === "/dashboard/currency") {
+      navigate("/dashboard/home");
+    }
+  }, [isTablet, location.pathname, navigate]);
+
   return (
     <>
       <div className={s.background}></div>
@@ -15,11 +27,15 @@ const DashboardPage = () => {
         <div className={s.container}>
           <div className={s.nav}>
             <Navigation />
-            <Balance />
+            {(isTablet ||
+              isDesktop ||
+              location.pathname === "/dashboard/home") && <Balance />}{" "}
           </div>
-          <CurrencyTab className={s.currency} />
+          {(isTablet || isDesktop) && <CurrencyTab />}
         </div>
-        <Outlet />
+        <div className={s.right}>
+          <Outlet />
+        </div>
       </main>
     </>
   );

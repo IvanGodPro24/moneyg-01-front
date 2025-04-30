@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchExchangeRates } from "./apiService";
-import s from "./CurrencyTab.module.css";
+import { fetchExchangeRates } from "../CurrencyTab/apiService";
+import s from "./Currency.module.css";
 import Svg from "./Svg";
 import Loader from "../Loader/Loader";
 

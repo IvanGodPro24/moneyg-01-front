@@ -1,0 +1,75 @@
+.container {
+  display: block;
+  border-radius: 0 0 8px 8px;
+  max-width: 320px;
+  height: 214px;
+  background: rgba(74, 86, 226, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.td {
+  padding-top: 8px;
+}
+
+.svgWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  fill: linear-gradient(
+      180deg,
+      #fff 0%,
+      rgba(255, 255, 255, 0.54) 37.49%,
+      rgba(255, 255, 255, 0.27) 60.91%,
+      rgba(255, 255, 255, 0.15) 76.6%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(57, 0, 150, 0.2);
+}
+
+.lineAbove {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  width: 100%;
+  height: auto;
+}
+
+.svgBackground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    display: none;
+  }
+}

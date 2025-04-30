@@ -1,0 +1,78 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  max-width: 280px;
+  border-radius: 10px;
+  min-width: 280px;
+  background: #50309a;
+  margin-top: 32px;
+  border-left: 7px solid var(--white);
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--white-600);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--white);
+}
+
+.text {
+  font-weight: 600;
+}
+
+.info:last-child {
+  border-bottom: none;
+}
+
+.income {
+  border-color: var(--yellow);
+}
+
+.expense {
+  border-color: var(--dashboard-text);
+}
+
+.btn {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete {
+  border-radius: 18px;
+  padding: 4px 12px;
+  width: 69px;
+  height: 29px;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+}
+
+.edit {
+  padding: 2px;
+  color: var(--white-600);
+}
+
+.text {
+  margin-left: 5px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--white-600);
+}

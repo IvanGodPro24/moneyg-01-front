@@ -5,6 +5,7 @@ import s from "./TransactionList.module.css";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import { fetchTransactions } from "../../redux/transactions/operations";
+import TransactionCard from "../TransactionCard/TransactionCard";
 
 const TransactionList = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,20 @@ const TransactionList = () => {
           ))}
         </tbody>
       </table>
+
+      <ul className={s.list}>
+        {transactions.map((t) => (
+          <TransactionCard
+            key={t.id}
+            id={t.id}
+            date={t.date}
+            category={t.category}
+            comment={t.comment}
+            sum={t.sum}
+            type={t.type}
+          />
+        ))}
+      </ul>
     </>
   );
 };

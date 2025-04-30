@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { LuPencil } from "react-icons/lu";
+import { format } from "date-fns";
 
 import { deleteTransaction } from "../../redux/transactions/operations";
 import s from "./TransactionCard.module.css";
@@ -15,23 +16,23 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
     }
   };
 
-  const typeClassName = type === "+" ? s.income : s.expense;
+  const formattedDate = format(new Date(date), "dd.MM.yy");
 
   return (
-    <li className={`${s.item} ${typeClassName}`}>
+    <li className={`${s.item} ${type === "income" ? s.income : s.expense}`}>
       <p className={s.info}>
-        <span className={s.text}>Date</span> {date}
+        <span className={s.text}>Date</span> {formattedDate}
       </p>
       <p className={s.info}>
-        <span className={s.text}>Type</span> {type}
+        <span className={s.text}>Type</span> {type === "income" ? "+" : "-"}
       </p>
       <p className={s.info}>
         <span className={s.text}>Category</span>
-        {category}
+        {category || ""}
       </p>
       <p className={s.info}>
         <span className={s.text}>Comment</span>
-        {comment}
+        {comment || "-"}
       </p>
       <p className={s.info}>
         <span className={s.text}>Sum</span>

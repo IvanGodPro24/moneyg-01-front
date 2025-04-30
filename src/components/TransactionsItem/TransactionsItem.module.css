@@ -1,0 +1,46 @@
+.income {
+  color: var(--yellow);
+}
+
+.expense {
+  color: var(--dashboard-text);
+}
+
+.tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.td {
+  padding: 15px 20px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--white);
+}
+
+td:last-child {
+  padding-right: 7px;
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.edit {
+  stroke-width: 1.2px;
+  stroke: var(--white-600);
+  padding: 4px;
+}
+
+.delete {
+  border-radius: 18px;
+  padding: 4px 12px;
+  width: 69px;
+  height: 29px;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+}

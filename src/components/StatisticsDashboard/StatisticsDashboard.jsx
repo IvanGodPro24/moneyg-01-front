@@ -63,6 +63,8 @@ const customStyles = {
     top: 42,
   }),
   menuList: () => ({
+    paddingTop: "10px",
+    paddingBottom: "10px",
     maxHeight: "160px",
     overflowY: "auto",
     "::-webkit-scrollbar": {

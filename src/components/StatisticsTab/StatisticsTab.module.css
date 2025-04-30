@@ -2,7 +2,19 @@
   .tab {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 70px 1fr;
+    /* grid-template-rows: 90px 1fr; */
     grid-column-gap: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .tab {
+    width: 100%;
+    display: flex;
+  }
+
+  .dashboard {
+    width: 100%;
+    flex: 1;
   }
 }

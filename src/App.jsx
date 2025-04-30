@@ -9,8 +9,8 @@ import { current } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Toaster } from "sonner";
 import HomeTab from "./components/HomeTab/HomeTab";
-import StatisticsTab from "./components/StatisticsTab/StatisticsTab";
 import CurrencyTab from "./components/CurrencyTab/CurrencyTab";
+import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -52,7 +52,7 @@ function App() {
           >
             <Route index element={<Navigate to="home" replace />} />
             <Route path="home" element={<HomeTab />} />
-            <Route path="statistics" element={<StatisticsTab />} />
+            <Route path="statistics" element={<StatisticsPage />} />
             <Route path="currency" element={<CurrencyTab />} />
           </Route>
 

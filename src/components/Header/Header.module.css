@@ -1,0 +1,38 @@
+.header {
+  background: linear-gradient(270deg, #2e1746 3.2%, #2e225f 99.98%);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logoWrap {
+  text-align: center;
+  width: 86px;
+  height: 36px;
+  height: auto;
+}
+.logoSvg {
+  width: 17px;
+  margin: 0 auto;
+}
+.logoText {
+  font-size: 12px;
+}
+.headerNav {
+  display: flex;
+  gap: 8px;
+}
+.navText {
+  font-size: 18px;
+  color: var(--white-60, rgba(255, 255, 255, 0.6));
+}
+.buttonExit {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: inherit;
+  box-shadow: none;
+  border: none;
+}

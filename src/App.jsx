@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { current } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Toaster } from "sonner";
+import Header from "./components/Header/Header";
 
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -35,6 +36,9 @@ function App() {
       <Toaster expand position="top-center"></Toaster>
 
       <Suspense fallback={<Loader />}>
+        {/* !!! Видалити !!! */}
+        <Header />
+
         <Routes>
           <Route path="/register" element={<RegistrationPage />} />
           <Route

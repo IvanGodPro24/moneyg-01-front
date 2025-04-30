@@ -4,9 +4,17 @@ import { LuPencil } from "react-icons/lu";
 import s from "./TransactionsItem.module.css";
 import { deleteTransaction } from "../../redux/transactions/operations";
 import { format } from "date-fns";
+import { useState } from "react";
+import TransactionEditForm from "../TransactionEditForm/TransactionEditForm";
 
 const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   const handleDelete = async () => {
     try {
@@ -28,12 +36,26 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
       <td className={s.td}>{comment}</td>
       <td className={`${typeClassName}`}>{sum.toFixed(2)}</td>
       <td className={s.td}>
-        <button className={s.edit}>
+        <button className={s.edit} onClick={handleToggleModal}>
           <LuPencil />
         </button>
         <button className={s.delete} onClick={handleDelete}>
           Delete
         </button>
+
+        {isOpen && (
+          <div className="modalBackdrop">
+            <TransactionEditForm
+              onClose={handleToggleModal}
+              _id={id}
+              date={date}
+              category={category}
+              comment={comment}
+              sum={sum}
+              type={type}
+            />
+          </div>
+        )}
       </td>
     </tr>
   );

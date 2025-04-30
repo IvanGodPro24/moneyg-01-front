@@ -1,35 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as Yup from "yup";
 import css from "./TransactionEditForm.module.css";
-import TransactionToggle from "../TransactionToggle/TransactionToggle";
 import icon from "../../img/icons.svg";
 import EditTransactionToggle from "../EditTransactionToggle/EditTransactionToggle";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  editTransaction,
+  getAllCategories,
+} from "../../redux/transactions/operations";
+import { selectCategories } from "../../redux/transactions/selectors";
 
-const categories = [
-  "Products",
-  "Health",
-  "Transport",
-  "Alcohol",
-  "Entertainment",
-  "Housing",
-  "Technique",
-  "Communal",
-  "Sports",
-  "Education",
-  "Other",
-];
-
-export default function TransactionEditForm({ onClose, initialTransaction }) {
-  const [transactionType, setTransactionType] = useState(
-    initialTransaction.type
-  );
+export default function TransactionEditForm({
+  onClose,
+  _id,
+  date,
+  category,
+  comment,
+  sum,
+  type,
+}) {
+  const [transactionType, setTransactionType] = useState(type);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(
-    initialTransaction.category || ""
-  );
+  const [selectedCategory, setSelectedCategory] = useState(category || "");
+
+  const categories = useSelector(selectCategories);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(getAllCategories());
+    }
+  }, [dispatch, categories]);
 
   const validationSchema = Yup.object({
     sum: Yup.number()
@@ -52,6 +57,8 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
       date: values.date.toISOString(),
     };
 
+    dispatch(editTransaction({ ...updatedTransaction, _id }));
+
     console.log("Updated transaction:", updatedTransaction);
     resetForm();
     onClose();
@@ -60,7 +67,7 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
   const handleToggle = (type) => {
     setTransactionType(type);
     if (type === "income") {
-      setSelectedCategory("");
+      setSelectedCategory("Income");
     }
   };
 
@@ -80,10 +87,10 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
 
       <Formik
         initialValues={{
-          sum: initialTransaction.sum || "",
-          comment: initialTransaction.comment || "",
-          date: new Date(initialTransaction.date),
-          category: initialTransaction.category || "",
+          sum: sum || "",
+          comment: comment || "",
+          date: new Date(date),
+          category: category || "",
         }}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
@@ -112,22 +119,24 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
 
                   {isDropdownOpen && (
                     <ul className={css.options}>
-                      {categories.map((cat) => (
-                        <li
-                          key={cat}
-                          className={`${css.option} ${
-                            selectedCategory === cat ? css.activeOption : ""
-                          }`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedCategory(cat);
-                            setFieldValue("category", cat);
-                            setDropdownOpen(false);
-                          }}
-                        >
-                          {cat}
-                        </li>
-                      ))}
+                      {categories
+                        .filter((cat) => !(cat === "Income"))
+                        .map((cat) => (
+                          <li
+                            key={cat}
+                            className={`${css.option} ${
+                              selectedCategory === cat ? css.activeOption : ""
+                            }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedCategory(cat);
+                              setFieldValue("category", cat);
+                              setDropdownOpen(false);
+                            }}
+                          >
+                            {cat}
+                          </li>
+                        ))}
                     </ul>
                   )}
                 </div>

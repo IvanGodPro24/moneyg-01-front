@@ -19,7 +19,7 @@ const TransactionModalWrapper = () => {
       </button>
 
       {isModalOpen && (
-        <div className={css.modalBackdrop}>
+        <div className="modalBackdrop">
           <AddTransaction onClose={handleToggleModal} />
         </div>
       )}

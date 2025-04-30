@@ -61,8 +61,6 @@ const AddTransaction = ({ onClose }) => {
       setSelectedCategory("Income");
     }
 
-    console.log(finalData);
-
     dispatch(addTransaction(finalData));
 
     resetForm();

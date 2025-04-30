@@ -3,18 +3,13 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import RestrictedRoute from "./RestrictedRoute";
 import PrivateRoute from "./PrivateRoute";
 import Loader from "./components/Loader/Loader";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { current } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Toaster } from "sonner";
-
-import TransactionEditForm from "./components/TransactionEditForm/TransactionEditForm";
-
 import HomeTab from "./components/HomeTab/HomeTab";
 import CurrencyTab from "./components/CurrencyTab/CurrencyTab";
-import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
-
 
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -23,10 +18,14 @@ const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const DashboardPage = lazy(() =>
   import("./components/DashboardPage/DashboardPage")
 );
+const StatisticsPage = lazy(() =>
+  import("./pages/StatisticsPage/StatisticsPage")
+);
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);

@@ -13,13 +13,6 @@ export const addTransaction = createAsyncThunk(
   }
 );
 
-
-export const editTransaction = createAsyncThunk(
-  "transactions/editTransaction",
-  async ({ id, updatedData }, { rejectWithValue }) => {
-    try {
-      const response = await axios.patch(`/transactions/${id}`, updatedData);
-
 export const fetchTransactions = createAsyncThunk(
   "transactions/fetchTransactions",
   async (_, { rejectWithValue }) => {
@@ -47,9 +40,9 @@ export const deleteTransaction = createAsyncThunk(
 
 export const editTransaction = createAsyncThunk(
   "transactions/editTransaction",
-  async ({ id, updateData }, { rejectWithValue }) => {
+  async ({ _id, ...updatedData }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(`/transactions/${id}`, updateData);
+      const { data } = await axios.patch(`/transactions/${_id}`, updatedData);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -62,7 +55,6 @@ export const getAllCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get("/categories");
-
 
       return response.data;
     } catch (error) {

@@ -28,7 +28,7 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
       </p>
       <p className={s.info}>
         <span className={s.text}>Category</span>
-        {category || ""}
+        {category}
       </p>
       <p className={s.info}>
         <span className={s.text}>Comment</span>

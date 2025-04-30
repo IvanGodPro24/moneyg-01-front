@@ -7,6 +7,8 @@ import css from "./TransactionEditForm.module.css";
 import TransactionToggle from "../TransactionToggle/TransactionToggle";
 import icon from "../../img/icons.svg";
 import EditTransactionToggle from "../EditTransactionToggle/EditTransactionToggle";
+import { useDispatch } from "react-redux";
+import { editTransaction } from "../../redux/transactions/operations";
 
 const categories = [
   "Products",
@@ -31,6 +33,8 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
     initialTransaction.category || ""
   );
 
+  const dispatch = useDispatch();
+
   const validationSchema = Yup.object({
     sum: Yup.number()
       .typeError("Must be a number")
@@ -45,22 +49,24 @@ export default function TransactionEditForm({ onClose, initialTransaction }) {
     }),
   });
 
-  const onSubmit = (values, { resetForm }) => {
+  const onSubmit = async (values, { resetForm }) => {
     const updatedTransaction = {
       ...values,
       type: transactionType,
       date: values.date.toISOString(),
     };
 
-    console.log("Updated transaction:", updatedTransaction);
-    resetForm();
-    onClose();
-  };
-
-  const handleToggle = (type) => {
-    setTransactionType(type);
-    if (type === "income") {
-      setSelectedCategory("");
+    try {
+      await dispatch(
+        editTransaction({
+          id: initialTransaction._id,
+          updatedData: updatedTransaction,
+        })
+      ).unwrap();
+      resetForm();
+      onClose();
+    } catch (error) {
+      console.error("Edit transaction failed:", error);
     }
   };
 

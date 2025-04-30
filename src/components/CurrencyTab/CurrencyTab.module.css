@@ -1,14 +1,7 @@
-.svgWrapper {
-  display: none;
-}
-
-.svgWrapper2 {
-  display: none;
-}
-
+/* ===== Base Container ===== */
 .container {
   border-radius: 0 0 8px 8px;
-  max-width: 320px;
+  width: 320px;
   height: 214px;
   background: rgba(74, 86, 226, 0.1);
   position: relative;
@@ -17,6 +10,7 @@
   margin-top: 24px;
 }
 
+/* ===== Table Styles ===== */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -27,16 +21,34 @@
 }
 
 .th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 0;
 }
 
 .td {
   padding-top: 8px;
 }
 
-.svgWrapperMob {
+/* ===== SVG Wrappers (Background Decorative SVG) ===== */
+.svgBackground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+/* ===== Mobile View SVGs ===== */
+.wrapperMob {
   position: relative;
+  width: 100%;
+}
+
+.lineAboveMob {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
   width: 100%;
   height: auto;
 }
@@ -57,101 +69,99 @@
     rgba(57, 0, 150, 0.2);
 }
 
-.lineAboveMob {
+/* ===== Tablet View SVGs ===== */
+.wrapperTablet {
+  display: none;
+}
+
+.lineAboveTablet,
+.svgTablet {
+  width: 100%;
+  height: auto;
+}
+
+.lineAboveTablet {
   position: absolute;
   top: -5px;
   left: 0;
   z-index: 2;
   pointer-events: none;
+}
+
+.svgTablet {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Desktop View SVGs ===== */
+.wrapperDesctop {
+  display: none;
+}
+
+.lineAboveDesctop,
+.svgDesctop {
   width: 100%;
   height: auto;
 }
 
-.svgBackground {
+.lineAboveDesctop {
   position: absolute;
-  bottom: 0;
+  top: -16px;
   left: 0;
-  width: 100%;
-  z-index: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
+.svgDesctop {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Tablet Media Query ===== */
 @media screen and (min-width: 768px) {
   .container {
     width: 336px;
+    margin: 0;
   }
 
-  .svgWrapper2 {
+  .wrapperMob {
     display: none;
   }
 
-  .svg {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: auto;
-    fill: linear-gradient(
-        180deg,
-        #fff 0%,
-        rgba(255, 255, 255, 0.54) 37.49%,
-        rgba(255, 255, 255, 0.27) 60.91%,
-        rgba(255, 255, 255, 0.15) 76.6%,
-        rgba(255, 255, 255, 0) 100%
-      ),
-      rgba(57, 0, 150, 0.2);
+  .wrapperTablet {
+    display: block;
   }
 
-  .lineAbove {
-    position: absolute;
-    top: -5px;
-    left: 0;
-    z-index: 2;
-    pointer-events: none;
-    width: 100%;
-    height: auto;
+  .th {
+    padding: 12px 0;
+  }
+
+  .td {
+    padding-top: 8px;
   }
 }
 
+/* ===== Desktop Media Query ===== */
 @media screen and (min-width: 1280px) {
-  .svgWrapper {
-    display: none;
-  }
-
   .container {
     margin-top: 32px;
     width: 480px;
     height: 395px;
   }
 
+  .wrapperTablet {
+    display: none;
+  }
+
+  .wrapperDesctop {
+    display: block;
+  }
+
   .th {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding: 16px 0;
   }
 
   .td {
     padding-top: 24px;
-  }
-
-  .svgWrapper2 {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .svg2 {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: auto;
-  }
-
-  .lineAbove2 {
-    position: absolute;
-    top: -16px;
-    left: 0;
-    z-index: 2;
-    pointer-events: none;
-    width: 100%;
-    height: auto;
   }
 }

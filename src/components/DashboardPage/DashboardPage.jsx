@@ -9,15 +9,15 @@ import CurrencyTab from "../CurrencyTab/CurrencyTab";
 import s from "./DashboardPage.module.css";
 
 const DashboardPage = () => {
-  const { isDesktop } = useDevice();
+  const { isTablet, isDesktop } = useDevice();
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isDesktop && location.pathname === "/dashboard/currency") {
+    if (isTablet && location.pathname === "/dashboard/currency") {
       navigate("/dashboard/home");
     }
-  }, [isDesktop, location.pathname, navigate]);
+  }, [isTablet, location.pathname, navigate]);
 
   return (
     <>
@@ -27,9 +27,11 @@ const DashboardPage = () => {
         <div className={s.container}>
           <div className={s.nav}>
             <Navigation />
-            <Balance />
+            {(isTablet ||
+              isDesktop ||
+              location.pathname === "/dashboard/home") && <Balance />}{" "}
           </div>
-          {isDesktop && <CurrencyTab />}
+          {(isTablet || isDesktop) && <CurrencyTab />}
         </div>
         <div className={s.right}>
           <Outlet />

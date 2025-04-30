@@ -3,7 +3,7 @@ import s from "./CurrencyTab.module.css";
 const Svg = () => {
   return (
     <>
-      <div className={s.svgWrapperMob}>
+      <div className={s.wrapperMob}>
         <svg
           className={s.lineAboveMob}
           width="320"
@@ -65,9 +65,9 @@ const Svg = () => {
           </defs>
         </svg>
       </div>
-      <div className={s.svgWrapper}>
+      <div className={s.wrapperTablet}>
         <svg
-          className={s.lineAbove}
+          className={s.lineAboveTablet}
           width="338"
           height="72"
           viewBox="0 0 338 72"
@@ -80,7 +80,7 @@ const Svg = () => {
           />
         </svg>
         <svg
-          className={s.svg}
+          className={s.svgTablet}
           width="336"
           height="88"
           viewBox="0 0 336 88"
@@ -128,9 +128,9 @@ const Svg = () => {
         </svg>
       </div>
 
-      <div className={s.svgWrapper2}>
+      <div className={s.wrapperDesctop}>
         <svg
-          className={s.lineAbove2}
+          className={s.lineAboveDesctop}
           width="480"
           height="102"
           viewBox="0 0 480 102"
@@ -143,7 +143,7 @@ const Svg = () => {
           />
         </svg>
         <svg
-          className={s.svg2}
+          className={s.svgDesctop}
           width="480"
           height="167"
           viewBox="0 0 480 167"

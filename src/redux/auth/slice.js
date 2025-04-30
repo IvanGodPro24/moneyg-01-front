@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { current, login, logout, registered } from "./operations";
 import { toast } from "sonner";
-import { addTransaction, deleteTransaction } from "../transactions/operations";
+import {
+  addTransaction,
+  deleteTransaction,
+  editTransaction,
+} from "../transactions/operations";
 
 const authSlice = createSlice({
   name: "auth",
@@ -67,6 +71,10 @@ const authSlice = createSlice({
         type === "income"
           ? (state.user.balance -= sum)
           : (state.user.balance += sum);
+      })
+
+      .addCase(editTransaction.fulfilled, (state, action) => {
+        state.user.balance = action.payload.userBalance;
       });
   },
 });

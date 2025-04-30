@@ -40,9 +40,9 @@ export const deleteTransaction = createAsyncThunk(
 
 export const editTransaction = createAsyncThunk(
   "transactions/editTransaction",
-  async ({ id, updateData }, { rejectWithValue }) => {
+  async ({ _id, ...updatedData }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(`/transactions/${id}`, updateData);
+      const { data } = await axios.patch(`/transactions/${_id}`, updatedData);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

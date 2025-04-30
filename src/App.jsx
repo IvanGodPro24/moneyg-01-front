@@ -10,7 +10,6 @@ import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Toaster } from "sonner";
 import HomeTab from "./components/HomeTab/HomeTab";
 import CurrencyTab from "./components/CurrencyTab/CurrencyTab";
-import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -18,6 +17,9 @@ const RegistrationPage = lazy(() =>
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const DashboardPage = lazy(() =>
   import("./components/DashboardPage/DashboardPage")
+);
+const StatisticsPage = lazy(() =>
+  import("./pages/StatisticsPage/StatisticsPage")
 );
 
 function App() {

@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import "./LoginForm.css";
+import css from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
 
@@ -41,49 +41,49 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-form">
-      <div className="logo">
+    <div className={css["login-form"]}>
+      <div className={css.logo}>
         <img src="/src/assets/logo.svg" alt="Money Guard" />
         <h1>Money Guard</h1>
       </div>
 
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className={css["error-message"]}>{error}</div>}
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group-wrap">
-          <div className="form-group">
+        <div className={css["form-group-wrap"]}>
+          <div className={css["form-group"]}>
             <input
               type="email"
               id="email"
               {...register("email")}
               placeholder="E-mail"
             />
-            <svg className="input-icon">
+            <svg className={css["input-icon"]}>
               <use href="/src/img/icons.svg#icon-email" />
             </svg>
             {errors.email && (
-              <span className="error">{errors.email.message}</span>
+              <span className={css.error}>{errors.email.message}</span>
             )}
           </div>
-          <div className="form-group">
+          <div className={css["form-group"]}>
             <input
               type="password"
               id="password"
               {...register("password")}
               placeholder="Password"
             />
-            <svg className="input-icon">
+            <svg className={css["input-icon"]}>
               <use href="/src/img/icons.svg#icon-lock" />
             </svg>
             {errors.password && (
-              <span className="error">{errors.password.message}</span>
+              <span className={css.error}>{errors.password.message}</span>
             )}
           </div>
         </div>
-        <button type="submit" className="submit-button">
+        <button type="submit" className={css["submit-button"]}>
           LOG IN
         </button>
-        <Link to="/register" className="redirect-button">
+        <Link to="/register" className={css["redirect-button"]}>
           REGISTER
         </Link>
       </form>

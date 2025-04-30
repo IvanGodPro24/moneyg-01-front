@@ -43,7 +43,7 @@ const LoginForm = () => {
   return (
     <div className={css["login-form"]}>
       <div className={css.logo}>
-        <img src="/src/assets/logo.svg" alt="Money Guard" />
+        <img src="/logo.svg" alt="Money Guard" />
         <h1>Money Guard</h1>
       </div>
 

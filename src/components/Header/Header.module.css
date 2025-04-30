@@ -1,38 +1,107 @@
 .header {
-  background: linear-gradient(270deg, #2e1746 3.2%, #2e225f 99.98%);
-  padding: 12px 20px;
+  min-width: 320px;
+  background: linear-gradient(276deg, #2e1746 3.19%, #2e225f 100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 12px 20px;
+  box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
+    inset 0 -3px 2px 0 rgba(0, 0, 0, 0.1);
 }
-.logoWrap {
-  text-align: center;
-  width: 86px;
-  height: 36px;
-  height: auto;
-}
-.logoSvg {
-  width: 17px;
-  margin: 0 auto;
-}
-.logoText {
-  font-size: 12px;
-}
-.headerNav {
+
+.containerLogo {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--white);
+}
+
+.exit {
+  display: flex;
+  align-items: center;
   gap: 8px;
 }
-.navText {
-  font-size: 18px;
-  color: var(--white-60, rgba(255, 255, 255, 0.6));
+
+.name {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  text-align: right;
+  color: var(--white-600);
 }
-.buttonExit {
+
+.span {
+  display: none;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+}
+
+.exitBtn {
+  color: var(--white-600);
   width: 18px;
   height: 18px;
-  padding: 0;
-  border-radius: 0;
-  background-color: transparent;
-  color: inherit;
-  box-shadow: none;
-  border: none;
+}
+
+.logo {
+  width: 25px;
+  height: 23px;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    width: 768px;
+    padding: 16px 32px;
+    margin: 0 auto;
+  }
+
+  .span {
+    display: block;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--white-600);
+  }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .name {
+    position: relative;
+    padding-right: 12px;
+  }
+
+  .name::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: var(--white-600);
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    min-width: 1280px;
+    padding: 16px;
+  }
 }

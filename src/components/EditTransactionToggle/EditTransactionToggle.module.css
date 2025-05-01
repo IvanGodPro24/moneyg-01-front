@@ -29,3 +29,9 @@
 .expense {
   color: #ff6596;
 }
+
+.inactive {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}

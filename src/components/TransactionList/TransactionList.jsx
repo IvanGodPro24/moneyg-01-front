@@ -38,11 +38,7 @@ const TransactionList = () => {
               key={t._id}
               id={t._id}
               date={t.date}
-              category={
-                t.categoryId && t.categoryId.title
-                  ? t.categoryId.title
-                  : 'No Category'
-              }
+              category={t.categoryId.title}
               comment={t.comment}
               sum={t.sum}
               type={t.type}
@@ -57,11 +53,7 @@ const TransactionList = () => {
             key={t._id}
             id={t._id}
             date={t.date}
-            category={
-              t.categoryId && t.categoryId.title
-                ? t.categoryId.title
-                : 'No Category'
-            }
+            category={t.categoryId.title}
             comment={t.comment}
             sum={t.sum}
             type={t.type}

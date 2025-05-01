@@ -1,16 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { LuPencil } from 'react-icons/lu';
 import { format } from 'date-fns';
-import { useState } from 'react';
 
 import { deleteTransaction } from '../../redux/transactions/operations';
 import s from './TransactionCard.module.css';
+import { useState } from 'react';
 import TransactionEditForm from '../TransactionEditForm/TransactionEditForm';
 
 const TransactionCard = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
-  const formattedDate = format(new Date(date), 'dd.MM.yy');
 
   const handleToggleModal = () => {
     setIsOpen((prev) => !prev);
@@ -18,13 +18,13 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
 
   const handleDelete = async () => {
     try {
-      await dispatch(
-        deleteTransaction({ _id: id, type: type === 'income' ? '+' : '-' })
-      ).unwrap();
+      await dispatch(deleteTransaction({ _id: id, type: sum })).unwrap();
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  const formattedDate = format(new Date(date), 'dd.MM.yy');
 
   return (
     <li className={`${s.item} ${type === 'income' ? s.income : s.expense}`}>
@@ -44,7 +44,7 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
       </p>
       <p className={s.info}>
         <span className={s.text}>Sum</span>
-        {Number(sum).toFixed(2)}
+        {sum}
       </p>
       <div className={s.btn}>
         <button className={s.delete} onClick={handleDelete}>

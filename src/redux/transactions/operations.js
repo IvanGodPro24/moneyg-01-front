@@ -56,7 +56,6 @@ export const getAllCategories = createAsyncThunk(
     try {
       const response = await axios.get('/categories');
 
-      console.log('Data received from /categories:', response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);

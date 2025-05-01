@@ -31,7 +31,6 @@ export default function TransactionEditForm({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('TransactionEditForm useEffect: fetching categories if needed');
     if (categories.length === 0) {
       dispatch(getAllCategories());
     }
@@ -52,32 +51,13 @@ export default function TransactionEditForm({
   });
 
   const onSubmit = (values, { resetForm }) => {
-    console.log('onSubmit called with values:', values);
-    console.log('transactionType in onSubmit:', transactionType);
-    const incomeCategoryObject = categories.find(
-      (cat) => cat.title === 'Income'
-    );
-    console.log('incomeCategoryObject in onSubmit:', incomeCategoryObject);
-    const selectedCategoryId =
-      transactionType === 'income' && incomeCategoryObject
-        ? incomeCategoryObject._id
-        : categories.find((cat) => cat.title === selectedCategory)?._id;
-
     const updatedTransaction = {
       ...values,
       type: transactionType,
       date: values.date.toISOString(),
-      sum: values.sum,
-      comment: values.comment,
-      categoryId: selectedCategoryId,
     };
 
-    console.log('updatedTransaction before dispatch:', updatedTransaction);
     dispatch(editTransaction({ ...updatedTransaction, _id }));
-    console.log('editTransaction dispatched with:', {
-      ...updatedTransaction,
-      _id,
-    });
 
     console.log('Updated transaction:', updatedTransaction);
     resetForm();
@@ -85,15 +65,9 @@ export default function TransactionEditForm({
   };
 
   const handleToggle = (type) => {
-    console.log('handleToggle called with type:', type);
     setTransactionType(type);
     if (type === 'income') {
       setSelectedCategory('Income');
-      console.log(
-        'Transaction type set to income, selectedCategory set to Income'
-      );
-    } else {
-      console.log('Transaction type set to expense');
     }
   };
 
@@ -149,26 +123,18 @@ export default function TransactionEditForm({
                         .filter((cat) => !(cat === 'Income'))
                         .map((cat) => (
                           <li
-                            key={cat._id}
+                            key={cat}
                             className={`${css.option} ${
-                              selectedCategory === cat.title
-                                ? css.activeOption
-                                : ''
+                              selectedCategory === cat ? css.activeOption : ''
                             }`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              setSelectedCategory(cat.title);
-                              setFieldValue('category', cat.title);
+                              setSelectedCategory(cat);
+                              setFieldValue('category', cat);
                               setDropdownOpen(false);
-                              console.log(
-                                'Selected category:',
-                                cat.title,
-                                'with id:',
-                                cat._id
-                              );
                             }}
                           >
-                            {cat.title}
+                            {cat}
                           </li>
                         ))}
                     </ul>
@@ -190,10 +156,6 @@ export default function TransactionEditForm({
                   name="sum"
                   placeholder="0.00"
                   className={css.editSumTransaction}
-                  onChange={(e) => {
-                    setFieldValue('sum', Number(e.target.value));
-                    console.log('Sum changed to:', Number(e.target.value));
-                  }}
                 />
                 <ErrorMessage
                   name="sum"
@@ -207,7 +169,6 @@ export default function TransactionEditForm({
                   selected={values.date}
                   onChange={(date) => {
                     setFieldValue('date', date);
-                    console.log('Date changed to:', date);
                   }}
                   dateFormat="dd.MM.yyyy"
                   minDate={new Date('2023-01-01')}
@@ -231,10 +192,6 @@ export default function TransactionEditForm({
                   name="comment"
                   placeholder="Comment"
                   className={css.editCommentTransaction}
-                  onChange={(e) => {
-                    setFieldValue('comment', e.target.value);
-                    console.log('Comment changed to:', e.target.value);
-                  }}
                 />
                 <ErrorMessage
                   name="comment"

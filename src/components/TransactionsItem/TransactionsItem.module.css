@@ -20,9 +20,6 @@
 
 .tr td:last-child {
   padding-right: 7px;
-  display: flex;
-  justify-content: end;
-  gap: 8px;
 }
 
 .edit {

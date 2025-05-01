@@ -35,7 +35,7 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
       <td className={`${type === "income" ? s.income : s.expense}`}>
         {sum.toFixed(2)}
       </td>
-      <td className={s.td}>
+      <td>
         <button className={s.edit} onClick={handleToggleModal}>
           <LuPencil />
         </button>

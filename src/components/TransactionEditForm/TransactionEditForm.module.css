@@ -124,18 +124,19 @@
 }
 
 .selectWrapper {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  max-width: 394px;
   margin: 0 auto;
-  width: 394px;
   height: 35px;
   margin-top: 40px;
   background-color: transparent;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .dropdown {
-  width: 280px;
+  width: 100%;
   height: 35px;
   background: transparent;
   color: rgba(255, 255, 255, 0.6);
@@ -246,6 +247,11 @@
   .editButton,
   .cancelButton {
     width: 280px;
+  }
+
+  .selectWrapper {
+    max-width: 280px;
+    width: 100%;
   }
 
   .editCommentTransaction {

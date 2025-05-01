@@ -1,7 +1,7 @@
 /* ===== Base Container ===== */
 .container {
   border-radius: 0 0 8px 8px;
-  width: 320px;
+  max-width: 320px;
   height: 214px;
   background: rgba(74, 86, 226, 0.1);
   position: relative;
@@ -120,7 +120,7 @@
 /* ===== Tablet Media Query ===== */
 @media screen and (min-width: 768px) {
   .container {
-    width: 336px;
+    min-width: 336px;
     margin: 0;
   }
 
@@ -145,7 +145,7 @@
 @media screen and (min-width: 1280px) {
   .container {
     margin-top: 32px;
-    width: 480px;
+    min-width: 480px;
     height: 395px;
   }
 

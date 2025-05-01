@@ -1,11 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { LuPencil } from 'react-icons/lu';
+import { useDispatch } from "react-redux";
+import { LuPencil } from "react-icons/lu";
 
-import s from './TransactionsItem.module.css';
-import { deleteTransaction } from '../../redux/transactions/operations';
-import { format } from 'date-fns';
-import { useState } from 'react';
-import TransactionEditForm from '../TransactionEditForm/TransactionEditForm';
+import s from "./TransactionsItem.module.css";
+import { deleteTransaction } from "../../redux/transactions/operations";
+import { format } from "date-fns";
+import { useState } from "react";
+import TransactionEditForm from "../TransactionEditForm/TransactionEditForm";
 
 const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();
@@ -24,15 +24,15 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
     }
   };
 
-  const formattedDate = format(new Date(date), 'dd.MM.yy');
+  const formattedDate = format(new Date(date), "dd.MM.yy");
 
   return (
     <tr className={s.tr}>
       <td className={s.td}>{formattedDate}</td>
-      <td className={s.td}>{type === 'income' ? '+' : '-'}</td>
+      <td className={s.td}>{type === "income" ? "+" : "-"}</td>
       <td className={s.td}>{category}</td>
-      <td className={s.td}>{comment || '-'}</td>
-      <td className={`${type === 'income' ? s.income : s.expense}`}>
+      <td className={s.td}>{comment || "-"}</td>
+      <td className={`${type === "income" ? s.income : s.expense}`}>
         {sum.toFixed(2)}
       </td>
       <td>
@@ -44,7 +44,7 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
         </button>
 
         {isOpen && (
-          <div className="modalBackdrop">
+          <div className={s.modalBackdrop}>
             <TransactionEditForm
               onClose={handleToggleModal}
               _id={id}

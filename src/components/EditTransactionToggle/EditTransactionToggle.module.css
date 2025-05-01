@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-top: 40px;
+  margin-top: 32px;
   margin-bottom: 60px;
 }
 
@@ -34,4 +34,10 @@
   opacity: 0.5;
   cursor: default;
   pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+  .toggleContainer {
+    margin-top: 40px;
+  }
 }

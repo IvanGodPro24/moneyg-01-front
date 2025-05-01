@@ -2,10 +2,10 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import useDevice from "../../hooks/useDevice";
 
-import Balance from "../Balance/Balance";
+import Balance from "../../components/Balance/Balance";
 import Header from "../../components/Header/Header";
-import Navigation from "../Navigation/Navigation";
-import CurrencyTab from "../CurrencyTab/CurrencyTab";
+import Navigation from "../../components/Navigation/Navigation";
+import CurrencyTab from "../../components/CurrencyTab/CurrencyTab";
 import s from "./DashboardPage.module.css";
 
 const DashboardPage = () => {

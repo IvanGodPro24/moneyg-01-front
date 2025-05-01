@@ -50,8 +50,8 @@ const TransactionList = () => {
       <ul className={s.list}>
         {transactions.map((t) => (
           <TransactionCard
-            key={t.id}
-            id={t.id}
+            key={t._id}
+            id={t._id}
             date={t.date}
             category={t.categoryId.title}
             comment={t.comment}

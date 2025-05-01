@@ -4,13 +4,21 @@ import { format } from "date-fns";
 
 import { deleteTransaction } from "../../redux/transactions/operations";
 import s from "./TransactionCard.module.css";
+import { useState } from "react";
+import TransactionEditForm from "../TransactionEditForm/TransactionEditForm";
 
 const TransactionCard = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   const handleDelete = async () => {
     try {
-      await dispatch(deleteTransaction(id)).unwrap();
+      await dispatch(deleteTransaction({ _id: id, type: sum })).unwrap();
     } catch (error) {
       console.log(error.message);
     }
@@ -42,11 +50,25 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
         <button className={s.delete} onClick={handleDelete}>
           Delete
         </button>
-        <button className={s.edit}>
+        <button className={s.edit} onClick={handleToggleModal}>
           <LuPencil width="14" height="14" />
           <span className={s.text}>Edit</span>
         </button>
       </div>
+
+      {isOpen && (
+        <div className="modalBackdrop">
+          <TransactionEditForm
+            onClose={handleToggleModal}
+            _id={id}
+            date={date}
+            category={category}
+            comment={comment}
+            sum={sum}
+            type={type}
+          />
+        </div>
+      )}
     </li>
   );
 };

@@ -50,6 +50,7 @@ const transactionsSlice = createSlice({
         state.items = state.items.filter(
           (item) => item._id !== action.payload._id
         );
+        toast.success("Transaction delete successfully!");
       })
       .addCase(deleteTransaction.rejected, (state, action) => {
         state.isLoading = false;

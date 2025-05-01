@@ -14,10 +14,12 @@ const DashboardPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isTablet && location.pathname === "/dashboard/currency") {
-      navigate("/dashboard/home");
+    const isCurrencyRoute = location.pathname === "/dashboard/currency";
+
+    if ((isTablet || isDesktop) && isCurrencyRoute) {
+      navigate("/dashboard/home", { replace: true });
     }
-  }, [isTablet, location.pathname, navigate]);
+  }, [isTablet, isDesktop, location.pathname, navigate]);
 
   return (
     <>

@@ -20,15 +20,13 @@
 
 .tr td:last-child {
   padding-right: 7px;
-  display: flex;
-  justify-content: end;
-  gap: 8px;
 }
 
 .edit {
   stroke-width: 1.2px;
   stroke: var(--white-600);
   padding: 4px;
+  margin-right: 8px;
 }
 
 .delete {

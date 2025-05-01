@@ -3,7 +3,12 @@
   height: 44px;
   padding: 12px;
   border-radius: 50%;
-  background: linear-gradient(96.76deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%);
+  background: linear-gradient(
+    96.76deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
   border: none;
   cursor: pointer;
   position: fixed;
@@ -25,5 +30,18 @@
   .openModalBtn {
     bottom: 41px;
     right: 40px;
+  }
+
+  .modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
   }
 }

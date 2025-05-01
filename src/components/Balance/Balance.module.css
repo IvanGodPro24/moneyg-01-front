@@ -1,6 +1,8 @@
 .section {
   display: flex;
   justify-content: center;
+  width: 280px;
+  margin: 0 auto;
 }
 
 .container {
@@ -8,7 +10,7 @@
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-  width: 280px;
+  width: 100%;
   padding: 8px 32px;
   text-align: left;
 }
@@ -40,23 +42,28 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .section {
     width: 336px;
+  }
+  .container {
+    width: 100%;
     padding-bottom: 12px;
     padding-left: 40px;
   }
 }
 
 @media screen and (min-width: 1280px) {
+  .section {
+    width: 480px;
+  }
   .container {
     padding-left: 56px;
-    width: 480px;
     border-radius: 0;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .container {
+  .section {
     width: 540px;
   }
 }

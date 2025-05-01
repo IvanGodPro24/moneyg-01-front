@@ -33,9 +33,7 @@ const DashboardPage = () => {
           </div>
           {(isTablet || isDesktop) && <CurrencyTab />}
         </div>
-        <div className={s.right}>
           <Outlet />
-        </div>
       </main>
     </>
   );

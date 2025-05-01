@@ -1,12 +1,20 @@
-import React from "react";
-import css from "./EditTransactionToggle.module.css";
+
+
+import React from 'react';
+import css from './EditTransactionToggle.module.css';
 
 const TransactionToggle = ({ currentType, onChange }) => {
   return (
     <div className={css.toggleContainer}>
       <span
-        className={`${css.label} ${currentType === "income" ? css.income : ""}`}
-        onClick={() => onChange("income")}
+        className={`${css.label} ${
+          currentType === 'income' ? css.income : css.inactive
+        }`}
+        onClick={() => {
+          if (currentType !== 'income') {
+            onChange('income');
+          }
+        }}
       >
         Income
       </span>
@@ -15,9 +23,13 @@ const TransactionToggle = ({ currentType, onChange }) => {
 
       <span
         className={`${css.label} ${
-          currentType === "expense" ? css.expense : ""
+          currentType === 'expense' ? css.expense : css.inactive
         }`}
-        onClick={() => onChange("expense")}
+        onClick={() => {
+          if (currentType !== 'expense') {
+            onChange('expense');
+          }
+        }}
       >
         Expense
       </span>

@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-import s from "./TransactionList.module.css";
-import TransactionsItem from "../TransactionsItem/TransactionsItem";
-import { selectTransactions } from "../../redux/transactions/selectors";
-import { fetchTransactions } from "../../redux/transactions/operations";
-import TransactionCard from "../TransactionCard/TransactionCard";
+import s from './TransactionList.module.css';
+import TransactionsItem from '../TransactionsItem/TransactionsItem';
+import { selectTransactions } from '../../redux/transactions/selectors';
+import { fetchTransactions } from '../../redux/transactions/operations';
+import TransactionCard from '../TransactionCard/TransactionCard';
 
 const TransactionList = () => {
   const dispatch = useDispatch();

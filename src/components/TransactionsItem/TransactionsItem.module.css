@@ -26,6 +26,7 @@
   stroke-width: 1.2px;
   stroke: var(--white-600);
   padding: 4px;
+  margin-right: 8px;
 }
 
 .delete {

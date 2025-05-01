@@ -48,9 +48,10 @@
     flex-direction: column;
     align-items: flex-start;
     border-right: 1px solid var(--white-600);
+    margin: 0 auto;
   }
 
-  .right {
+  .content {
     margin: 0 auto;
   }
 }

@@ -42,6 +42,8 @@
 @media screen and (min-width: 768px) {
   .container {
     width: 336px;
+    padding-bottom: 12px;
+    padding-left: 40px;
   }
 }
 
@@ -50,5 +52,11 @@
     padding-left: 56px;
     width: 480px;
     border-radius: 0;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 540px;
   }
 }

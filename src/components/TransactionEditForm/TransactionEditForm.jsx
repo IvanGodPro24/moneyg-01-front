@@ -59,7 +59,6 @@ export default function TransactionEditForm({
 
     dispatch(editTransaction({ ...updatedTransaction, _id }));
 
-    console.log("Updated transaction:", updatedTransaction);
     resetForm();
     onClose();
   };

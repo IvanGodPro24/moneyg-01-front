@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import AddTransaction from '../AddTransaction/AddTransaction';
-import css from './TransactionModalWrapper.module.css';
-import icon from '../../img/icons.svg';
+import { useState } from "react";
+import AddTransaction from "../AddTransaction/AddTransaction";
+import css from "./TransactionModalWrapper.module.css";
+import icon from "../../img/icons.svg";
 
 const TransactionModalWrapper = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +19,7 @@ const TransactionModalWrapper = () => {
       </button>
 
       {isModalOpen && (
-        <div className="modalBackdrop">
+        <div className={css.modalBackdrop}>
           <AddTransaction onClose={handleToggleModal} />
         </div>
       )}

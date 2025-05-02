@@ -75,7 +75,6 @@ const transactionsSlice = createSlice({
       .addCase(getAllCategories.fulfilled, (state, action) => {
         state.isLoading = false;
         state.categories = action.payload;
-        console.log('Categories stored in Redux:', state.categories);
       })
       .addCase(getAllCategories.rejected, (state, action) => {
         state.isLoading = false;

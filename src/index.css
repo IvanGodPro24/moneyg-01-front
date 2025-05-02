@@ -48,7 +48,7 @@ button {
   cursor: pointer;
 }
 
-.modalBackdrop {
+/* .modalBackdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -59,7 +59,7 @@ button {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
+} */
 
 .container {
   max-width: 320px;

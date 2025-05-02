@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import * as Yup from 'yup';
-import css from './TransactionEditForm.module.css';
-import icon from '../../img/icons.svg';
-import EditTransactionToggle from '../EditTransactionToggle/EditTransactionToggle';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import * as Yup from "yup";
+import css from "./TransactionEditForm.module.css";
+import icon from "../../img/icons.svg";
+import EditTransactionToggle from "../EditTransactionToggle/EditTransactionToggle";
+import { useDispatch, useSelector } from "react-redux";
 import {
   editTransaction,
   getAllCategories,
-} from '../../redux/transactions/operations';
-import { selectCategories } from '../../redux/transactions/selectors';
+} from "../../redux/transactions/operations";
+import { selectCategories } from "../../redux/transactions/selectors";
 
 export default function TransactionEditForm({
   onClose,
@@ -24,7 +24,7 @@ export default function TransactionEditForm({
 }) {
   const [transactionType, setTransactionType] = useState(type);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(category || '');
+  const [selectedCategory, setSelectedCategory] = useState(category || "");
 
   const categories = useSelector(selectCategories);
 
@@ -38,14 +38,14 @@ export default function TransactionEditForm({
 
   const validationSchema = Yup.object({
     sum: Yup.number()
-      .typeError('Must be a number')
-      .positive('Must be positive')
-      .required('Sum is required'),
-    comment: Yup.string().max(50, 'Comment is too long'),
-    date: Yup.date().required('Date is required'),
+      .typeError("Must be a number")
+      .positive("Must be positive")
+      .required("Sum is required"),
+    comment: Yup.string().max(50, "Comment is too long"),
+    date: Yup.date().required("Date is required"),
     category: Yup.string().when([], {
-      is: () => transactionType === 'expense',
-      then: (schema) => schema.required('Category is required'),
+      is: () => transactionType === "expense",
+      then: (schema) => schema.required("Category is required"),
       otherwise: (schema) => schema.notRequired(),
     }),
   });
@@ -59,22 +59,21 @@ export default function TransactionEditForm({
 
     dispatch(editTransaction({ ...updatedTransaction, _id }));
 
-    console.log('Updated transaction:', updatedTransaction);
     resetForm();
     onClose();
   };
 
   const handleToggle = (type) => {
     setTransactionType(type);
-    if (type === 'income') {
-      setSelectedCategory('Income');
+    if (type === "income") {
+      setSelectedCategory("Income");
     }
   };
 
   return (
     <div
       className={`${css.EditModal} ${
-        transactionType !== 'expense' && css.smallWindow
+        transactionType !== "expense" && css.smallWindow
       }`}
     >
       <button className={css.closeButton} onClick={onClose}>
@@ -87,10 +86,10 @@ export default function TransactionEditForm({
 
       <Formik
         initialValues={{
-          sum: sum || '',
-          comment: comment || '',
+          sum: sum || "",
+          comment: comment || "",
           date: new Date(date),
-          category: category || '',
+          category: category || "",
         }}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
@@ -104,33 +103,33 @@ export default function TransactionEditForm({
               />
             </div>
 
-            {transactionType === 'expense' && (
+            {transactionType === "expense" && (
               <div className={css.selectWrapper}>
                 <div
                   className={`${css.dropdown} ${
-                    isDropdownOpen ? css.active : ''
+                    isDropdownOpen ? css.active : ""
                   }`}
                   onClick={() => setDropdownOpen(!isDropdownOpen)}
                 >
                   <span className={css.selected}>
-                    {selectedCategory || 'Select a category'}
+                    {selectedCategory || "Select a category"}
                   </span>
                   <span className={css.arrow}></span>
 
                   {isDropdownOpen && (
                     <ul className={css.options}>
                       {categories
-                        .filter((cat) => !(cat === 'Income'))
+                        .filter((cat) => !(cat === "Income"))
                         .map((cat) => (
                           <li
                             key={cat}
                             className={`${css.option} ${
-                              selectedCategory === cat ? css.activeOption : ''
+                              selectedCategory === cat ? css.activeOption : ""
                             }`}
                             onClick={(e) => {
                               e.stopPropagation();
                               setSelectedCategory(cat);
-                              setFieldValue('category', cat);
+                              setFieldValue("category", cat);
                               setDropdownOpen(false);
                             }}
                           >
@@ -149,40 +148,41 @@ export default function TransactionEditForm({
             )}
 
             <div className={css.transactionInfoContainer}>
-              <div className={css.sumField}>
-                <Field
-                  type="number"
-                  id="sum"
-                  name="sum"
-                  placeholder="0.00"
-                  className={css.editSumTransaction}
-                />
-                <ErrorMessage
-                  name="sum"
-                  component="div"
-                  className={css.errorText}
-                />
-              </div>
-
-              <div className={css.datePickerWrapper}>
-                <DatePicker
-                  selected={values.date}
-                  onChange={(date) => {
-                    setFieldValue('date', date);
-                  }}
-                  dateFormat="dd.MM.yyyy"
-                  minDate={new Date('2023-01-01')}
-                  maxDate={new Date()}
-                  className={css.datePicker}
-                />
-                <svg className={css.celndar} width="24" height="24">
-                  <use href={`${icon}#icon-date-range`}></use>
-                </svg>
-                <ErrorMessage
-                  name="date"
-                  component="div"
-                  className={css.errorText}
-                />
+              <div className={css.sumDateWrapper}>
+                <div className={css.sumField}>
+                  <Field
+                    type="number"
+                    id="sum"
+                    name="sum"
+                    placeholder="0.00"
+                    className={css.editSumTransaction}
+                  />
+                  <ErrorMessage
+                    name="sum"
+                    component="div"
+                    className={css.errorText}
+                  />
+                </div>
+                <div className={css.datePickerWrapper}>
+                  <DatePicker
+                    selected={values.date}
+                    onChange={(date) => {
+                      setFieldValue("date", date);
+                    }}
+                    dateFormat="dd.MM.yyyy"
+                    minDate={new Date("2023-01-01")}
+                    maxDate={new Date()}
+                    className={css.datePicker}
+                  />
+                  <svg className={css.celndar} width="24" height="24">
+                    <use href={`${icon}#icon-date-range`}></use>
+                  </svg>
+                  <ErrorMessage
+                    name="date"
+                    component="div"
+                    className={css.errorText}
+                  />
+                </div>
               </div>
 
               <div>

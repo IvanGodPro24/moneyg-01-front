@@ -7,8 +7,11 @@ const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
   return (
     <div className={s.container}>
       <div className={s.modal}>
-        <Logo />
-        <h2 className={s.title}>Money Guard</h2>
+        <div className={s.logo}>
+          <Logo />
+          <h2 className={s.title}>Money Guard</h2>
+        </div>
+
         <p className={s.text}>Are you sure you want to exit?</p>
         <button className={s.btn} onClick={onConfirm}>
           Logout

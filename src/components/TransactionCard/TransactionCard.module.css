@@ -76,3 +76,11 @@
   text-align: center;
   color: var(--white-600);
 }
+
+.modalBackdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}

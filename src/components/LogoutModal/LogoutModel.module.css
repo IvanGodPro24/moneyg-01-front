@@ -1,58 +1,39 @@
 .container {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 60px;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(100px);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  background: var(--form-color);
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .modal {
-  padding: 60px 117px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  max-width: 90%;
-  text-align: center;
-  width: 533px;
-  height: 447px;
-  border-radius: 8px;
-  backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-  background-color: var(--form-color);
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.logo {
-  width: 28px;
-  height: 35px;
-}
-
-.title {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 26px;
-  color: var(--white);
-  margin-bottom: 52px;
+  justify-content: center;
 }
 
 .text {
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 18px;
-  margin-bottom: 52px;
+  text-align: center;
   color: #fff;
+  margin-bottom: 40px;
 }
 
 .btn {
   border-radius: 20px;
-  width: 300px;
+  width: 280px;
   height: 50px;
   box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   background: linear-gradient(
@@ -75,4 +56,62 @@
   background: #fcfcfc;
   color: var(--text-button);
   margin-bottom: 0;
+}
+
+.logo {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: inherit;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal {
+    padding: 60px 117px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    width: 533px;
+    height: 447px;
+    border-radius: 8px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    background-color: var(--form-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    display: block;
+  }
+
+  .title {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--white);
+    margin-bottom: 52px;
+  }
+
+  .text {
+    margin-bottom: 52px;
+  }
+
+  .btn {
+    width: 300px;
+  }
 }

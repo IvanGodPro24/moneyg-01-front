@@ -1,26 +1,26 @@
-import css from "./AddTransaction.module.css";
-import TransactionToggle from "../TransactionToggle/TransactionToggle.jsx";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import icon from "../../img/icons.svg";
+import { ClipLoader } from "react-spinners";
+
 import {
   addTransaction,
   getAllCategories,
 } from "../../redux/transactions/operations.js";
-import { useDispatch, useSelector } from "react-redux";
+import icon from "../../img/icons.svg";
+import css from "./AddTransaction.module.css";
+import TransactionToggle from "../TransactionToggle/TransactionToggle.jsx";
 import { selectCategories } from "../../redux/transactions/selectors.js";
 
 const AddTransaction = ({ onClose }) => {
   const dispatch = useDispatch();
-
   const [transactionType, setTransactionType] = useState("expense");
-
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const AddTransaction = ({ onClose }) => {
     }),
   });
 
-  const onSubmit = (values, { resetForm }) => {
+  const onSubmit = async (values, { resetForm }) => {
     const finalData = {
       ...values,
       type: transactionType,
@@ -61,10 +61,16 @@ const AddTransaction = ({ onClose }) => {
       setSelectedCategory("Income");
     }
 
-    dispatch(addTransaction(finalData));
-
-    resetForm();
-    onClose();
+    setIsLoading(true);
+    try {
+      await dispatch(addTransaction(finalData));
+      resetForm();
+      onClose();
+    } catch (error) {
+      console.error("Failed to add transaction:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleToggle = (selectedType) => {
@@ -209,9 +215,13 @@ const AddTransaction = ({ onClose }) => {
             </div>
 
             <div className={css.addTransactionButtonContainer}>
-              <button className={css.addButton} type="submit">
-                ADD
-              </button>
+              {isLoading ? (
+                <ClipLoader size={50} color="#3498db" />
+              ) : (
+                <button className={css.addButton} type="submit">
+                  ADD
+                </button>
+              )}
               <button
                 className={css.cencelButton}
                 type="button"

@@ -17,7 +17,6 @@ import { assignColors } from "../../utils/assignColors";
 
 import styles from "./StatisticsTab.module.css";
 import Loader from "../Loader/Loader";
-import { selectTotalBalance } from "../../redux/auth/selectors";
 
 const StatisticsTab = () => {
   const dispatch = useDispatch();
@@ -25,7 +24,6 @@ const StatisticsTab = () => {
   const isLoading = useSelector(selectSummaryLoading);
   const totalExpenses = useSelector(selectTotalExpenses);
   const totalIncome = useSelector(selectTotalIncome);
-  const totalBalance = useSelector(selectTotalBalance);
 
   const coloredData = assignColors(data);
 
@@ -59,7 +57,7 @@ const StatisticsTab = () => {
 
   return (
     <div className={styles.tab}>
-      <Chart data={coloredData} totalBalance={totalBalance} />
+      <Chart data={coloredData} totalExpenses={totalExpenses} />
       <div className={styles.dashboard}>
         <StatisticsDashboard
           selectedMonth={selectedMonth}

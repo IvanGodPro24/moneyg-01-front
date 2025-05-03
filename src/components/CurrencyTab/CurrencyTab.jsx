@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchExchangeRates } from "./apiService";
-import s from "./CurrencyTab.module.css";
+
 import Svg from "./Svg";
 import Loader from "../Loader/Loader";
+import s from "./CurrencyTab.module.css";
+import { fetchExchangeRates } from "./apiService";
 
 const CurrencyTab = () => {
   const [rates, setRates] = useState([]);
@@ -73,6 +74,38 @@ const CurrencyTab = () => {
         </tbody>
       </table>
       <div className={s.svgBackground}>
+        <div className={s.svgMarkerLeft}>
+          <span className={s.markerLabel}>
+            {rates.find((r) => r.currencyCodeA === 840).rateBuy.toFixed(2)}
+          </span>
+          <svg
+            className={s.svg}
+            width="9"
+            height="9"
+            viewBox="0 0 9 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="4.5" cy="4.5" r="4" fill="#563EAF" stroke="#FF868D" />
+          </svg>
+        </div>
+
+        <div className={s.svgMarkerRight}>
+          <span className={s.markerLabel}>
+            {rates.find((r) => r.currencyCodeA === 978).rateBuy.toFixed(2)}
+          </span>
+          <svg
+            className={s.svg}
+            width="9"
+            height="9"
+            viewBox="0 0 9 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="4.5" cy="4.5" r="4" fill="#563EAF" stroke="#FF868D" />
+          </svg>
+        </div>
+
         <Svg />
       </div>
     </div>

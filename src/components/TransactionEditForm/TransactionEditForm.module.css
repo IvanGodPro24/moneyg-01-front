@@ -4,7 +4,24 @@
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   background: var(--form-color);
-  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
 .closeButton {
@@ -69,7 +86,7 @@
   border: none;
   display: flex;
   gap: 33px;
-  width: 140px;
+  width: 250px;
   height: 35px;
   padding-left: 20px;
   font-family: var(--font-family);

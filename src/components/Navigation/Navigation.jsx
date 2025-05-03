@@ -26,7 +26,7 @@ const Navigation = () => {
             <p className={s.title}>Statistics</p>
           </NavLink>
         </li>
-        <li className={s.item}>
+        <li className={s.dollar}>
           <NavLink className={buildLinkClass} to="/dashboard/currency">
             <FaDollarSign className={s.icon} />
           </NavLink>

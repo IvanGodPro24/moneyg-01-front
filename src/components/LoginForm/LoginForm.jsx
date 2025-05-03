@@ -34,9 +34,9 @@ const LoginForm = () => {
 
   const onSubmit = async ({ email, password }) => {
     try {
-      dispatch(login({ email, password }));
+      await dispatch(login({ email, password })).unwrap();
     } catch (err) {
-      setError(err.message || "An error occurred during login");
+      setError(err || "An error occurred during login");
     }
   };
 

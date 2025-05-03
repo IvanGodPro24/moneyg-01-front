@@ -2,12 +2,23 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  border-radius: 8px;
-  max-width: 540px;
-  max-height: 589px;
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   background: var(--form-color);
+  padding: 40px 20px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
 .closeButton {
@@ -36,7 +47,7 @@
   font-size: 30px;
   text-align: center;
   color: var(--white);
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .transactionTypeText {
@@ -113,7 +124,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin: 40px 0;
+  margin-top: 40px;
 }
 
 .addButton {
@@ -214,16 +225,22 @@
 }
 
 .selectWrapper {
-  margin: 0 auto;
-  width: 394px;
+  width: 100%;
+  max-width: 280px;
+  box-sizing: border-box;
   height: 35px;
   margin-top: 40px;
   background-color: transparent;
   position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 40px;
 }
 
 .dropdown {
-  width: 394px;
+  width: 100%;
+  box-sizing: border-box;
   height: 35px;
   background: transparent;
   color: rgba(255, 255, 255, 0.6);
@@ -295,63 +312,103 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 768px) {
+.AddModal {
+  position: relative;
+  max-width: 360px;
+  width: 100%;
+  height: auto;
+}
+.smallWindow {
+  height: 600px;
+}
+
+.closeButton {
+  display: none;
+}
+
+.expenseMobileMargin {
+  margin-top: 32px;
+}
+
+.sumDateWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addSumTransaction {
+  width: 280px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.datePickerWrapper {
+  width: 280px;
+}
+
+.addCommentTransaction {
+  width: 280px;
+  height: 79px;
+}
+.selectWrapper {
+  width: 320px;
+}
+
+.addButton {
+  width: 280px;
+}
+.cencelButton {
+  width: 280px;
+}
+
+@media screen and (min-width: 768px) {
   .AddModal {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    max-width: 360px;
-    max-height: 691px;
-    height: 691px;
-  }
-  .smallWindow {
-    height: 600px;
+    max-width: 540px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    padding-left: 73px;
+    padding-right: 73px;
   }
 
   .closeButton {
-    display: none;
-  }
-  .closeSvg {
-    display: none;
+    display: block;
   }
 
-  .AddText {
-    margin-top: 28px;
-  }
-  .expenseMobileText {
+  .sumDateWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
     margin-top: 40px;
-  }
-  .expenseMobileMargin {
-    margin-top: 32px;
+    margin-bottom: 40px;
   }
 
-  .sumField {
-    width: 280px;
-  }
   .addSumTransaction {
-    width: 280px;
-  }
-
-  .datePickerWrapper {
-    width: 280px;
+    width: 181px;
+    margin: 0;
   }
 
   .addCommentTransaction {
-    width: 280px;
-    height: 79px;
+    width: 394px;
+    height: 32px;
   }
+
   .selectWrapper {
-    width: 320px;
+    max-width: 394px;
+    width: 100%;
   }
+
   .dropdown {
-    width: 280px;
-    margin: 0 auto;
+    width: 394px;
   }
+
   .addButton {
-    width: 280px;
+    width: 300px;
   }
+
   .cencelButton {
-    width: 280px;
+    width: 300px;
   }
 }

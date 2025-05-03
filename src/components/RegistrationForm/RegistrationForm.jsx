@@ -48,7 +48,7 @@ const RegistrationForm = () => {
 
       navigate("/");
     } catch (err) {
-      setError(err.message || "An error occurred during registration");
+      setError(err || "An error occurred during registration");
     }
   };
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://moneyg-01-back.onrender.com";
+axios.defaults.baseURL = "http://localhost:3000";
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -19,7 +19,7 @@ export const registered = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.data || error.message);
     }
   }
 );
@@ -34,7 +34,7 @@ export const login = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.data || error.message);
     }
   }
 );
@@ -47,7 +47,7 @@ export const logout = createAsyncThunk(
 
       clearAuthHeader();
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.data || error.message);
     }
   }
 );
@@ -68,7 +68,7 @@ export const current = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.data || error.message);
     }
   }
 );

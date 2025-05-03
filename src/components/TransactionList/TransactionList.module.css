@@ -6,7 +6,9 @@
   align-items: center;
 }
 
-.table {
+.table,
+.tableHead,
+.tableBody {
   display: none;
 }
 
@@ -15,20 +17,77 @@
   color: #fff;
 }
 
+.scrollTopBtn {
+  position: fixed;
+  bottom: 70px;
+  right: 18px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  display: none;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.scrollTopBtn.visible {
+  display: block;
+  opacity: 1;
+}
+
+.UpBtm {
+  width: 40px;
+  height: 40px;
+}
+
+.UpBtm:hover {
+  color: #b7b2b2;
+}
+
 @media screen and (min-width: 768px) {
   .list {
     display: none;
   }
 
-  .table {
+  .tableHead,
+  .tableBody {
     display: table;
-    min-width: 704px;
-    margin-top: 20px;
+    width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
+  }
+
+  .tableWrapper {
+    min-width: 704px;
     margin: 0 auto;
     margin-top: 20px;
-    table-layout: fixed;
-    width: 100%;
+  }
+
+  .scrollBody {
+    max-height: 500px;
+    overflow-y: auto;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+
+  .scrollBody::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollBody::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollBody::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
   }
 
   .thead {
@@ -61,15 +120,21 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .table {
+  .tableWrapper {
     max-width: 715px;
     margin-top: 46px;
+  }
+
+  .tableHead,
+  .tableBody {
+    max-width: 715px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .table {
+  .tableWrapper,
+  .tableHead,
+  .tableBody {
     max-width: 780px;
-    margin-top: 46px;
   }
 }

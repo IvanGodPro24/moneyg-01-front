@@ -37,6 +37,35 @@
   z-index: 0;
 }
 
+.svgMarkerLeft,
+.svgMarkerRight {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  transform: translateX(-50%);
+}
+
+.markerLabel {
+  display: none;
+}
+
+.svg {
+  width: 7px;
+  height: 7px;
+}
+
+.svgMarkerLeft {
+  top: 18%;
+  left: 13.5%;
+}
+
+.svgMarkerRight {
+  top: -7px;
+  left: 77%;
+}
+
 /* ===== Mobile View SVGs ===== */
 .wrapperMob {
   position: relative;
@@ -82,7 +111,7 @@
 
 .lineAboveTablet {
   position: absolute;
-  top: -5px;
+  top: -10px;
   left: 0;
   z-index: 2;
   pointer-events: none;
@@ -139,6 +168,21 @@
   .td {
     padding-top: 8px;
   }
+
+  .svg {
+    width: 8px;
+    height: 8px;
+  }
+
+  .svgMarkerLeft {
+    top: 11px;
+    left: 45px;
+  }
+
+  .svgMarkerRight {
+    top: -13px;
+    left: 258px;
+  }
 }
 
 /* ===== Desktop Media Query ===== */
@@ -164,10 +208,44 @@
   .td {
     padding-top: 24px;
   }
+
+  .markerLabel {
+    display: block;
+    background-color: transparent;
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--dashboard-text);
+  }
+
+  .svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .svgMarkerLeft {
+    top: -8px;
+    left: 65px;
+  }
+
+  .svgMarkerRight {
+    top: -42px;
+    left: 370px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
     min-width: 540px;
+  }
+
+  .svgMarkerLeft {
+    top: -3px;
+    left: 72px;
+  }
+
+  .svgMarkerRight {
+    top: -41px;
+    left: 416px;
   }
 }

@@ -44,6 +44,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 3;
+  transform: translateX(-50%);
 }
 
 .markerLabel {
@@ -56,13 +57,13 @@
 }
 
 .svgMarkerLeft {
-  top: 16px;
-  left: 38px;
+  top: 18%;
+  left: 13.5%;
 }
 
 .svgMarkerRight {
-  top: -8px;
-  left: 242px;
+  top: -7px;
+  left: 77%;
 }
 
 /* ===== Mobile View SVGs ===== */
@@ -175,12 +176,12 @@
 
   .svgMarkerLeft {
     top: 11px;
-    left: 40px;
+    left: 45px;
   }
 
   .svgMarkerRight {
     top: -13px;
-    left: 253px;
+    left: 258px;
   }
 }
 
@@ -224,12 +225,12 @@
 
   .svgMarkerLeft {
     top: -8px;
-    left: 49px;
+    left: 65px;
   }
 
   .svgMarkerRight {
     top: -42px;
-    left: 353px;
+    left: 370px;
   }
 }
 
@@ -240,11 +241,11 @@
 
   .svgMarkerLeft {
     top: -3px;
-    left: 56px;
+    left: 72px;
   }
 
   .svgMarkerRight {
     top: -41px;
-    left: 399px;
+    left: 416px;
   }
 }

@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import * as Yup from "yup";
-import css from "./TransactionEditForm.module.css";
-import icon from "../../img/icons.svg";
-import EditTransactionToggle from "../EditTransactionToggle/EditTransactionToggle";
 import { useDispatch, useSelector } from "react-redux";
+import * as Yup from "yup";
+import { ClipLoader } from "react-spinners";
+
 import {
   editTransaction,
   getAllCategories,
 } from "../../redux/transactions/operations";
+import css from "./TransactionEditForm.module.css";
+import icon from "../../img/icons.svg";
+import EditTransactionToggle from "../EditTransactionToggle/EditTransactionToggle";
 import { selectCategories } from "../../redux/transactions/selectors";
 
 export default function TransactionEditForm({
@@ -25,6 +27,7 @@ export default function TransactionEditForm({
   const [transactionType, setTransactionType] = useState(type);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(category || "");
+  const [loading, setLoading] = useState(false);
 
   const categories = useSelector(selectCategories);
 
@@ -50,17 +53,24 @@ export default function TransactionEditForm({
     }),
   });
 
-  const onSubmit = (values, { resetForm }) => {
+  const onSubmit = async (values, { resetForm }) => {
+    setLoading(true);
+
     const updatedTransaction = {
       ...values,
       type: transactionType,
       date: values.date.toISOString(),
     };
 
-    dispatch(editTransaction({ ...updatedTransaction, _id }));
-
-    resetForm();
-    onClose();
+    try {
+      await dispatch(editTransaction({ ...updatedTransaction, _id })).unwrap();
+      resetForm();
+      onClose();
+    } catch (error) {
+      console.error("Edit error:", error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleToggle = (type) => {
@@ -202,9 +212,17 @@ export default function TransactionEditForm({
             </div>
 
             <div className={css.editTransactionButtonContainer}>
-              <button className={css.editButton} type="submit">
-                SAVE
-              </button>
+              {loading ? (
+                <ClipLoader size={50} color="#3498db" />
+              ) : (
+                <button
+                  className={css.editButton}
+                  type="submit"
+                  disabled={loading}
+                >
+                  SAVE
+                </button>
+              )}
               <button
                 className={css.cancelButton}
                 type="button"

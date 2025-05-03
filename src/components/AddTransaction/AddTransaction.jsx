@@ -152,45 +152,46 @@ const AddTransaction = ({ onClose }) => {
                 />
               </div>
             )}
+            <div className={css.container}>
+              <div className={css.sumDateWrapper}>
+                <div className={css.sumField}>
+                  <Field
+                    type="number"
+                    id="sum"
+                    name="sum"
+                    placeholder="0.00"
+                    className={css.addSumTransaction}
+                  />
+                  <ErrorMessage
+                    name="sum"
+                    component="div"
+                    className={css.errorText}
+                  />
+                </div>
 
-            <div className={css.transactionInfoContainer}>
-              <div className={css.sumField}>
-                <Field
-                  type="number"
-                  id="sum"
-                  name="sum"
-                  placeholder="0.00"
-                  className={css.addSumTransaction}
-                />
-                <ErrorMessage
-                  name="sum"
-                  component="div"
-                  className={css.errorText}
-                />
+                <div className={css.datePickerWrapper}>
+                  <DatePicker
+                    selected={values.date}
+                    onChange={(date) => {
+                      const formattedDate = date.toISOString();
+                      setFieldValue("date", formattedDate);
+                    }}
+                    dateFormat="dd.MM.yyyy"
+                    minDate={new Date("2025-01-01")}
+                    maxDate={new Date()}
+                    className={css.datePicker}
+                    popperPlacement="bottom-end"
+                  />
+                  <svg className={css.celndar} width="24" height="24">
+                    <use href={`${icon}#icon-date-range`}></use>
+                  </svg>
+                  <ErrorMessage
+                    name="date"
+                    component="div"
+                    className={css.errorText}
+                  />
+                </div>
               </div>
-
-              <div className={css.datePickerWrapper}>
-                <DatePicker
-                  selected={values.date}
-                  onChange={(date) => {
-                    const formattedDate = date.toISOString();
-                    setFieldValue("date", formattedDate);
-                  }}
-                  dateFormat="dd.MM.yyyy"
-                  minDate={new Date("2025-01-01")}
-                  maxDate={new Date()}
-                  className={css.datePicker}
-                />
-                <svg className={css.celndar} width="24" height="24">
-                  <use href={`${icon}#icon-date-range`}></use>
-                </svg>
-                <ErrorMessage
-                  name="date"
-                  component="div"
-                  className={css.errorText}
-                />
-              </div>
-
               <div>
                 <Field
                   type="text"

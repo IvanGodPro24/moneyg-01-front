@@ -19,6 +19,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    error: null,
   },
 
   extraReducers: (builder) => {
@@ -26,8 +27,9 @@ const authSlice = createSlice({
       .addCase(registered.fulfilled, () => {
         toast.success("Successfull registration!");
       })
-      .addCase(registered.rejected, () => {
-        toast.error("Error registration!");
+      .addCase(registered.rejected, (state, action) => {
+        state.error = action.payload;
+        // toast.error("Error registration!");
       })
 
       .addCase(login.fulfilled, (state, action) => {
@@ -35,8 +37,9 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(login.rejected, () => {
-        toast.error("Error login!");
+      .addCase(login.rejected, (state, action) => {
+        state.error = action.payload;
+        // toast.error("Error login!");
       })
 
       .addCase(logout.fulfilled, (state) => {

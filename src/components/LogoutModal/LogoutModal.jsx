@@ -4,9 +4,17 @@ import s from "./LogoutModel.module.css";
 const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
   if (!isOpen) return null;
 
+  const handleBackdropClick = () => {
+    onCancel();
+  };
+
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className={s.container}>
-      <div className={s.modal}>
+    <div className={s.container} onClick={handleBackdropClick}>
+      <div className={s.modal} onClick={stopPropagation}>
         <div className={s.logo}>
           <Logo />
           <h2 className={s.title}>Money Guard</h2>

@@ -28,6 +28,15 @@
   padding-top: 8px;
 }
 
+.loader {
+  margin-top: 30px;
+}
+
+.texError {
+  text-align: center;
+  margin-top: 40px;
+}
+
 /* ===== SVG Wrappers (Background Decorative SVG) ===== */
 .svgBackground {
   position: absolute;
@@ -183,6 +192,10 @@
     top: -13px;
     left: 258px;
   }
+
+  .loader {
+    margin: auto;
+  }
 }
 
 /* ===== Desktop Media Query ===== */
@@ -231,6 +244,10 @@
   .svgMarkerRight {
     top: -42px;
     left: 370px;
+  }
+
+  .loader {
+    margin-top: 40px;
   }
 }
 

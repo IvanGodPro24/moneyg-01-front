@@ -1,19 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiCircleChevUp } from "react-icons/ci";
+import { ClipLoader } from "react-spinners";
 
-import s from "./TransactionList.module.css";
-import TransactionsItem from "../TransactionsItem/TransactionsItem";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import {
+  selectIsLoading,
+  selectTransactions,
+} from "../../redux/transactions/selectors";
 import { fetchTransactions } from "../../redux/transactions/operations";
+import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import useDevice from "../../hooks/useDevice";
+import s from "./TransactionList.module.css";
 
 const TransactionList = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
   const { isMobile } = useDevice();
   const [showScrollBtn, setShowScrollBtn] = useState(false);
+  const isLoading = useSelector(selectIsLoading);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -41,8 +46,12 @@ const TransactionList = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
-  if (!transactions || transactions.length === 0) {
-    return <p className={s.text}>You don't have any transactions yet.</p>;
+  if (!isLoading && (!transactions || transactions.length === 0)) {
+    return (
+      <div>
+        <p className={s.text}>You don't have any transactions yet.</p>
+      </div>
+    );
   }
 
   return (
@@ -64,33 +73,50 @@ const TransactionList = () => {
       <div className={s.scrollBody}>
         <table className={s.tableBody}>
           <tbody className={s.tbody}>
-            {transactions.map((t) => (
-              <TransactionsItem
-                key={t._id}
-                id={t._id}
-                date={t.date}
-                category={t.categoryId.title}
-                comment={t.comment}
-                sum={t.sum}
-                type={t.type}
-              />
-            ))}
+            {isLoading ? (
+              <tr>
+                <td>
+                  <div className={s.loader}>
+                    <ClipLoader size={100} color="#3498db" />
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              transactions.map((t) => (
+                <TransactionsItem
+                  key={t._id}
+                  id={t._id}
+                  date={t.date}
+                  category={t.categoryId.title}
+                  comment={t.comment}
+                  sum={t.sum}
+                  type={t.type}
+                />
+              ))
+            )}
           </tbody>
         </table>
       </div>
-      <ul className={s.list}>
-        {transactions.map((t) => (
-          <TransactionCard
-            key={t._id}
-            id={t._id}
-            date={t.date}
-            category={t.categoryId.title}
-            comment={t.comment}
-            sum={t.sum}
-            type={t.type}
-          />
-        ))}
-      </ul>
+
+      {isMobile && isLoading ? (
+        <div className={s.loader}>
+          <ClipLoader size={120} color="#3498db" />
+        </div>
+      ) : (
+        <ul className={s.list}>
+          {transactions.map((t) => (
+            <TransactionCard
+              key={t._id}
+              id={t._id}
+              date={t.date}
+              category={t.categoryId.title}
+              comment={t.comment}
+              sum={t.sum}
+              type={t.type}
+            />
+          ))}
+        </ul>
+      )}
 
       {isMobile && (
         <button

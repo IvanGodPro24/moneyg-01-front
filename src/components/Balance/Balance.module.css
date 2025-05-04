@@ -41,6 +41,11 @@
   margin-right: 10px;
 }
 
+.textNum {
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
 @media screen and (min-width: 768px) {
   .section {
     width: 336px;

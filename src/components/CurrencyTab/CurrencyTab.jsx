@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 import Svg from "./Svg";
-import Loader from "../Loader/Loader";
 import s from "./CurrencyTab.module.css";
 import { fetchExchangeRates } from "./apiService";
+import useDevice from "../../hooks/useDevice";
 
 const CurrencyTab = () => {
   const [rates, setRates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { isDesktop } = useDevice();
+
+  const loaderSize = isDesktop ? 150 : 100;
 
   const isDataFresh = (cachedTime) => {
     const now = Date.now();
@@ -48,8 +52,13 @@ const CurrencyTab = () => {
     getRates();
   }, []);
 
-  if (loading) return <Loader />;
-  if (error) return <p>Error: {error}</p>;
+  if (loading)
+    return (
+      <div className={s.loader}>
+        <ClipLoader size={loaderSize} color="#3498db" />
+      </div>
+    );
+  if (error) return <p className={s.texError}>Error: {error}</p>;
 
   return (
     <div className={s.container}>
@@ -73,6 +82,7 @@ const CurrencyTab = () => {
           ))}
         </tbody>
       </table>
+      
       <div className={s.svgBackground}>
         <div className={s.svgMarkerLeft}>
           <span className={s.markerLabel}>

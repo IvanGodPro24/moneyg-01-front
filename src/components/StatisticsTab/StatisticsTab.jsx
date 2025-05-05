@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import StatisticsDashboard from "../StatisticsDashboard/StatisticsDashboard";
-import StatisticsTable from "../StatisticsTable/StatisticsTable";
-import Chart from "../Chart/Chart";
+import { ClipLoader } from "react-spinners";
 
 import {
   selectExpensesData,
@@ -12,11 +9,12 @@ import {
   selectTotalIncome,
 } from "../../redux/summary/selectors";
 import { fetchSummary } from "../../redux/summary/operations";
-
 import { assignColors } from "../../utils/assignColors";
 
 import styles from "./StatisticsTab.module.css";
-import Loader from "../Loader/Loader";
+import Chart from "../Chart/Chart";
+import StatisticsDashboard from "../StatisticsDashboard/StatisticsDashboard";
+import StatisticsTable from "../StatisticsTable/StatisticsTable";
 
 const StatisticsTab = () => {
   const dispatch = useDispatch();
@@ -52,7 +50,11 @@ const StatisticsTab = () => {
   };
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className={styles.loader}>
+        <ClipLoader size={120} color="#3498db" />
+      </div>
+    );
   }
 
   return (

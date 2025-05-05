@@ -14,10 +14,12 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
   const [loading, setLoading] = useState(false);
 
   const handleToggleModal = () => {
+    if (loading) return;
     setIsOpen((prev) => !prev);
   };
 
   const handleDelete = async () => {
+    if (isOpen) return;
     setLoading(true);
     try {
       await dispatch(deleteTransaction({ _id: id, type: sum })).unwrap();
@@ -61,7 +63,11 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
           </button>
         )}
 
-        <button className={s.edit} onClick={handleToggleModal}>
+        <button
+          className={s.edit}
+          onClick={handleToggleModal}
+          disabled={loading}
+        >
           <LuPencil width="14" height="14" />
           <span className={s.text}>Edit</span>
         </button>

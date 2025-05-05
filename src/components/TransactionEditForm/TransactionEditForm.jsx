@@ -81,6 +81,7 @@ export default function TransactionEditForm({
   };
 
   const handleBackdropClick = (e) => {
+    if (loading) return;
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -98,7 +99,11 @@ export default function TransactionEditForm({
         }`}
         onClick={stopPropagation}
       >
-        <button className={css.closeButton} onClick={onClose}>
+        <button
+          className={css.closeButton}
+          onClick={onClose}
+          disabled={loading}
+        >
           <svg className={css.closeSvg} width="16" height="16">
             <use href={`${icon}#icon-close`}></use>
           </svg>
@@ -122,6 +127,7 @@ export default function TransactionEditForm({
                 <EditTransactionToggle
                   currentType={transactionType}
                   onChange={handleToggle}
+                  disabled={loading}
                 />
               </div>
 
@@ -131,14 +137,16 @@ export default function TransactionEditForm({
                     className={`${css.dropdown} ${
                       isDropdownOpen ? css.active : ""
                     }`}
-                    onClick={() => setDropdownOpen(!isDropdownOpen)}
+                    onClick={() => {
+                      if (!loading) setDropdownOpen(!isDropdownOpen);
+                    }}
                   >
                     <span className={css.selected}>
                       {selectedCategory || "Select a category"}
                     </span>
                     <span className={css.arrow}></span>
 
-                    {isDropdownOpen && (
+                    {isDropdownOpen && !loading && (
                       <ul className={css.options}>
                         {categories
                           .filter((cat) => !(cat === "Income"))
@@ -149,6 +157,7 @@ export default function TransactionEditForm({
                                 selectedCategory === cat ? css.activeOption : ""
                               }`}
                               onClick={(e) => {
+                                if (loading) return;
                                 e.stopPropagation();
                                 setSelectedCategory(cat);
                                 setFieldValue("category", cat);
@@ -178,6 +187,7 @@ export default function TransactionEditForm({
                       name="sum"
                       placeholder="0.00"
                       className={css.editSumTransaction}
+                      disabled={loading}
                     />
                     <ErrorMessage
                       name="sum"
@@ -195,6 +205,7 @@ export default function TransactionEditForm({
                       minDate={new Date("2023-01-01")}
                       maxDate={new Date()}
                       className={css.datePicker}
+                      disabled={loading}
                     />
                     <svg className={css.celndar} width="24" height="24">
                       <use href={`${icon}#icon-date-range`}></use>
@@ -214,6 +225,7 @@ export default function TransactionEditForm({
                     name="comment"
                     placeholder="Comment"
                     className={css.editCommentTransaction}
+                    disabled={loading}
                   />
                   <ErrorMessage
                     name="comment"
@@ -239,6 +251,7 @@ export default function TransactionEditForm({
                   className={css.cancelButton}
                   type="button"
                   onClick={onClose}
+                  disabled={loading}
                 >
                   CANCEL
                 </button>

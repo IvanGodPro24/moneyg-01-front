@@ -93,3 +93,7 @@
 .loader {
   margin-left: 15px;
 }
+
+.edit:disabled {
+  cursor: default;
+}

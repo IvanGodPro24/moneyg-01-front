@@ -69,3 +69,7 @@
   width: 69px;
   height: 29px;
 }
+
+.edit:disabled {
+  cursor: default;
+}

@@ -217,6 +217,10 @@
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
 }
 
+.cancelButton:disabled {
+  cursor: default;
+}
+
 @media screen and (min-width: 768px) {
   .EditModal {
     min-width: 540px;

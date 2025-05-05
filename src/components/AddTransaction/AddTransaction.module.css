@@ -361,6 +361,10 @@
   width: 280px;
 }
 
+.cencelButton:disabled {
+  cursor: default;
+}
+
 @media screen and (min-width: 768px) {
   .AddModal {
     max-width: 540px;

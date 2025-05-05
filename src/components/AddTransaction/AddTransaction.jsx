@@ -78,6 +78,7 @@ const AddTransaction = ({ onClose }) => {
   };
 
   const handleBackdropClick = (e) => {
+    if (isLoading) return;
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -95,7 +96,11 @@ const AddTransaction = ({ onClose }) => {
         }`}
         onClick={stopPropagation}
       >
-        <button className={css.closeButton} onClick={onClose}>
+        <button
+          className={css.closeButton}
+          onClick={onClose}
+          disabled={isLoading}
+        >
           <svg className={css.closeSvg} width="16" height="16">
             <use href={`${icon}#icon-close`}></use>
           </svg>
@@ -120,7 +125,10 @@ const AddTransaction = ({ onClose }) => {
                   transactionType !== "income" ? css.expenseMobileMargin : ""
                 }`}
               >
-                <TransactionToggle onChange={handleToggle} />
+                <TransactionToggle
+                  onChange={handleToggle}
+                  disabled={isLoading}
+                />
               </div>
 
               {transactionType === "expense" && (
@@ -140,7 +148,7 @@ const AddTransaction = ({ onClose }) => {
                       </svg>
                     </span>
 
-                    {isDropdownOpen && (
+                    {isDropdownOpen && !isLoading && (
                       <ul className={css.options}>
                         {categories
                           .filter((cat) => !(cat === "Income"))
@@ -151,6 +159,7 @@ const AddTransaction = ({ onClose }) => {
                                 selectedCategory === cat ? css.activeOption : ""
                               }`}
                               onClick={(e) => {
+                                if (isLoading) return;
                                 e.stopPropagation();
                                 setSelectedCategory(cat);
                                 setFieldValue("category", cat);
@@ -179,6 +188,7 @@ const AddTransaction = ({ onClose }) => {
                       name="sum"
                       placeholder="0.00"
                       className={css.addSumTransaction}
+                      disabled={isLoading}
                     />
                     <ErrorMessage
                       name="sum"
@@ -199,6 +209,7 @@ const AddTransaction = ({ onClose }) => {
                       maxDate={new Date()}
                       className={css.datePicker}
                       popperPlacement="bottom-end"
+                      disabled={isLoading}
                     />
                     <svg className={css.celndar} width="24" height="24">
                       <use href={`${icon}#icon-date-range`}></use>
@@ -217,6 +228,7 @@ const AddTransaction = ({ onClose }) => {
                     name="comment"
                     placeholder="Comment"
                     className={css.addCommentTransaction}
+                    disabled={isLoading}
                   />
                   <ErrorMessage
                     name="comment"
@@ -238,6 +250,7 @@ const AddTransaction = ({ onClose }) => {
                   className={css.cencelButton}
                   type="button"
                   onClick={onClose}
+                  disabled={isLoading}
                 >
                   CANCEL
                 </button>

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import css from "./TransactionToggle.module.css";
 import icon from "../../img/icons.svg";
 
-const TransactionToggle = ({ onChange }) => {
+const TransactionToggle = ({ onChange, disabled }) => {
   const [isIncome, setIsIncome] = useState(false);
 
   const handleToggle = () => {
+    if (disabled) return;
     const newType = isIncome ? "expense" : "income";
     setIsIncome(!isIncome);
     onChange(newType);

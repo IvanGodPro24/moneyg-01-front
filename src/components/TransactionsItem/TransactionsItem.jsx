@@ -41,11 +41,15 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
       </td>
       <td>
         <div className={s.btnContainer}>
-          <button className={s.edit} onClick={handleToggleModal}>
+          <button
+            className={s.edit}
+            onClick={handleToggleModal}
+            disabled={loading}
+          >
             <LuPencil />
           </button>
           {loading ? (
-            <div className={s.loader}>
+            <div className={s.loader} я>
               <ClipLoader size={25} color="#3498db" />
             </div>
           ) : (

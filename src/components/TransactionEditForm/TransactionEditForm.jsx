@@ -90,7 +90,7 @@ export default function TransactionEditForm({
   const stopPropagation = (e) => {
     e.stopPropagation();
   };
-  setDropdownOpen;
+
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div

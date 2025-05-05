@@ -49,7 +49,7 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
             <LuPencil />
           </button>
           {loading ? (
-            <div className={s.loader} я>
+            <div className={s.loader}>
               <ClipLoader size={25} color="#3498db" />
             </div>
           ) : (

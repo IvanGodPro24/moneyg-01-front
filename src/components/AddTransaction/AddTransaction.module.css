@@ -202,8 +202,8 @@
   color: var(--white);
 }
 
-.celendar {
-  padding-right: 10px;
+.calendar {
+  border-color: #fff;
 }
 
 .sumField {

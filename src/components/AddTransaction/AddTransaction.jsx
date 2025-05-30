@@ -208,6 +208,7 @@ const AddTransaction = ({ onClose }) => {
                       minDate={new Date("2025-01-01")}
                       maxDate={new Date()}
                       className={css.datePicker}
+                      calendarClassName={css.calendar}
                       popperPlacement="bottom-end"
                       disabled={isLoading}
                     />

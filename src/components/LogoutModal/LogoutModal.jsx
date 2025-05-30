@@ -1,5 +1,6 @@
 import Logo from "../Logo/Logo";
 import s from "./LogoutModel.module.css";
+import icon from "../../img/icons.svg";
 
 const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
   if (!isOpen) return null;
@@ -15,6 +16,12 @@ const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
   return (
     <div className={s.container} onClick={handleBackdropClick}>
       <div className={s.modal} onClick={stopPropagation}>
+        <button onClick={onCancel}>
+          <svg className={s.closeSvg} width="16" height="16">
+            <use href={`${icon}#icon-close`}></use>
+          </svg>
+        </button>
+
         <div className={s.logo}>
           <Logo width={28} height={35} />
           <h2 className={s.title}>Money Guard</h2>

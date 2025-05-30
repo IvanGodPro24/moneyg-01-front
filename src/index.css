@@ -50,6 +50,12 @@ button {
   cursor: pointer;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .container {
   max-width: 320px;
   margin: 0 auto;

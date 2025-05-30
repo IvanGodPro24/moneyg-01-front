@@ -1,6 +1,6 @@
 .container {
   position: absolute;
-  top: 60px;
+  top: 0;
   left: 0;
   right: 0;
   backdrop-filter: blur(100px);
@@ -31,6 +31,12 @@
   margin-bottom: 40px;
 }
 
+.closeSvg {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
 .btn {
   border-radius: 20px;
   width: 280px;
@@ -50,12 +56,24 @@
   text-align: center;
   color: #fff;
   margin-bottom: 20px;
+
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 182, 39, 0.3);
 }
 
 .btn:last-child {
   background: #fcfcfc;
   color: var(--text-button);
   margin-bottom: 0;
+}
+
+.btn:last-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
 }
 
 .logo {

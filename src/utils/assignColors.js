@@ -1,4 +1,4 @@
-export const COLORS = [
+const COLORS = [
   "rgba(254, 208, 87, 1)",
   "rgba(255, 216, 208, 1)",
   "rgba(253, 148, 152, 1)",
@@ -10,9 +10,8 @@ export const COLORS = [
   "rgba(0, 173, 132, 1)",
 ];
 
-export const assignColors = (data) => {
-  return data.map((item, index) => ({
+export const assignColors = (data) =>
+  data.map((item, index) => ({
     ...item,
     color: COLORS[index % COLORS.length],
   }));
-};

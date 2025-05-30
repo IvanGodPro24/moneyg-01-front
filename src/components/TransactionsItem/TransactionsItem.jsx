@@ -60,17 +60,15 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
         </div>
 
         {isOpen && (
-          <div className={s.modalBackdrop}>
-            <TransactionEditForm
-              onClose={handleToggleModal}
-              _id={id}
-              date={date}
-              category={category}
-              comment={comment}
-              sum={sum}
-              type={type}
-            />
-          </div>
+          <TransactionEditForm
+            onClose={handleToggleModal}
+            _id={id}
+            date={date}
+            category={category}
+            comment={comment}
+            sum={sum}
+            type={type}
+          />
         )}
       </td>
     </tr>

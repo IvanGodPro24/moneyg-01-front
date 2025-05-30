@@ -1,4 +1,4 @@
-const COLORS = [
+export const COLORS = [
   "rgba(254, 208, 87, 1)",
   "rgba(255, 216, 208, 1)",
   "rgba(253, 148, 152, 1)",

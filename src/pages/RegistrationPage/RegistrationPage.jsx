@@ -1,9 +1,9 @@
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
-import "./RegistrationPage.css";
+import css from "./RegistrationPage.module.css";
 
 const RegistrationPage = () => {
   return (
-    <div className="registration-page">
+    <div className={css["registration-page"]}>
       <RegistrationForm />
     </div>
   );

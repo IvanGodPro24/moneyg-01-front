@@ -1,5 +1,6 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+// import {COLORS} from '../../utils/assignColors'
 
 import styles from "./Chart.module.css";
 
@@ -11,6 +12,7 @@ const Chart = ({ data, totalExpenses }) => {
     datasets: [
       {
         data: data.map((item) => item.value),
+        // backgroundColor: {COLORS},
         backgroundColor: [
           "rgba(254, 208, 87, 1)",
           "rgba(255, 216, 208, 1)",

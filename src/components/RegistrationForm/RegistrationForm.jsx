@@ -4,7 +4,7 @@ import * as yup from "yup";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./RegistrationForm.css";
+import css from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
 import { registered } from "../../redux/auth/operations";
 
@@ -53,45 +53,45 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="registration-form">
-      <div className="logo">
+    <div className={css["registration-form"]}>
+      <div className={css.logo}>
         <img src="/logo.svg" alt="Money Guard" />
         <h1>Money Guard</h1>
       </div>
 
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className={css["error-message"]}>{error}</div>}
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group-wrap">
-          <div className="form-group">
+        <div className={css["form-group-wrap"]}>
+          <div className={css["form-group"]}>
             <input
               type="text"
               id="name"
               {...register("name")}
               placeholder="Name"
             />
-            <svg className="input-icon">
+            <svg className={css["input-icon"]}>
               <use href="/src/img/icons.svg#icon-user" />
             </svg>
             {errors.name && (
-              <span className="error">{errors.name.message}</span>
+              <span className={css.error}>{errors.name.message}</span>
             )}
           </div>
-          <div className="form-group">
+          <div className={css["form-group"]}>
             <input
               type="email"
               id="email"
               {...register("email")}
               placeholder="E-mail"
             />
-            <svg className="input-icon">
+            <svg className={css["input-icon"]}>
               <use href="/src/img/icons.svg#icon-email" />
             </svg>
             {errors.email && (
-              <span className="error">{errors.email.message}</span>
+              <span className={css.error}>{errors.email.message}</span>
             )}
           </div>
-          <div className="form-group">
+          <div className={css["form-group"]}>
             <input
               type="password"
               id="newPassword"
@@ -99,29 +99,29 @@ const RegistrationForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
-            <svg className="input-icon">
+            <svg className={css["input-icon"]}>
               <use href="/src/img/icons.svg#icon-lock" />
             </svg>
             {errors.newPassword && (
-              <span className="error">{errors.newPassword.message}</span>
+              <span className={css.error}>{errors.newPassword.message}</span>
             )}
           </div>
-          <div className="form-group">
+          <div className={css["form-group"]}>
             <input
               type="password"
               id="password"
               {...register("password")}
               placeholder="Confirm password"
             />
-            <svg className="input-icon">
+            <svg className={css["input-icon"]}>
               <use href="/src/img/icons.svg#icon-lock" />
             </svg>
             {errors.password && (
-              <span className="error">{errors.password.message}</span>
+              <span className={css.error}>{errors.password.message}</span>
             )}
-            <div className="custom-strength-bar">
+            <div className={css["custom-strength-bar"]}>
               <div
-                className="strength-progress"
+                className={css["strength-progress"]}
                 style={{ width: `${passwordStrength * 25}%` }}
               ></div>
             </div>
@@ -134,10 +134,10 @@ const RegistrationForm = () => {
             />
           </div>
         </div>
-        <button type="submit" className="submit-button">
+        <button type="submit" className={css["submit-button"]}>
           REGISTER
         </button>
-        <Link to="/login" className="redirect-button">
+        <Link to="/login" className={css["redirect-button"]}>
           LOG IN
         </Link>
       </form>

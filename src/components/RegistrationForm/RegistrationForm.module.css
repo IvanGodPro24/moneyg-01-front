@@ -144,7 +144,6 @@
   background: rgba(255, 255, 255, 0.9);
 }
 
-/* Стили для PasswordStrengthBar */
 :global(.password-strength-bar) {
   margin-top: 1rem;
 }

@@ -63,7 +63,7 @@ const AddTransaction = ({ onClose }) => {
 
     setIsLoading(true);
     try {
-      await dispatch(addTransaction(finalData));
+      dispatch(addTransaction(finalData));
       resetForm();
       onClose();
     } catch (error) {

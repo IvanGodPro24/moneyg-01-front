@@ -48,19 +48,6 @@ button {
   cursor: pointer;
 }
 
-/* .modalBackdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-} */
-
 .container {
   max-width: 320px;
   margin: 0 auto;
@@ -82,10 +69,4 @@ button {
     padding-left: 16px;
     padding-right: 16px;
   }
-}
-
-.visually-hidden {
-  position: absolute;
-  overflow: hidden;
-  margin: 0;
 }

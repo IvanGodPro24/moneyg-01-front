@@ -3,7 +3,7 @@ import { IoExitOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-import Logo from "./Logo/Logo";
+import Logo from "../Logo/Logo";
 import { selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
 import LogoutModal from "../LogoutModal/LogoutModal";
@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <header className={s.header}>
       <div className={s.containerLogo}>
-        <Logo className={s.logo} />
+        <Logo className={s.logo} width={19} height={23} />
         <h2 className={s.title}>Money Guard</h2>
       </div>
       <div className={s.exit}>

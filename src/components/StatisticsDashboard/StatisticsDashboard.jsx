@@ -3,18 +3,19 @@ import Select from "react-select";
 import styles from "./StatisticsDashboard.module.css";
 
 const months = [
-  { value: 0, label: "January" },
-  { value: 1, label: "February" },
-  { value: 2, label: "March" },
-  { value: 3, label: "April" },
-  { value: 4, label: "May" },
-  { value: 5, label: "June" },
-  { value: 6, label: "July" },
-  { value: 7, label: "August" },
-  { value: 8, label: "September" },
-  { value: 9, label: "October" },
-  { value: 10, label: "November" },
-  { value: 11, label: "December" },
+  { value: 0, label: "All months" },
+  { value: 1, label: "January" },
+  { value: 2, label: "February" },
+  { value: 3, label: "March" },
+  { value: 4, label: "April" },
+  { value: 5, label: "May" },
+  { value: 6, label: "June" },
+  { value: 7, label: "July" },
+  { value: 8, label: "August" },
+  { value: 9, label: "September" },
+  { value: 10, label: "October" },
+  { value: 11, label: "November" },
+  { value: 12, label: "December" },
 ];
 
 const customStyles = {
@@ -94,7 +95,8 @@ const customStyles = {
   }),
   dropdownIndicator: (provided, state) => ({
     color: "#fff",
-    transform: state.isOpen ? "rotate(180deg)" : "rotate(0deg)",
+    transition: "transform 0.3s ease",
+    transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : "rotate(0deg)",
   }),
 };
 
@@ -119,6 +121,7 @@ const StatisticsDashboard = ({
         options={months}
         value={selectedMonth}
         onChange={onMonthChange}
+        isSearchable={false}
       />
       <Select
         styles={customStyles}
@@ -126,6 +129,7 @@ const StatisticsDashboard = ({
         options={years}
         value={selectedYear}
         onChange={onYearChange}
+        isSearchable={false}
       />
     </div>
   );

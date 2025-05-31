@@ -26,9 +26,10 @@ const StatisticsTab = () => {
   const coloredData = assignColors(data);
 
   const now = new Date();
+  
   const [selectedMonth, setSelectedMonth] = useState({
-    value: now.getMonth(),
-    label: now.toLocaleString("default", { month: "long" }),
+    value: now.getMonth() + 1,
+    label: now.toLocaleString("en-US", { month: "long" }),
   });
   const [selectedYear, setSelectedYear] = useState({
     value: now.getFullYear(),
@@ -37,7 +38,10 @@ const StatisticsTab = () => {
 
   useEffect(() => {
     dispatch(
-      fetchSummary({ month: selectedMonth.value + 1, year: selectedYear.value })
+      fetchSummary({
+        month: selectedMonth.value === 0 ? null : selectedMonth.value,
+        year: selectedYear.value,
+      })
     );
   }, [dispatch, selectedMonth, selectedYear]);
 

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiCircleChevUp } from "react-icons/ci";
+import { TfiReload } from "react-icons/tfi";
 import { ClipLoader } from "react-spinners";
 
 import {
@@ -12,6 +13,7 @@ import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import useDevice from "../../hooks/useDevice";
 import s from "./TransactionList.module.css";
+import Sum from "../Sum/Sum";
 
 const TransactionList = () => {
   const dispatch = useDispatch();
@@ -19,6 +21,13 @@ const TransactionList = () => {
   const { isMobile } = useDevice();
   const [showScrollBtn, setShowScrollBtn] = useState(false);
   const isLoading = useSelector(selectIsLoading);
+
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [sortedTransactions, setSortedTransactions] = useState(
+    transactions || []
+  );
+
+  const toggleFiltered = () => setIsFiltered((prev) => !prev);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -30,6 +39,17 @@ const TransactionList = () => {
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
+
+  useEffect(() => {
+    const sortedData = [...(transactions || [])].sort((a, b) =>
+      isFiltered ? a.sum - b.sum : b.sum - a.sum
+    );
+    setSortedTransactions(sortedData);
+  }, [isFiltered, transactions]);
+
+  useEffect(() => {
+    setSortedTransactions(transactions || []);
+  }, [transactions]);
 
   useEffect(() => {
     if (!isMobile) return;
@@ -64,8 +84,16 @@ const TransactionList = () => {
               <th className={s.th}>Type</th>
               <th className={s.th}>Category</th>
               <th className={s.th}>Comment</th>
-              <th className={s.th}>Sum</th>
-              <th className={s.th}></th>
+              <th className={s.th}>
+                <Sum isFiltered={isFiltered} toggleFiltered={toggleFiltered} />
+              </th>
+              <th className={s.th}>
+                <button
+                  onClick={() => setSortedTransactions(transactions || [])}
+                >
+                  <TfiReload className="icon" />
+                </button>
+              </th>
             </tr>
           </thead>
         </table>
@@ -82,7 +110,7 @@ const TransactionList = () => {
                 </td>
               </tr>
             ) : (
-              transactions.map((t) => (
+              sortedTransactions.map((t) => (
                 <TransactionsItem
                   key={t._id}
                   id={t._id}

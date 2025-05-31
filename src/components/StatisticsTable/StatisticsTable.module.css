@@ -16,12 +16,6 @@
   border-radius: 8px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
 .item {
   display: flex;
   justify-content: space-between;

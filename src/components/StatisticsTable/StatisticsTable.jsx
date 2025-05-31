@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./StatisticsTable.module.css";
-import { TbArrowsSort } from "react-icons/tb";
+import Sum from "../Sum/Sum";
 
 const StatisticsTable = ({ data, totalExpenses, totalIncome }) => {
   const categories = useMemo(() => data || [], [data]);
@@ -22,15 +22,7 @@ const StatisticsTable = ({ data, totalExpenses, totalIncome }) => {
       <ul className={styles.list}>
         <li className={styles.listHeader}>
           <span>Category</span>
-          <div className={styles.container}>
-            <span>Sum</span>
-            <button
-              onClick={toggleFiltered}
-              className={isFiltered ? "rotate-180" : "rotate-0"}
-            >
-              <TbArrowsSort />
-            </button>
-          </div>
+          <Sum isFiltered={isFiltered} toggleFiltered={toggleFiltered} />
         </li>
         {sortedCategories.map((item) => (
           <li key={item.name} className={styles.item}>

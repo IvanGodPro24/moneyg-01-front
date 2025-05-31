@@ -8,12 +8,18 @@
   gap: 12px;
 }
 
-.listHeader div {
+.listHeader {
   display: flex;
   justify-content: space-between;
   background: rgba(82, 59, 126, 0.6);
   padding: 16px;
   border-radius: 8px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .item {

@@ -56,6 +56,18 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.rotate-180 {
+  transition: 0.3s ease;
+
+  transform: rotate(180deg);
+}
+
+.rotate-0 {
+  transition: 0.3s ease;
+
+  transform: rotate(0deg);
+}
+
 .container {
   max-width: 320px;
   margin: 0 auto;

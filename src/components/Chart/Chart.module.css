@@ -26,6 +26,33 @@
   color: white;
 }
 
+.value {
+  animation: fadeInText 0.4s ease forwards;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.defaultCursor {
+  cursor: default;
+}
+
 @media only screen and (min-width: 768px) {
   .chartWrapper {
     width: 100%;

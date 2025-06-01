@@ -1,0 +1,71 @@
+.rotate-180 {
+  transition: 0.3s ease;
+
+  transform: rotate(180deg);
+}
+
+.rotate-0 {
+  transition: 0.3s ease;
+
+  transform: rotate(0deg);
+}
+
+.icon {
+  transition: 0.3s ease;
+}
+
+.icon:hover,
+.icon:focus {
+  transform: translateY(-3px);
+}
+
+.arrow {
+  padding-right: 10px;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(
+    360deg,
+    rgba(83, 61, 186, 0.7) 0%,
+    rgba(80, 48, 154, 0.7) 35.94%,
+    rgba(106, 70, 165, 0.7) 61.04%,
+    rgba(133, 93, 175, 0.7) 100%
+  );
+  border-radius: 16px;
+  margin-top: 8px;
+  padding: 8px 0;
+  z-index: 10;
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  max-height: 260px;
+  overflow-y: auto;
+  backdrop-filter: blur(100px);
+}
+
+.options::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.errorText {
+  color: #ff868d;
+  font-weight: 500;
+  font-size: small;
+}
+
+@media (max-width: 768px) {
+  .errorText {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .errorText {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}

@@ -14,6 +14,7 @@ import css from "./TransactionEditForm.module.css";
 import icon from "../../img/icons.svg";
 import EditTransactionToggle from "../EditTransactionToggle/EditTransactionToggle";
 import { selectCategories } from "../../redux/transactions/selectors";
+import { isTransactionChanged } from "../../utils/isTransactionChanged";
 
 export default function TransactionEditForm({
   onClose,
@@ -53,7 +54,19 @@ export default function TransactionEditForm({
     }),
   });
 
+  const initialValues = {
+    sum: sum || "",
+    comment: comment || "",
+    date: new Date(date),
+    category: category || "",
+  };
+
   const onSubmit = async (values, { resetForm }) => {
+    if (!isTransactionChanged(initialValues, values)) {
+      onClose();
+      return;
+    }
+
     setLoading(true);
 
     const updatedTransaction = {
@@ -87,9 +100,7 @@ export default function TransactionEditForm({
     }
   };
 
-  const stopPropagation = (e) => {
-    e.stopPropagation();
-  };
+  const stopPropagation = (e) => e.stopPropagation();
 
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
@@ -112,12 +123,7 @@ export default function TransactionEditForm({
         <h2 className={css.editText}>Edit transaction</h2>
 
         <Formik
-          initialValues={{
-            sum: sum || "",
-            comment: comment || "",
-            date: new Date(date),
-            category: category || "",
-          }}
+          initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
@@ -141,13 +147,19 @@ export default function TransactionEditForm({
                       if (!loading) setDropdownOpen(!isDropdownOpen);
                     }}
                   >
-                    <span className={css.selected}>
-                      {selectedCategory || "Select a category"}
+                    <span className={css.selected}>{selectedCategory}</span>
+                    <span className="arrow">
+                      <svg
+                        width="18"
+                        height="9"
+                        className={isDropdownOpen ? "rotate-180" : "rotate-0"}
+                      >
+                        <use href={`${icon}#icon-arrow-down`}></use>
+                      </svg>
                     </span>
-                    <span className={css.arrow}></span>
 
                     {isDropdownOpen && !loading && (
-                      <ul className={css.options}>
+                      <ul className="options">
                         {categories
                           .filter((cat) => !(cat === "Income"))
                           .map((cat) => (
@@ -173,7 +185,7 @@ export default function TransactionEditForm({
                   <ErrorMessage
                     name="category"
                     component="div"
-                    className={css.errorText}
+                    className="errorText"
                   />
                 </div>
               )}
@@ -192,7 +204,7 @@ export default function TransactionEditForm({
                     <ErrorMessage
                       name="sum"
                       component="div"
-                      className={css.errorText}
+                      className="errorText"
                     />
                   </div>
                   <div className={css.datePickerWrapper}>
@@ -213,7 +225,7 @@ export default function TransactionEditForm({
                     <ErrorMessage
                       name="date"
                       component="div"
-                      className={css.errorText}
+                      className="errorText"
                     />
                   </div>
                 </div>
@@ -230,7 +242,7 @@ export default function TransactionEditForm({
                   <ErrorMessage
                     name="comment"
                     component="div"
-                    className={css.errorText}
+                    className="errorText"
                   />
                 </div>
               </div>

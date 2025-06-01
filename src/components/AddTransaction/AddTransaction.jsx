@@ -142,14 +142,18 @@ const AddTransaction = ({ onClose }) => {
                     <span className={css.selected}>
                       {selectedCategory || "Select a category"}
                     </span>
-                    <span className={css.arrow}>
-                      <svg width="18" height="9">
+                    <span className="arrow">
+                      <svg
+                        width="18"
+                        height="9"
+                        className={isDropdownOpen ? "rotate-180" : "rotate-0"}
+                      >
                         <use href={`${icon}#icon-arrow-down`}></use>
                       </svg>
                     </span>
 
                     {isDropdownOpen && !isLoading && (
-                      <ul className={css.options}>
+                      <ul className="options">
                         {categories
                           .filter((cat) => !(cat === "Income"))
                           .map((cat) => (
@@ -175,7 +179,7 @@ const AddTransaction = ({ onClose }) => {
                   <ErrorMessage
                     name="category"
                     component="div"
-                    className={css.errorText}
+                    className="errorText"
                   />
                 </div>
               )}
@@ -193,7 +197,7 @@ const AddTransaction = ({ onClose }) => {
                     <ErrorMessage
                       name="sum"
                       component="div"
-                      className={css.errorText}
+                      className="errorText"
                     />
                   </div>
 
@@ -218,7 +222,7 @@ const AddTransaction = ({ onClose }) => {
                     <ErrorMessage
                       name="date"
                       component="div"
-                      className={css.errorText}
+                      className="errorText"
                     />
                   </div>
                 </div>
@@ -234,7 +238,7 @@ const AddTransaction = ({ onClose }) => {
                   <ErrorMessage
                     name="comment"
                     component="div"
-                    className={css.errorText}
+                    className="errorText"
                   />
                 </div>
               </div>

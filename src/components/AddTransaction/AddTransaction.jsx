@@ -89,7 +89,7 @@ const AddTransaction = ({ onClose }) => {
   };
 
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick}>
+    <div className="backdrop" onClick={handleBackdropClick}>
       <div
         className={`${css.AddModal} ${
           transactionType !== "expense" && css.smallWindow
@@ -139,7 +139,7 @@ const AddTransaction = ({ onClose }) => {
                     }`}
                     onClick={() => setDropdownOpen(!isDropdownOpen)}
                   >
-                    <span className={css.selected}>
+                    <span className="selected">
                       {selectedCategory || "Select a category"}
                     </span>
                     <span className="arrow">
@@ -159,8 +159,8 @@ const AddTransaction = ({ onClose }) => {
                           .map((cat) => (
                             <li
                               key={cat}
-                              className={`${css.option} ${
-                                selectedCategory === cat ? css.activeOption : ""
+                              className={`option ${
+                                selectedCategory === cat ? "activeOption" : ""
                               }`}
                               onClick={(e) => {
                                 if (isLoading) return;

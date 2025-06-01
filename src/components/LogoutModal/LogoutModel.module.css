@@ -24,7 +24,6 @@
 
 .text {
   font-family: var(--font-family);
-  font-weight: 400;
   font-size: 18px;
   text-align: center;
   color: #fff;
@@ -49,7 +48,6 @@
     #7000ff 90.54%
   );
   font-family: var(--font-family);
-  font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -119,7 +117,6 @@
 
   .title {
     font-family: var(--font-family);
-    font-weight: 400;
     font-size: 26px;
     color: var(--white);
     margin-bottom: 52px;

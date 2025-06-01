@@ -226,7 +226,6 @@
     display: block;
     background-color: transparent;
     margin-bottom: 8px;
-    font-weight: 400;
     font-size: 12px;
     color: var(--dashboard-text);
   }

@@ -24,7 +24,6 @@
 
 .title {
   font-size: 12px;
-  font-weight: 400;
   text-transform: uppercase;
   color: var(--white-400);
   margin-bottom: 12px;
@@ -37,7 +36,6 @@
 }
 
 .text {
-  font-weight: 400;
   margin-right: 10px;
 }
 

@@ -75,7 +75,6 @@
     display: inline;
     margin-left: 20px;
     font-family: var(--font-family);
-    font-weight: 400;
     font-size: 18px;
     color: var(--white);
   }

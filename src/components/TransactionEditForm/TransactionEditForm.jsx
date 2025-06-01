@@ -103,7 +103,7 @@ export default function TransactionEditForm({
   const stopPropagation = (e) => e.stopPropagation();
 
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick}>
+    <div className="backdrop" onClick={handleBackdropClick}>
       <div
         className={`${css.EditModal} ${
           transactionType !== "expense" && css.smallWindow
@@ -147,7 +147,7 @@ export default function TransactionEditForm({
                       if (!loading) setDropdownOpen(!isDropdownOpen);
                     }}
                   >
-                    <span className={css.selected}>{selectedCategory}</span>
+                    <span className="selected">{selectedCategory}</span>
                     <span className="arrow">
                       <svg
                         width="18"
@@ -165,8 +165,8 @@ export default function TransactionEditForm({
                           .map((cat) => (
                             <li
                               key={cat}
-                              className={`${css.option} ${
-                                selectedCategory === cat ? css.activeOption : ""
+                              className={`option ${
+                                selectedCategory === cat ? "activeOption" : ""
                               }`}
                               onClick={(e) => {
                                 if (loading) return;

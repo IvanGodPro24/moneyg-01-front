@@ -17,7 +17,6 @@
 
 .title {
   font-family: var(--font-family);
-  font-weight: 400;
   font-size: 12px;
   color: var(--white);
 }
@@ -30,7 +29,6 @@
 
 .name {
   font-family: var(--font-family);
-  font-weight: 400;
   font-size: 16px;
   text-align: right;
   color: var(--white-600);
@@ -66,7 +64,6 @@
   .span {
     display: block;
     font-family: var(--font-family);
-    font-weight: 400;
     font-size: 16px;
     color: var(--white-600);
   }

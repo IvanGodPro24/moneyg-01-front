@@ -56,6 +56,43 @@
   font-size: small;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.selected {
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.option {
+  text-align: left;
+  padding: 12px 20px;
+  color: #fbfbfb;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ff868d;
+}
+
+.activeOption {
+  color: #ff868d;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .errorText {
     margin-bottom: 1rem;

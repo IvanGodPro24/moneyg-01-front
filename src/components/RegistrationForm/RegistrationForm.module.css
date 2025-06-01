@@ -25,7 +25,6 @@
 .logo h1 {
   color: white;
   font-size: 27px;
-  font-weight: 400;
   margin: 0;
 }
 
@@ -111,7 +110,6 @@
   border: none;
   border-radius: 20px;
   font-size: 18px;
-  font-weight: 400;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
@@ -134,7 +132,6 @@
   text-decoration: none;
   border-radius: 20px;
   font-size: 18px;
-  font-weight: 400;
   transition: all 0.3s ease;
   text-transform: uppercase;
   box-shadow: 1px 9px 15px 0px #00000033;

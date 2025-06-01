@@ -58,7 +58,7 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
             <ClipLoader size={25} color="#3498db" />
           </div>
         ) : (
-          <button className={s.delete} onClick={handleDelete}>
+          <button className="delete" onClick={handleDelete}>
             Delete
           </button>
         )}

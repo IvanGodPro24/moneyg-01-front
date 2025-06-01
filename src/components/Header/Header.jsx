@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <header className={s.header}>
       <div className={s.containerLogo}>
-        <Logo className={s.logo} width={19} height={23} />
+        <Logo width={19} height={23} />
         <h2 className={s.title}>Money Guard</h2>
       </div>
       <div className={s.exit}>

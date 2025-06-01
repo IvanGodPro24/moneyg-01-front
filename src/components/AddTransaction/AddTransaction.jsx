@@ -96,12 +96,8 @@ const AddTransaction = ({ onClose }) => {
         }`}
         onClick={stopPropagation}
       >
-        <button
-          className={css.closeButton}
-          onClick={onClose}
-          disabled={isLoading}
-        >
-          <svg className={css.closeSvg} width="16" height="16">
+        <button className="closeButton" onClick={onClose} disabled={isLoading}>
+          <svg className="closeSvg" width="16" height="16">
             <use href={`${icon}#icon-close`}></use>
           </svg>
         </button>

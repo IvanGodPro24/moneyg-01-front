@@ -93,6 +93,49 @@
   font-weight: bold;
 }
 
+.delete {
+  border-radius: 18px;
+  padding: 4px 12px;
+  width: 69px;
+  height: 29px;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+  font-family: var(--font-family);
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+
+  transition: box-shadow 0.3s ease;
+}
+
+.delete:hover,
+.delete:focus {
+  box-shadow: 0 4px 12px rgba(255, 182, 39, 0.3);
+}
+
+.closeSvg {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  stroke: #fff;
+
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.closeButton:hover .closeSvg,
+.closeButton:focus .closeSvg {
+  stroke: var(--yellow);
+}
+
+.closeButton {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .errorText {
     margin-bottom: 1rem;
@@ -104,5 +147,9 @@
     width: 70%;
     margin: 0 auto;
     margin-top: 10px;
+  }
+
+  .closeButton {
+    display: block;
   }
 }

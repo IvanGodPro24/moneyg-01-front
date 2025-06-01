@@ -8,25 +8,6 @@
   padding: 40px 20px;
 }
 
-.closeButton {
-  align-items: center;
-  text-align: center;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 16px;
-  height: 16px;
-  border: none;
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.closeSvg {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-}
-
 .AddText {
   margin: 0;
   font-family: var(--font-family);
@@ -233,10 +214,6 @@
   height: 600px;
 }
 
-.closeButton {
-  display: none;
-}
-
 .expenseMobileMargin {
   margin-top: 32px;
 }
@@ -284,10 +261,6 @@
     border-radius: 8px;
     padding-left: 73px;
     padding-right: 73px;
-  }
-
-  .closeButton {
-    display: block;
   }
 
   .sumDateWrapper {

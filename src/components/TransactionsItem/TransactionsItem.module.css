@@ -27,20 +27,6 @@
   padding: 4px;
 }
 
-.delete {
-  border-radius: 18px;
-  padding: 4px 12px;
-  width: 69px;
-  height: 29px;
-  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
-  background: linear-gradient(
-    167deg,
-    #ffc727 0%,
-    #9e40ba 61.46%,
-    #7000ff 90.54%
-  );
-}
-
 .btnContainer {
   display: flex;
   align-items: center;

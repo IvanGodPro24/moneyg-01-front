@@ -145,7 +145,7 @@ const TransactionForm = ({
               <ErrorMessage name="sum" component="div" className="errorText" />
             </label>
 
-            <div className={clsx("datePickerWrapper", "label", "relative")}>
+            <label className={clsx("datePickerWrapper", "label", "relative")}>
               <Calendar
                 values={values}
                 setFieldValue={setFieldValue}
@@ -156,7 +156,7 @@ const TransactionForm = ({
                 <use href={`${icon}#icon-date-range`}></use>
               </svg>
               <ErrorMessage name="date" component="div" className="errorText" />
-            </div>
+            </label>
           </div>
 
           <div className="comment-container">

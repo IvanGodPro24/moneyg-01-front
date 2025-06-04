@@ -4,10 +4,11 @@ import * as yup from "yup";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import css from "./RegistrationForm.module.css";
+import css from "../Auth.module.css";
 import { useDispatch } from "react-redux";
-import { registered } from "../../redux/auth/operations";
+import { registered } from "../../../redux/auth/operations";
 import clsx from "clsx";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -30,6 +31,9 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShow = () => setShowPassword((prev) => !prev);
 
   const navigate = useNavigate();
 
@@ -54,7 +58,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className={css["registration-form"]}>
+    <div className={css.form}>
       <div className={css.logo}>
         <img src="/logo.svg" alt="Money Guard" />
         <h1>Money Guard</h1>
@@ -75,7 +79,7 @@ const RegistrationForm = () => {
               <use href="/src/img/icons.svg#icon-user" />
             </svg>
             {errors.name && (
-              <span className={css.error}>{errors.name.message}</span>
+              <span className="errorText">{errors.name.message}</span>
             )}
           </div>
           <div className={clsx(css["form-group"], "relative")}>
@@ -89,40 +93,53 @@ const RegistrationForm = () => {
               <use href="/src/img/icons.svg#icon-email" />
             </svg>
             {errors.email && (
-              <span className={css.error}>{errors.email.message}</span>
+              <span className="errorText">{errors.email.message}</span>
             )}
           </div>
           <div className={clsx(css["form-group"], "relative")}>
+            <svg className={css["input-icon"]}>
+              <use href="/src/img/icons.svg#icon-lock" />
+            </svg>
+
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="newPassword"
               {...register("newPassword")}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
-            <svg className={css["input-icon"]}>
-              <use href="/src/img/icons.svg#icon-lock" />
-            </svg>
+
+            <button type="button" className={css.eye} onClick={toggleShow}>
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </button>
+
             {errors.newPassword && (
-              <span className={css.error}>{errors.newPassword.message}</span>
+              <span className="errorText">{errors.newPassword.message}</span>
             )}
           </div>
           <div className={clsx(css["form-group"], "relative")}>
+            <svg className={css["input-icon"]}>
+              <use href="/src/img/icons.svg#icon-lock" />
+            </svg>
+
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               {...register("password")}
               placeholder="Confirm password"
             />
-            <svg className={css["input-icon"]}>
-              <use href="/src/img/icons.svg#icon-lock" />
-            </svg>
+
+            <button type="button" className={css.eye} onClick={toggleShow}>
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </button>
+
             {errors.password && (
-              <span className={css.error}>{errors.password.message}</span>
+              <span className="errorText">{errors.password.message}</span>
             )}
+
             <div className={css["custom-strength-bar"]}>
               <div
-                className={clsx(css["strength-progress"], 'relative')}
+                className={clsx(css["strength-progress"], "relative")}
                 style={{ width: `${passwordStrength * 25}%` }}
               ></div>
             </div>

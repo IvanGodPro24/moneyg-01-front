@@ -15,8 +15,6 @@
 .text {
   padding: 20px;
   color: #fff;
-  font-weight: 600;
-  font-size: 16px;
 }
 
 .loader {
@@ -121,7 +119,6 @@
   .th {
     font-family: var(--font-family);
     font-weight: 600;
-    font-size: 16px;
     color: var(--white);
   }
 }

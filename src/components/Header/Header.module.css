@@ -42,7 +42,6 @@
 
 .name {
   font-family: var(--font-family);
-  font-size: 16px;
   text-align: right;
   color: var(--white-600);
 }
@@ -78,7 +77,6 @@
   .span {
     display: block;
     font-family: var(--font-family);
-    font-size: 16px;
     color: var(--white-600);
 
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);

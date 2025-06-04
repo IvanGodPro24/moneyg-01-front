@@ -1,0 +1,13 @@
+.datePicker {
+  background-color: transparent;
+  width: 140px;
+  height: 35px;
+  padding-left: 20px;
+
+  font-size: 18px;
+  color: var(--white);
+}
+
+.calendar {
+  border-color: #fff !important;
+}

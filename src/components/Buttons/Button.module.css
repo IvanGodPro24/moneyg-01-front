@@ -1,0 +1,49 @@
+.btn {
+  width: 280px;
+  min-height: 50px;
+  border-radius: 20px;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  transform: translateY(-2px);
+}
+
+.add-btn {
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+}
+
+.add-btn:hover,
+.add-btn:focus {
+  box-shadow: 0 4px 12px rgba(255, 182, 39, 0.3);
+}
+
+.cancel-btn {
+  background-color: var(--white);
+  color: var(--text-button);
+}
+
+.cancel-btn:hover,
+.cancel-btn:focus {
+  box-shadow: 0 4px 12px var(--white-400);
+}
+
+.cancel-btn:disabled {
+  cursor: default;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    width: 300px;
+  }
+}

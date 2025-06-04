@@ -6,7 +6,7 @@ import { ClipLoader } from "react-spinners";
 import { deleteTransaction } from "../../redux/transactions/operations";
 import s from "./TransactionCard.module.css";
 import { useState } from "react";
-import TransactionEditForm from "../TransactionEditForm/TransactionEditForm";
+import TransactionEditForm from "../TransactionForm/EditTransaction/EditTransaction";
 
 const TransactionCard = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();

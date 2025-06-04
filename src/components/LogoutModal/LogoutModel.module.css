@@ -71,7 +71,7 @@
 
 .btn:last-child:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px var(--white-400);
 }
 
 .logo {

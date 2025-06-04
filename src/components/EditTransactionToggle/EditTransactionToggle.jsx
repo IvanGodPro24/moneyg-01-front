@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './EditTransactionToggle.module.css';
 
-const TransactionToggle = ({ currentType, onChange }) => {
+const EditTransactionToggle = ({ currentType, onChange }) => {
   return (
     <div className={css.toggleContainer}>
       <span
@@ -35,4 +35,4 @@ const TransactionToggle = ({ currentType, onChange }) => {
   );
 };
 
-export default TransactionToggle;
+export default EditTransactionToggle;

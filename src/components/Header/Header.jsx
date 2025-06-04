@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoExitOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -37,10 +37,10 @@ const Header = () => {
 
   return (
     <header className={s.header}>
-      <div className={s.containerLogo}>
+      <Link to="/dashboard/home" className={s.containerLogo}>
         <Logo width={19} height={23} />
         <h2 className={s.title}>Money Guard</h2>
-      </div>
+      </Link>
       <div className={s.exit}>
         <p className={s.name}>{name || "Name"}</p>
         <button className={s.btn} onClick={handleLogoutClick}>

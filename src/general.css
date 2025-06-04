@@ -51,9 +51,24 @@
 }
 
 .errorText {
-  color: #ff868d;
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translate(-50%);
+  color: var(--dashboard-text);
   font-weight: 500;
   font-size: small;
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .backdrop {
@@ -77,19 +92,19 @@
 .option {
   text-align: left;
   padding: 12px 20px;
-  color: #fbfbfb;
+  color: var(--white);
   cursor: pointer;
   transition: background 0.3s ease;
   font-size: 16px;
 }
 
 .option:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ff868d;
+  background: var(--form-color);
+  color: var(--dashboard-text);
 }
 
 .activeOption {
-  color: #ff868d;
+  color: var(--dashboard-text);
   font-weight: bold;
 }
 
@@ -136,17 +151,13 @@
   display: none;
 }
 
-@media (max-width: 768px) {
-  .errorText {
-    margin-bottom: 1rem;
-  }
+.relative {
+  position: relative;
 }
 
 @media (min-width: 768px) {
   .errorText {
     width: 70%;
-    margin: 0 auto;
-    margin-top: 10px;
   }
 
   .closeButton {

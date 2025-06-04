@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import s from "./TransactionsItem.module.css";
 import { deleteTransaction } from "../../redux/transactions/operations";
-import TransactionEditForm from "../TransactionEditForm/TransactionEditForm";
+import TransactionEditForm from "../TransactionForm/EditTransaction/EditTransaction";
 
 const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();

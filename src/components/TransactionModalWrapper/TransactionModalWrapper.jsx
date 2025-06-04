@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddTransaction from "../AddTransaction/AddTransaction";
+import AddTransaction from "../TransactionForm/AddTransaction/AddTransaction";
 import css from "./TransactionModalWrapper.module.css";
 import icon from "../../img/icons.svg";
 
@@ -18,9 +18,7 @@ const TransactionModalWrapper = () => {
         </svg>
       </button>
 
-      {isModalOpen && (
-          <AddTransaction onClose={handleToggleModal} />
-      )}
+      {isModalOpen && <AddTransaction onClose={handleToggleModal} />}
     </div>
   );
 };

@@ -8,19 +8,18 @@
 .label {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 16px;
   text-align: right;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--white-600);
   transition: color 0.3s ease;
 }
 
 .activeIncome {
-  color: #ffb627;
+  color: var(--yellow);
   font-weight: bold;
 }
 
 .activeExpense {
-  color: #ff868d;
+  color: var(--dashboard-text);
   font-weight: bold;
 }
 
@@ -60,11 +59,11 @@
 }
 
 .incomeColor {
-  background-color: #ffb627;
-  box-shadow: 0 4px 12px #ffb627;
+  background-color: var(--yellow);
+  box-shadow: 0 4px 12px var(--yellow);
 }
 
 .expenseColor {
-  background-color: #ff868d;
-  box-shadow: 0 4px 12px #ff868d;
+  background-color: var(--dashboard-text);
+  box-shadow: 0 4px 12px var(--dashboard-text);
 }

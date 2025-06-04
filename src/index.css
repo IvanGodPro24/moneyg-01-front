@@ -1,11 +1,12 @@
 @import url("./general.css");
-@import url("./datepicker.css");
+@import url("../src/components/Calendar/datepicker.css");
+@import url('../src/components/TransactionForm/modal.css');
 
 body {
   font-family: Poppins, sans-serif;
   font-style: normal;
   line-height: normal;
-  color: #fbfbfb;
+  color: var(--white);
   background-color: #101010;
   margin: 0;
   place-items: center;
@@ -16,7 +17,7 @@ body {
 
 a {
   font-weight: 400;
-  color: #fbfbfb;
+  color: var(--white);
   text-decoration: none;
 }
 
@@ -49,6 +50,11 @@ p {
 
 button {
   cursor: pointer;
+}
+
+input {
+  border: 0;
+  outline: none;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

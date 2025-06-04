@@ -30,12 +30,6 @@
   margin-bottom: 40px;
 }
 
-.closeSvg {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-}
-
 .btn {
   border-radius: 20px;
   width: 280px;

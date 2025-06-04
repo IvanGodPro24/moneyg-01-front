@@ -5,6 +5,7 @@ import Svg from "./Svg";
 import s from "./CurrencyTab.module.css";
 import { fetchExchangeRates } from "./apiService";
 import useDevice from "../../hooks/useDevice";
+import clsx from "clsx";
 
 const CurrencyTab = () => {
   const [rates, setRates] = useState([]);
@@ -61,7 +62,7 @@ const CurrencyTab = () => {
   if (error) return <p className={s.texError}>Error: {error}</p>;
 
   return (
-    <div className={s.container}>
+    <div className={clsx(s.container, 'relative')}>
       <table className={s.table}>
         <thead className={s.thead}>
           <tr>

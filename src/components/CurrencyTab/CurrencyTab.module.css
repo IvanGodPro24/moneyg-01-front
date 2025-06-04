@@ -4,7 +4,6 @@
   max-width: 320px;
   height: 214px;
   background: rgba(74, 86, 226, 0.1);
-  position: relative;
   overflow: hidden;
   margin: 0 auto;
   margin-top: 24px;
@@ -77,7 +76,6 @@
 
 /* ===== Mobile View SVGs ===== */
 .wrapperMob {
-  position: relative;
   width: 100%;
 }
 
@@ -92,7 +90,6 @@
 }
 
 .svgMob {
-  position: relative;
   z-index: 1;
   width: 100%;
   height: auto;
@@ -127,22 +124,21 @@
 }
 
 .svgTablet {
-  position: relative;
   z-index: 1;
 }
 
 /* ===== Desktop View SVGs ===== */
-.wrapperDesctop {
+.wrapperDesktop {
   display: none;
 }
 
-.lineAboveDesctop,
-.svgDesctop {
+.lineAboveDesktop,
+.svgDesktop {
   width: 100%;
   height: auto;
 }
 
-.lineAboveDesctop {
+.lineAboveDesktop {
   position: absolute;
   top: -16px;
   left: 0;
@@ -150,8 +146,7 @@
   pointer-events: none;
 }
 
-.svgDesctop {
-  position: relative;
+.svgDesktop {
   z-index: 1;
 }
 
@@ -210,7 +205,7 @@
     display: none;
   }
 
-  .wrapperDesctop {
+  .wrapperDesktop {
     display: block;
   }
 

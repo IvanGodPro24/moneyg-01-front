@@ -8,6 +8,7 @@ import { selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
 import LogoutModal from "../LogoutModal/LogoutModal";
 import s from "./Header.module.css";
+import clsx from "clsx";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Header = () => {
         <h2 className={s.title}>Money Guard</h2>
       </Link>
       <div className={s.exit}>
-        <p className={s.name}>{name || "Name"}</p>
+        <p className={clsx(s.name, 'relative')}>{name || "Name"}</p>
         <button className={s.btn} onClick={handleLogoutClick}>
           <IoExitOutline className={s.exitBtn} />
           <span className={s.span}>Exit</span>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import css from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
+import clsx from "clsx";
 
 const schema = yup.object().shape({
   email: yup
@@ -51,7 +52,7 @@ const LoginForm = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={css["form-group-wrap"]}>
-          <div className={css["form-group"]}>
+          <div className={clsx(css["form-group"], 'relative')}>
             <input
               type="email"
               id="email"
@@ -65,7 +66,7 @@ const LoginForm = () => {
               <span className={css.error}>{errors.email.message}</span>
             )}
           </div>
-          <div className={css["form-group"]}>
+          <div className={clsx(css["form-group"], 'relative')}>
             <input
               type="password"
               id="password"

@@ -24,7 +24,6 @@
   height: 35px;
   color: var(--white-600);
   cursor: pointer;
-  position: relative;
   transition: background 0.3s ease;
   user-select: none;
 

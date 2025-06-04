@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
 import CurrencyTab from "../../components/CurrencyTab/CurrencyTab";
 import s from "./DashboardPage.module.css";
+import clsx from "clsx";
 
 const DashboardPage = () => {
   const { isTablet, isDesktop } = useDevice();
@@ -26,7 +27,7 @@ const DashboardPage = () => {
       <div className={s.background}></div>
       <Header />
       <main className={s.main}>
-        <div className={s.container}>
+        <div className={clsx(s.container, 'relative')}>
           <div className={s.nav}>
             <Navigation />
             {(isTablet ||

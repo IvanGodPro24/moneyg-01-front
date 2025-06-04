@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import styles from "./Chart.module.css";
 import { useRef, useState } from "react";
+import clsx from "clsx";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -63,9 +64,11 @@ const Chart = ({ data, totalExpenses }) => {
   return (
     <div className={styles.chart}>
       <div
-        className={`${styles.chartWrapper} ${
+        className={clsx(
+          styles.chartWrapper,
+          "relative",
           hasExpenses ? styles.pointer : styles.defaultCursor
-        }`}
+        )}
       >
         <Doughnut
           ref={chartRef}
@@ -80,7 +83,9 @@ const Chart = ({ data, totalExpenses }) => {
           ) : selectedCategory ? (
             <div className={styles.info}>
               <p>{selectedCategory.name}</p>
-              <p className={styles.value}>₴ {selectedCategory.value.toFixed(2)}</p>
+              <p className={styles.value}>
+                ₴ {selectedCategory.value.toFixed(2)}
+              </p>
             </div>
           ) : (
             <p>₴ {totalExpenses.toFixed(2)}</p>

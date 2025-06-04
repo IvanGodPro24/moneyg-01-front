@@ -50,11 +50,7 @@ const Svg = () => {
                 stopColor="white"
                 stopOpacity="0.536458"
               />
-              <stop
-                offset="0.6091"
-                stopColor="white"
-                stopOpacity="0.269957"
-              />
+              <stop offset="0.6091" stopColor="white" stopOpacity="0.269957" />
               <stop
                 offset="0.766012"
                 stopColor="white"
@@ -112,11 +108,7 @@ const Svg = () => {
                 stopColor="white"
                 stopOpacity="0.536458"
               />
-              <stop
-                offset="0.6091"
-                stopColor="white"
-                stopOpacity="0.269957"
-              />
+              <stop offset="0.6091" stopColor="white" stopOpacity="0.269957" />
               <stop
                 offset="0.766012"
                 stopColor="white"
@@ -128,9 +120,9 @@ const Svg = () => {
         </svg>
       </div>
 
-      <div className={s.wrapperDesctop}>
+      <div className={s.wrapperDesktop}>
         <svg
-          className={s.lineAboveDesctop}
+          className={s.lineAboveDesktop}
           width="480"
           height="102"
           viewBox="0 0 480 102"
@@ -143,7 +135,7 @@ const Svg = () => {
           />
         </svg>
         <svg
-          className={s.svgDesctop}
+          className={s.svgDesktop}
           width="480"
           height="167"
           viewBox="0 0 480 167"
@@ -175,11 +167,7 @@ const Svg = () => {
                 stopColor="white"
                 stopOpacity="0.536458"
               />
-              <stop
-                offset="0.6091"
-                stopColor="white"
-                stopOpacity="0.269957"
-              />
+              <stop offset="0.6091" stopColor="white" stopOpacity="0.269957" />
               <stop
                 offset="0.766012"
                 stopColor="white"

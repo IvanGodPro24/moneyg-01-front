@@ -16,8 +16,8 @@ const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
   return (
     <div className={s.container} onClick={handleBackdropClick}>
       <div className={s.modal} onClick={stopPropagation}>
-        <button onClick={onCancel}>
-          <svg className={s.closeSvg} width="16" height="16">
+        <button onClick={onCancel} className="closeButton">
+          <svg className="closeSvg" width="16" height="16">
             <use href={`${icon}#icon-close`}></use>
           </svg>
         </button>

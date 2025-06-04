@@ -7,6 +7,7 @@ import { useState } from "react";
 import css from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
 import { registered } from "../../redux/auth/operations";
+import clsx from "clsx";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -63,7 +64,7 @@ const RegistrationForm = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={css["form-group-wrap"]}>
-          <div className={css["form-group"]}>
+          <div className={clsx(css["form-group"], "relative")}>
             <input
               type="text"
               id="name"
@@ -77,7 +78,7 @@ const RegistrationForm = () => {
               <span className={css.error}>{errors.name.message}</span>
             )}
           </div>
-          <div className={css["form-group"]}>
+          <div className={clsx(css["form-group"], "relative")}>
             <input
               type="email"
               id="email"
@@ -91,7 +92,7 @@ const RegistrationForm = () => {
               <span className={css.error}>{errors.email.message}</span>
             )}
           </div>
-          <div className={css["form-group"]}>
+          <div className={clsx(css["form-group"], "relative")}>
             <input
               type="password"
               id="newPassword"
@@ -106,7 +107,7 @@ const RegistrationForm = () => {
               <span className={css.error}>{errors.newPassword.message}</span>
             )}
           </div>
-          <div className={css["form-group"]}>
+          <div className={clsx(css["form-group"], "relative")}>
             <input
               type="password"
               id="password"
@@ -121,7 +122,7 @@ const RegistrationForm = () => {
             )}
             <div className={css["custom-strength-bar"]}>
               <div
-                className={css["strength-progress"]}
+                className={clsx(css["strength-progress"], 'relative')}
                 style={{ width: `${passwordStrength * 25}%` }}
               ></div>
             </div>

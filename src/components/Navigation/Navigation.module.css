@@ -45,7 +45,6 @@
 
 .icon:focus,
 .icon:active {
-  outline: none;
   background-color: transparent;
 }
 
@@ -87,7 +86,6 @@
 
   .link {
     display: flex;
-    outline: none;
     background-color: transparent;
   }
 }

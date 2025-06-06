@@ -93,7 +93,9 @@
 
 .addSum {
   font-weight: 700;
+}
 
+.addSum::placeholder {
   text-align: center;
 }
 

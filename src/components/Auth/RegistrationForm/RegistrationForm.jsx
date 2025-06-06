@@ -11,10 +11,17 @@ import clsx from "clsx";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
+  name: yup
+    .string()
+    .max(30, "Password must be at most 12 characters")
+    .required("Name is required"),
   email: yup
     .string()
     .email("Please enter a valid email")
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      "Please enter a valid email address"
+    )
     .required("Email is required"),
   newPassword: yup
     .string()
@@ -49,7 +56,7 @@ const RegistrationForm = () => {
 
   const onSubmit = async ({ name, email, password }) => {
     try {
-      dispatch(registered({ name, email, password }));
+      await dispatch(registered({ name, email, password })).unwrap();
 
       navigate("/");
     } catch (err) {

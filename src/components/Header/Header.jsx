@@ -43,7 +43,7 @@ const Header = () => {
         <h2 className={s.title}>Money Guard</h2>
       </Link>
       <div className={s.exit}>
-        <p className={clsx(s.name, 'relative')}>{name || "Name"}</p>
+        <p className={clsx(s.name, 'relative')}>{name.slice(0, 10) || "Name"}</p>
         <button className={s.btn} onClick={handleLogoutClick}>
           <IoExitOutline className={s.exitBtn} />
           <span className={s.span}>Exit</span>

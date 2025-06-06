@@ -17,8 +17,8 @@ const CurrencyTab = () => {
 
   const isDataFresh = (cachedTime) => {
     const now = Date.now();
-    const fiveMinutes = 5 * 60 * 1000;
-    return now - cachedTime < fiveMinutes;
+    const oneHour = 60 * 60 * 1000;
+    return now - cachedTime < oneHour;
   };
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const CurrencyTab = () => {
   if (error) return <p className={s.texError}>Error: {error}</p>;
 
   return (
-    <div className={clsx(s.container, 'relative')}>
+    <div className={clsx(s.container, "relative")}>
       <table className={s.table}>
         <thead className={s.thead}>
           <tr>
@@ -83,7 +83,7 @@ const CurrencyTab = () => {
           ))}
         </tbody>
       </table>
-      
+
       <div className={s.svgBackground}>
         <div className={s.svgMarkerLeft}>
           <span className={s.markerLabel}>

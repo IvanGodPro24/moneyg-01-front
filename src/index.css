@@ -1,6 +1,6 @@
 @import url("./general.css");
 @import url("../src/components/Calendar/datepicker.css");
-@import url('../src/components/TransactionForm/modal.css');
+@import url("../src/components/TransactionForm/modal.css");
 
 body {
   font-family: Poppins, sans-serif;
@@ -26,14 +26,9 @@ img {
   height: auto;
 }
 
+ul,
 ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  list-style: none;
+  list-style-type: none;
   margin: 0;
   padding: 0;
 }
@@ -44,11 +39,16 @@ h3,
 h4,
 h5,
 p {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
   cursor: pointer;
 }
 

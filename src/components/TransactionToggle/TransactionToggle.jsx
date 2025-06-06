@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import css from "./TransactionToggle.module.css";
 import icon from "../../img/icons.svg";
 

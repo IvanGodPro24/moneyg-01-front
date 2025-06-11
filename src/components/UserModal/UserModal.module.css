@@ -1,0 +1,156 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(100px);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  background: var(--form-color);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 83px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 10px;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 96px;
+  font-size: 54px;
+  border-radius: 11px;
+  background-color: var(--icon-violet);
+  margin-bottom: 75px;
+  cursor: pointer;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  padding: 7px;
+  border-radius: 6px;
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+
+  cursor: pointer;
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.plus-icon {
+  stroke: #000;
+  width: 14px;
+  height: 14px;
+}
+
+.label {
+  height: 39px;
+  margin-bottom: 80px;
+  border-bottom: 1px solid var(--white-400);
+}
+
+.label::after {
+  bottom: -1px;
+}
+
+.clearBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px;
+  color: var(--icon-violet);
+  z-index: 1;
+}
+
+.icon {
+  color: var(--icon-violet);
+}
+
+.input {
+  width: 280px;
+  height: 39px;
+
+  padding: 20px;
+  background: transparent;
+  font-size: 18px;
+  color: var(--white-600);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    backdrop-filter: inherit;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal {
+    padding: 60px 117px;
+    max-width: 90%;
+    width: 533px;
+    height: 447px;
+    border-radius: 8px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    background-color: var(--form-color);
+  }
+
+  .title {
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+
+  .plus {
+    bottom: 10%;
+  }
+
+  .avatar {
+    width: 68px;
+    height: 68px;
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .label {
+    margin-bottom: 57px;
+  }
+}

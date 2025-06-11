@@ -13,7 +13,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 const schema = yup.object().shape({
   name: yup
     .string()
-    .max(30, "Password must be at most 12 characters")
+    .max(30, "Name must be at most 30 characters")
     .required("Name is required"),
   email: yup
     .string()

@@ -28,7 +28,7 @@ const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
 
         <p className={s.text}>Are you sure you want to exit?</p>
 
-        <div className={clsx("btn-container", s["mt-0"])}>
+        <div className={clsx("btn-container", "mt-0")}>
           <AddButton onClick={onConfirm}>logout</AddButton>
           <CancelButton onClose={onCancel}>cancel</CancelButton>
         </div>

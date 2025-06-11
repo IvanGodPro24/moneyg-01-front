@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current, login, logout, registered } from "./operations";
+import { current, login, logout, registered, updateUser } from "./operations";
 import { toast } from "sonner";
 import {
   addTransaction,
@@ -15,6 +15,7 @@ const authSlice = createSlice({
       name: null,
       email: null,
       balance: 0,
+      avatarURL: null,
     },
     token: null,
     isLoggedIn: false,
@@ -29,7 +30,6 @@ const authSlice = createSlice({
       })
       .addCase(registered.rejected, (state, action) => {
         state.error = action.payload;
-        // toast.error("Error registration!");
       })
 
       .addCase(login.fulfilled, (state, action) => {
@@ -39,7 +39,6 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;
-        // toast.error("Error login!");
       })
 
       .addCase(logout.fulfilled, (state) => {
@@ -59,6 +58,18 @@ const authSlice = createSlice({
       .addCase(current.rejected, (state) => {
         state.isRefreshing = false;
         toast.error("Please log in again!");
+      })
+
+      .addCase(updateUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isRefreshing = false;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.error = action.payload;
       })
 
       .addCase(addTransaction.fulfilled, (state, action) => {

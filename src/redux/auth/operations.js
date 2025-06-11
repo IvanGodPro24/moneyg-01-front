@@ -72,3 +72,26 @@ export const current = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  "user/update",
+  async (values, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+
+      formData.append("name", values.name);
+
+      if (values.clearAvatar) {
+        formData.append("clearAvatar", "true");
+      } else if (values.avatar instanceof File) {
+        formData.append("avatarURL", values.avatar);
+      }
+
+      const response = await axios.patch("/user/update", formData);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.data || error.message);
+    }
+  }
+);

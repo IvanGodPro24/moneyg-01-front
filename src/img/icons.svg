@@ -86,6 +86,10 @@
             <path fill="none" stroke="#fff" style="stroke: var(--color3, #fff)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="3.2" d="M16 0v32"></path>
             <path fill="none" stroke="#fff" style="stroke: var(--color3, #fff)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="3.2" d="M0 16h32"></path>
         </symbol>
+        <symbol id="icon-plus" viewBox="0 0 32 32">
+            <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M16 6.666v18.667"></path>
+            <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M6.666 16h18.667"></path>
+        </symbol>
         <symbol id="icon-sign-slash" viewBox="0 0 15 32">
             <path fill="none" stroke="#e0e0e0" style="stroke: var(--color7, #e0e0e0)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="2.9091" d="M12.802 1.597l-11.058 28.806"></path>
         </symbol>

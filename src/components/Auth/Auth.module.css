@@ -35,8 +35,7 @@
 
 .form-group input {
   width: 100%;
-  padding: 8px 10px;
-  padding-left: 45px;
+  padding: 8px 30px 8px 45px;
   background: transparent;
   border-bottom: 1px solid var(--white-400);
   color: var(--white);

@@ -1,14 +1,12 @@
-import { useState } from "react";
 import AddTransaction from "../TransactionForm/AddTransaction/AddTransaction";
 import css from "./TransactionModalWrapper.module.css";
 import icon from "../../img/icons.svg";
+import useModal from "../../hooks/useModal";
 
 const TransactionModalWrapper = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const addModal = useModal();
 
-  const handleToggleModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
+  const handleToggleModal = () => addModal.toggleModal();
 
   return (
     <div>
@@ -18,7 +16,7 @@ const TransactionModalWrapper = () => {
         </svg>
       </button>
 
-      {isModalOpen && <AddTransaction onClose={handleToggleModal} />}
+      {addModal.isOpen && <AddTransaction onClose={handleToggleModal} />}
     </div>
   );
 };

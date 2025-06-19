@@ -6,16 +6,15 @@ import { useState } from "react";
 
 import s from "./TransactionsItem.module.css";
 import { deleteTransaction } from "../../redux/transactions/operations";
-import TransactionEditForm from "../TransactionForm/EditTransaction/EditTransaction";
+import EditTransaction from "../TransactionForm/EditTransaction/EditTransaction";
+import useModal from "../../hooks/useModal";
 
 const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+  const editModal = useModal();
   const [loading, setLoading] = useState(false);
 
-  const handleToggleModal = () => {
-    setIsOpen((prev) => !prev);
-  };
+  const handleToggleModal = () => editModal.toggleModal();
 
   const handleDelete = async () => {
     setLoading(true);
@@ -59,8 +58,8 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
           )}
         </div>
 
-        {isOpen && (
-          <TransactionEditForm
+        {editModal.isOpen && (
+          <EditTransaction
             onClose={handleToggleModal}
             _id={id}
             date={date}

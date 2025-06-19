@@ -6,20 +6,21 @@ import { ClipLoader } from "react-spinners";
 import { deleteTransaction } from "../../redux/transactions/operations";
 import s from "./TransactionCard.module.css";
 import { useState } from "react";
-import TransactionEditForm from "../TransactionForm/EditTransaction/EditTransaction";
+import EditTransaction from "../TransactionForm/EditTransaction/EditTransaction";
+import useModal from "../../hooks/useModal";
 
 const TransactionCard = ({ id, date, category, comment, sum, type }) => {
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+  const editModal = useModal();
   const [loading, setLoading] = useState(false);
 
   const handleToggleModal = () => {
     if (loading) return;
-    setIsOpen((prev) => !prev);
+    editModal.toggleModal();
   };
 
   const handleDelete = async () => {
-    if (isOpen) return;
+    if (editModal.isOpen) return;
     setLoading(true);
     try {
       await dispatch(deleteTransaction({ _id: id, type: sum })).unwrap();
@@ -73,9 +74,9 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
         </button>
       </div>
 
-      {isOpen && (
+      {editModal.isOpen && (
         <div className={s.modalBackdrop}>
-          <TransactionEditForm
+          <EditTransaction
             onClose={handleToggleModal}
             _id={id}
             date={date}

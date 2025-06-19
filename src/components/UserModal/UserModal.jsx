@@ -113,7 +113,7 @@ const UserModal = ({
                   className={clsx(
                     css.avatar,
                     css.img,
-                    avatar || (avatarURL && "transparent")
+                    avatar && "transparent"
                   )}
                   alt={name}
                 />
@@ -123,7 +123,7 @@ const UserModal = ({
                   className={clsx(
                     css.avatar,
                     css.img,
-                    avatar || (avatarURL && "transparent")
+                   avatarURL && "transparent"
                   )}
                   alt={name}
                 />

@@ -17,7 +17,6 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
-  toast.error("Something went wrong...");
 };
 
 const transactionsSlice = createSlice({

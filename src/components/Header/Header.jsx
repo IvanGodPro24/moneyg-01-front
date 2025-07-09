@@ -14,7 +14,7 @@ import { useState } from "react";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { name, avatarURL } = useSelector(selectUser);
+  const { name, avatarURL, email, registrationDate } = useSelector(selectUser);
 
   const [avatar, setAvatar] = useState(null);
 
@@ -60,9 +60,11 @@ const Header = () => {
           isOpen={userModal.isOpen}
           onCancel={handleUserModalClose}
           name={name}
+          email={email}
           avatar={avatar}
           setAvatar={setAvatar}
           avatarURL={avatarURL}
+          date={registrationDate}
         />
 
         <button className={s.btn} onClick={logoutModal.openModal}>

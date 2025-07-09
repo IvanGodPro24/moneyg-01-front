@@ -2,6 +2,7 @@ import css from "./UserModal.module.css";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { format } from "date-fns";
 import { FaUser } from "react-icons/fa6";
 import { GrClearOption } from "react-icons/gr";
 import icon from "../../img/icons.svg";
@@ -21,9 +22,11 @@ const UserModal = ({
   isOpen,
   onCancel,
   name,
+  email,
   avatar,
   setAvatar,
   avatarURL,
+  date,
 }) => {
   const photoId = useId();
   const nameId = useId();
@@ -110,11 +113,7 @@ const UserModal = ({
               {avatar ? (
                 <img
                   src={URL.createObjectURL(avatar)}
-                  className={clsx(
-                    css.avatar,
-                    css.img,
-                    avatar && "transparent"
-                  )}
+                  className={clsx(css.avatar, css.img, avatar && "transparent")}
                   alt={name}
                 />
               ) : avatarURL && !shouldClearAvatar ? (
@@ -123,7 +122,7 @@ const UserModal = ({
                   className={clsx(
                     css.avatar,
                     css.img,
-                   avatarURL && "transparent"
+                    avatarURL && "transparent"
                   )}
                   alt={name}
                 />
@@ -160,6 +159,13 @@ const UserModal = ({
               />
               <ErrorMessage name="name" component="div" className="errorText" />
             </label>
+
+            <div className={css["info-container"]}>
+              <p className={css.info}>E-mail: {email}</p>
+              <p className={css.info}>
+                Registration: {format(date, "dd.MM.yyyy")}
+              </p>
+            </div>
 
             <div className={clsx("btn-container", "mt-0")}>
               <AddButton>save</AddButton>

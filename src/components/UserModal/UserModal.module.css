@@ -1,21 +1,22 @@
 .container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
+
+  width: 100%;
+  height: 100%;
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   background: var(--form-color);
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  overscroll-behavior: contain;
 }
 
 .modal {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +87,7 @@
 
 .label {
   height: 39px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   border-bottom: 1px solid var(--white-400);
 }
 
@@ -117,6 +118,41 @@
   color: var(--white-600);
 }
 
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 12px;
+
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--white-600);
+}
+
+.info::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: var(--icon-violet);
+}
+
+.info:first-child::before {
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>');
+}
+
+.info:last-child::before {
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>');
+}
+
 @media screen and (min-width: 768px) {
   .container {
     backdrop-filter: inherit;
@@ -127,7 +163,7 @@
     padding: 60px 117px;
     max-width: 90%;
     width: 533px;
-    height: 447px;
+    max-height: 500px;
     border-radius: 8px;
     backdrop-filter: blur(100px);
     box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
@@ -151,6 +187,6 @@
   }
 
   .label {
-    margin-bottom: 57px;
+    margin-bottom: 30px;
   }
 }

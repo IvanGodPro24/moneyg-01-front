@@ -66,7 +66,9 @@ const UserModal = ({
     try {
       const updateData = {
         name: values.name,
+        email,
         avatar: avatar,
+        registrationDate: date,
         clearAvatar: shouldClearAvatar,
       };
 

@@ -16,6 +16,7 @@ const authSlice = createSlice({
       email: null,
       balance: 0,
       avatarURL: null,
+      registrationDate: null,
     },
     token: null,
     isLoggedIn: false,
@@ -64,7 +65,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isRefreshing = false;
       })
       .addCase(updateUser.rejected, (state, action) => {

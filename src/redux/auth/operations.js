@@ -80,6 +80,8 @@ export const updateUser = createAsyncThunk(
       const formData = new FormData();
 
       formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("registrationDate", values.registrationDate);
 
       if (values.clearAvatar) {
         formData.append("clearAvatar", "true");

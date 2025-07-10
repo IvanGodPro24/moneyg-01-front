@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addTransaction = createAsyncThunk(
-  'transactions/addTransaction',
+  "transactions/addTransaction",
   async (transactionData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/transactions', transactionData);
+      const response = await axios.post("/transactions", transactionData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -14,10 +14,11 @@ export const addTransaction = createAsyncThunk(
 );
 
 export const fetchTransactions = createAsyncThunk(
-  'transactions/fetchTransactions',
-  async (_, { rejectWithValue }) => {
+  "transactions/fetchTransactions",
+  async (page = 1, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/transactions');
+      const { data } = await axios.get("/transactions", { params: { page } });
+
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -26,7 +27,7 @@ export const fetchTransactions = createAsyncThunk(
 );
 
 export const deleteTransaction = createAsyncThunk(
-  'transactions/deleteTransaction',
+  "transactions/deleteTransaction",
   async (transaction, { rejectWithValue }) => {
     try {
       const response = await axios.delete(`/transactions/${transaction._id}`);
@@ -39,7 +40,7 @@ export const deleteTransaction = createAsyncThunk(
 );
 
 export const editTransaction = createAsyncThunk(
-  'transactions/editTransaction',
+  "transactions/editTransaction",
   async ({ _id, ...updatedData }, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch(`/transactions/${_id}`, updatedData);
@@ -51,10 +52,10 @@ export const editTransaction = createAsyncThunk(
 );
 
 export const getAllCategories = createAsyncThunk(
-  'categories/getAllCategories',
+  "categories/getAllCategories",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('/categories');
+      const response = await axios.get("/categories");
 
       return response.data;
     } catch (error) {

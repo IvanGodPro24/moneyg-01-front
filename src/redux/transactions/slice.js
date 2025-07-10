@@ -10,10 +10,6 @@ import {
 
 import { toast } from "sonner";
 
-const handlePending = (state) => {
-  state.isLoading = true;
-};
-
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
@@ -24,6 +20,11 @@ const transactionsSlice = createSlice({
 
   initialState: {
     items: [],
+    page: null,
+    // perPage: null,
+    hasNextPage: null,
+    hasPreviousPage: null,
+    totalPages: null,
     categories: [],
     isLoading: false,
     error: null,
@@ -31,13 +32,22 @@ const transactionsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      .addCase(fetchTransactions.pending, (state) => {
+        state.isLoading = true;
+      })
+
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = action.payload.data;
+
+        state.page = action.payload.page;
+        // state.perPage = action.payload.perPage;
+        state.totalPages = action.payload.totalPages;
+        state.hasNextPage = action.payload.hasNextPage;
+        state.hasPreviousPage = action.payload.hasPreviousPage;
       })
 
       .addCase(addTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.items.push(action.payload);
         toast.success("Transaction added successfully!");
       })
@@ -50,7 +60,6 @@ const transactionsSlice = createSlice({
       })
 
       .addCase(editTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
         const index = state.items.findIndex(
           (item) => item._id === action.payload._id
         );
@@ -61,13 +70,8 @@ const transactionsSlice = createSlice({
       })
 
       .addCase(getAllCategories.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.categories = action.payload;
       })
-
-      .addMatcher((action) => {
-        return action.type.endsWith("pending");
-      }, handlePending)
 
       .addMatcher((action) => {
         return action.type.endsWith("rejected");

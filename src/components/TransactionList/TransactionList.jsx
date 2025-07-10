@@ -5,7 +5,11 @@ import { TfiReload } from "react-icons/tfi";
 import { ClipLoader } from "react-spinners";
 
 import {
+  selectHasNextPage,
+  selectHasPreviousPage,
   selectIsLoading,
+  selectPage,
+  selectTotalPages,
   selectTransactions,
 } from "../../redux/transactions/selectors";
 import { fetchTransactions } from "../../redux/transactions/operations";
@@ -14,6 +18,7 @@ import TransactionCard from "../TransactionCard/TransactionCard";
 import useDevice from "../../hooks/useDevice";
 import s from "./TransactionList.module.css";
 import Sum from "../Sum/Sum";
+import Pagination from "../Pagination/Pagination";
 
 const TransactionList = () => {
   const dispatch = useDispatch();
@@ -36,9 +41,16 @@ const TransactionList = () => {
     });
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const page = useSelector(selectPage);
+  const totalPages = useSelector(selectTotalPages);
+  const hasNextPage = useSelector(selectHasNextPage);
+  const hasPreviousPage = useSelector(selectHasPreviousPage);
+
   useEffect(() => {
-    dispatch(fetchTransactions());
-  }, [dispatch]);
+    dispatch(fetchTransactions(currentPage));
+  }, [dispatch, currentPage]);
 
   useEffect(() => {
     const sortedData = [...(transactions || [])].sort((a, b) =>
@@ -154,6 +166,14 @@ const TransactionList = () => {
           <CiCircleChevUp className={s.UpBtm} />
         </button>
       )}
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        hasNextPage={hasNextPage}
+        hasPreviousPage={hasPreviousPage}
+        onPageChange={(newPage) => setCurrentPage(newPage)}
+      />
     </>
   );
 };

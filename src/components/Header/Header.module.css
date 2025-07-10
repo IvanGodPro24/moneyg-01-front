@@ -73,13 +73,6 @@
   display: none;
 }
 
-.btn {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  display: flex;
-}
-
 .exitBtn {
   color: var(--white-600);
   width: 18px;

@@ -47,7 +47,7 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
       </p>
       <p className={s.info}>
         <span className={s.text}>Comment</span>
-        {comment || "-"}
+        <span className={s.comment}>{comment || "-"}</span>
       </p>
       <p className={s.info}>
         <span className={s.text}>Sum</span>

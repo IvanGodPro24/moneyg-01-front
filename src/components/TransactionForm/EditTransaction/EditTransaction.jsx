@@ -39,7 +39,7 @@ export default function EditTransaction({
     const updatedTransaction = {
       ...values,
       type: transactionType,
-      date: values.date.toISOString(),
+      date: new Date(values.date).toISOString(),
     };
 
     try {

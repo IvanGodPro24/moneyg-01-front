@@ -6,6 +6,8 @@ export const selectIsLoading = (state) => state.transactions.isLoading;
 
 export const selectPage = (state) => state.transactions.page;
 
+export const selectPerPage = (state) => state.transactions.perPage;
+
 export const selectTotalPages = (state) => state.transactions.totalPages;
 
 export const selectHasNextPage = (state) => state.transactions.hasNextPage;

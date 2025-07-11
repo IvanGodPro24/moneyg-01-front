@@ -15,9 +15,11 @@ export const addTransaction = createAsyncThunk(
 
 export const fetchTransactions = createAsyncThunk(
   "transactions/fetchTransactions",
-  async (page = 1, { rejectWithValue }) => {
+  async ({ page = 1, perPage }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/transactions", { params: { page } });
+      const { data } = await axios.get("/transactions", {
+        params: { page, perPage },
+      });
 
       return data;
     } catch (error) {

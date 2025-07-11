@@ -21,13 +21,19 @@ const transactionsSlice = createSlice({
   initialState: {
     items: [],
     page: null,
-    // perPage: null,
+    perPage: 10,
     hasNextPage: null,
     hasPreviousPage: null,
     totalPages: null,
     categories: [],
     isLoading: false,
     error: null,
+  },
+
+  reducers: {
+    setPerPage(state, action) {
+      state.perPage = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -41,7 +47,7 @@ const transactionsSlice = createSlice({
         state.items = action.payload.data;
 
         state.page = action.payload.page;
-        // state.perPage = action.payload.perPage;
+        state.perPage = action.payload.perPage;
         state.totalPages = action.payload.totalPages;
         state.hasNextPage = action.payload.hasNextPage;
         state.hasPreviousPage = action.payload.hasPreviousPage;
@@ -78,5 +84,7 @@ const transactionsSlice = createSlice({
       }, handleRejected);
   },
 });
+
+export const { setPerPage } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

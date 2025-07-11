@@ -7,15 +7,6 @@
   max-height: min-content;
 }
 
-.react-select__control {
-  cursor: pointer;
-}
-
-.select {
-  color: black;
-  flex: 1;
-}
-
 @media screen and (min-width: 768px) {
   .dashboard {
     flex-direction: row;

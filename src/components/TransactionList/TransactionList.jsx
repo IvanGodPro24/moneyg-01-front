@@ -9,10 +9,12 @@ import {
   selectHasPreviousPage,
   selectIsLoading,
   selectPage,
+  selectPerPage,
   selectTotalPages,
   selectTransactions,
 } from "../../redux/transactions/selectors";
 import { fetchTransactions } from "../../redux/transactions/operations";
+import { setPerPage } from "../../redux/transactions/slice";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import useDevice from "../../hooks/useDevice";
@@ -22,10 +24,19 @@ import Pagination from "../Pagination/Pagination";
 
 const TransactionList = () => {
   const dispatch = useDispatch();
+
   const transactions = useSelector(selectTransactions);
+  const isLoading = useSelector(selectIsLoading);
+  const page = useSelector(selectPage);
+  const perPage = useSelector(selectPerPage);
+  const totalPages = useSelector(selectTotalPages);
+  const hasNextPage = useSelector(selectHasNextPage);
+  const hasPreviousPage = useSelector(selectHasPreviousPage);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { isMobile } = useDevice();
   const [showScrollBtn, setShowScrollBtn] = useState(false);
-  const isLoading = useSelector(selectIsLoading);
 
   const [isFiltered, setIsFiltered] = useState(false);
   const [sortedTransactions, setSortedTransactions] = useState(
@@ -34,6 +45,14 @@ const TransactionList = () => {
 
   const toggleFiltered = () => setIsFiltered((prev) => !prev);
 
+  const handlePerPageChange = (selectedOption) => {
+    const newPerPage = selectedOption.value;
+
+    dispatch(setPerPage(newPerPage));
+    dispatch(fetchTransactions({ page: 1, perPage: newPerPage }));
+    setCurrentPage(1);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -41,16 +60,9 @@ const TransactionList = () => {
     });
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const page = useSelector(selectPage);
-  const totalPages = useSelector(selectTotalPages);
-  const hasNextPage = useSelector(selectHasNextPage);
-  const hasPreviousPage = useSelector(selectHasPreviousPage);
-
   useEffect(() => {
-    dispatch(fetchTransactions(currentPage));
-  }, [dispatch, currentPage]);
+    dispatch(fetchTransactions({ page: currentPage, perPage }));
+  }, [dispatch, currentPage, perPage]);
 
   useEffect(() => {
     const sortedData = [...(transactions || [])].sort((a, b) =>
@@ -169,10 +181,12 @@ const TransactionList = () => {
 
       <Pagination
         currentPage={page}
+        perPage={perPage}
         totalPages={totalPages}
         hasNextPage={hasNextPage}
         hasPreviousPage={hasPreviousPage}
         onPageChange={(newPage) => setCurrentPage(newPage)}
+        onPerPageChange={handlePerPageChange}
       />
     </>
   );

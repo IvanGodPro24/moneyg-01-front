@@ -1,10 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 20px;
+}
+
 .pagination {
   display: flex;
   gap: 8px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 20px;
 }
 
 .btn {
@@ -46,6 +53,10 @@
 }
 
 @media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+
   .pageNumbers {
     display: none;
   }

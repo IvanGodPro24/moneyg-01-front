@@ -12,11 +12,6 @@
   display: none;
 }
 
-.text {
-  padding: 20px;
-  color: #fff;
-}
-
 .loader {
   margin-top: 30px;
   overflow: hidden;

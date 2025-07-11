@@ -21,6 +21,7 @@ import useDevice from "../../hooks/useDevice";
 import s from "./TransactionList.module.css";
 import Sum from "../Sum/Sum";
 import Pagination from "../Pagination/Pagination";
+import EmptyTransaction from "../EmptyTransaction/EmptyTransaction";
 
 const TransactionList = () => {
   const dispatch = useDispatch();
@@ -91,11 +92,7 @@ const TransactionList = () => {
   }, [isMobile]);
 
   if (!isLoading && (!transactions || transactions.length === 0)) {
-    return (
-      <div>
-        <p className={s.text}>You don't have any transactions yet.</p>
-      </div>
-    );
+    return <EmptyTransaction />;
   }
 
   return (

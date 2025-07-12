@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import css from "./Pagination.module.css";
-import { useId } from "react";
 import OptionSelect from "../OptionSelect/OptionSelect";
 
 const Pagination = ({
@@ -12,8 +11,6 @@ const Pagination = ({
   hasPreviousPage,
   onPerPageChange,
 }) => {
-  const id = useId();
-
   const perPageOptions = [
     { value: 10, label: "10" },
     { value: 20, label: "20" },
@@ -78,13 +75,10 @@ const Pagination = ({
 
       <OptionSelect
         name="per-page"
-        className={css.select}
         options={perPageOptions}
         value={perPageOptions.find((opt) => opt.value === perPage)}
         onChange={onChange}
-        isSearchable={false}
         placeholder="Items per page"
-        inputId={id}
       />
     </div>
   );

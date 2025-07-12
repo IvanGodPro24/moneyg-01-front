@@ -15,6 +15,9 @@
   font-family: var(--font-family);
   font-size: 14px;
   color: var(--white);
+}
+
+.td:nth-child(4) {
   overflow: auto;
 }
 

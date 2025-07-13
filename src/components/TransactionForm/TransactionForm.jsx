@@ -150,7 +150,6 @@ const TransactionForm = ({
                 values={values}
                 setFieldValue={setFieldValue}
                 isLoading={isLoading}
-                format={true}
               />
               <svg width="24" height="24">
                 <use href={`${icon}#icon-date-range`}></use>

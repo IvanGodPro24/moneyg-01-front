@@ -1,3 +1,8 @@
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .list {
   width: 100%;
   padding: 0 15px;
@@ -13,8 +18,56 @@
 }
 
 .loader {
-  margin-top: 30px;
   overflow: hidden;
+}
+
+.showFilter {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  min-width: 130px;
+  padding: 10px 16px;
+  border-radius: 24px;
+  background: linear-gradient(
+    90deg,
+    var(--icon-violet),
+    rgba(115, 74, 239, 0.7)
+  );
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showFilter:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.icon.rotated {
+  transform: rotate(180deg);
+}
+
+.filterContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.filterContainer.show {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 46px;
+}
+
+.filterContainer > * {
+  min-height: 0;
 }
 
 .scrollTopBtn {
@@ -65,7 +118,9 @@
   }
 
   .scrollBody {
+    max-width: 780px;
     max-height: 500px;
+    margin: 0 auto;
     overflow-y: auto;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;

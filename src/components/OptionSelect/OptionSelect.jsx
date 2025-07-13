@@ -1,18 +1,20 @@
 import css from "./OptionSelect.module.css";
 import Select from "react-select";
 import { useId } from "react";
+import clsx from "clsx";
 
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
     backgroundColor: "transparent",
-    borderRadius: "8px",
+    borderRadius: "12px",
+    textAlign: "left",
     border: state.isFocused
       ? "1px solid rgba(255, 255, 255, 1)"
       : "1px solid rgba(255, 255, 255, 0.6)",
     boxShadow: "none",
     height: "50px",
-    minWidth: "150px",
+    minWidth: "100px",
     cursor: "pointer",
     padding: "0 20px",
     transition: "all 0.3s",
@@ -43,7 +45,7 @@ const customStyles = {
         rgba(80, 48, 154, 1) 43.14%, 
         rgba(106, 70, 165, 1) 73.27%, 
         rgba(133, 93, 175, 1) 120.03%);`,
-    borderRadius: "8px",
+    borderRadius: "12px",
     overflow: "hidden",
     top: 42,
   }),
@@ -88,17 +90,26 @@ const OptionSelect = ({ name, options, placeholder, onChange, value }) => {
   const id = useId();
 
   return (
-    <Select
-      name={name}
-      options={options}
-      styles={customStyles}
-      isSearchable={false}
-      value={value}
-      onChange={onChange}
-      inputId={id}
-      className={!name && css.select}
-      placeholder={placeholder}
-    />
+    <>
+      <label
+        htmlFor={id}
+        className={clsx(
+          !name && css.select,
+          ["type", "category"].includes(name) && css.filter
+        )}
+      >
+        <Select
+          name={name}
+          options={options}
+          styles={customStyles}
+          isSearchable={false}
+          value={value}
+          onChange={onChange}
+          inputId={id}
+          placeholder={placeholder}
+        />
+      </label>
+    </>
   );
 };
 

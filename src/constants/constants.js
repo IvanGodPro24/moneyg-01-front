@@ -23,8 +23,8 @@ export const perPageOptions = [
 ];
 
 export const typeOptions = [
-  { value: "Income", label: "Income" },
-  { value: "Expense", label: "Expense" },
+  { value: "income", label: "Income" },
+  { value: "expense", label: "Expense" },
 ];
 
 export const categoriesOptions = [

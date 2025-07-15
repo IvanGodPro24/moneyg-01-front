@@ -1,73 +1,99 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import OptionSelect from "../OptionSelect/OptionSelect";
 import css from "./TransactionFilter.module.css";
-import Calendar from "../Calendar/Calendar";
 import icons from "../../img/icons.svg";
-import { useCallback, useId, useState } from "react";
+import { useEffect, useId } from "react";
 import FilterInput from "../FilterInput/FilterInput";
 import { categoriesOptions, typeOptions } from "../../constants/constants";
 import clsx from "clsx";
+import DateRangeController from "../DateRangeController/DateRangeController";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 
-const TransactionFilter = () => {
+const validationSchema = yup.object({
+  minSum: yup
+    .number()
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === "" ? null : value;
+    })
+    .positive("Min sum must be a positive")
+    .test(
+      "min-max-validation",
+      "Min sum cannot be greater than max",
+      function (value) {
+        const { maxSum } = this.parent;
+        if (value !== null && maxSum !== null && value > maxSum) {
+          return false;
+        }
+        return true;
+      }
+    ),
+  maxSum: yup
+    .number()
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === "" ? null : value;
+    })
+    .positive("Max sum must be a positive")
+    .test(
+      "max-min-validation",
+      "Max sum cannot be less than min",
+      function (value) {
+        const { minSum } = this.parent;
+        if (value !== null && minSum !== null && value < minSum) {
+          return false;
+        }
+        return true;
+      }
+    ),
+  type: yup.string().nullable(),
+  categoryTitle: yup.string().nullable(),
+  dateFrom: yup.date().nullable(),
+  dateTo: yup.date().nullable(),
+  comment: yup.string().nullable(),
+});
+
+const TransactionFilter = ({ filters, onApplyFilters }) => {
   const minSumId = useId();
   const maxSumId = useId();
   const dateId = useId();
   const commentId = useId();
 
-  {
-    /* type: parsedType,
-    categoryTitle: parsedCategoryTitle,
-    minSum: parsedMinSum,
-    maxSum: parsedMaxSum,
-    dateFrom: parsedDateFrom,
-    dateTo: parsedDateTo,
-    comment: parsedComment, */
-  }
-
-  const { register, handleSubmit, setValue, reset } = useForm();
-
-  const [filter, setFilter] = useState({
-    type: null,
-    categoryTitle: null,
-    minSum: null,
-    maxSum: null,
-    dateFrom: null,
-    dateTo: null,
-    comment: null,
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: filters,
+    resolver: yupResolver(validationSchema),
+    mode: "onChange",
   });
 
-  const onSubmit = ({ minSum, maxSum, comment }) => {
-    const submitData = {
-      type: filter.type,
-      categoryTitle: filter.categoryTitle,
-      minSum: Number(minSum),
-      maxSum: Number(maxSum),
-      dateFrom: filter.dateFrom,
-      dateTo: filter.dateTo,
-      comment,
+  useEffect(() => {
+    reset(filters);
+  }, [filters, reset]);
+
+  const onSubmit = (data) => {
+    const newFilters = {
+      ...data,
+      minSum: data.minSum ? Number(data.minSum) : null,
+      maxSum: data.maxSum ? Number(data.maxSum) : null,
+      comment: data.comment || null,
     };
+
+    console.log(newFilters);
+
+    onApplyFilters(newFilters);
   };
 
-  const handleDateChange = useCallback(
-    (field, value) => {
-      setValue(field, value);
-      setFilter((prev) => ({ ...prev, [field]: value }));
-    },
-    [setValue]
-  );
-
-  const handleSelectChange = useCallback(
-    (field, selectedOption) => {
-      const value = selectedOption ? selectedOption.value : null;
-      setValue(field, value);
-      setFilter((prev) => ({ ...prev, [field]: value }));
-    },
-    [setValue]
-  );
-
   const handleReset = () => {
-    reset();
-    setFilter({
+    const emptyFilters = {
       type: null,
       categoryTitle: null,
       minSum: null,
@@ -75,63 +101,92 @@ const TransactionFilter = () => {
       dateFrom: null,
       dateTo: null,
       comment: null,
-    });
+    };
+
+    onApplyFilters(emptyFilters);
   };
+
+  const filtersValues = watch();
+
+  const isAnyFilterSelected = Object.values(filtersValues).some((value) => {
+    return value !== null && value !== "";
+  });
+
+  const selectedType = watch("type");
+
+  const isCategoryDisabled = selectedType === "income";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-      <OptionSelect
+      <Controller
         name="type"
-        options={typeOptions}
-        value={typeOptions.find((option) => option.value === filter.type)}
-        onChange={(selectedOption) =>
-          handleSelectChange("type", selectedOption)
-        }
-        placeholder="Select type"
-      />
-
-      <OptionSelect
-        name="category"
-        options={categoriesOptions}
-        value={categoriesOptions.find(
-          (option) => option.value === filter.categoryTitle
+        control={control}
+        render={({ field }) => (
+          <OptionSelect
+            name="type"
+            options={typeOptions}
+            placeholder="Select type"
+            isClearable={true}
+            onChange={(option) => field.onChange(option?.value || null)}
+            value={typeOptions.find((o) => o.value === field.value) || null}
+          />
         )}
-        onChange={(selectedOption) =>
-          handleSelectChange("categoryTitle", selectedOption)
-        }
-        placeholder="Select category"
       />
 
-      <FilterInput
-        id={minSumId}
-        type="number"
-        register={register}
-        field="minSum"
-        placeholder="Type a min sum"
+      <Controller
+        name="categoryTitle"
+        control={control}
+        render={({ field }) => (
+          <OptionSelect
+            name="category"
+            options={categoriesOptions}
+            placeholder="Select category"
+            isClearable={true}
+            isDisabled={isCategoryDisabled}
+            onChange={(option) => field.onChange(option?.value || null)}
+            value={
+              categoriesOptions.find((o) => o.value === field.value) || null
+            }
+          />
+        )}
       />
 
-      <FilterInput
-        id={maxSumId}
-        type="number"
-        register={register}
-        field="maxSum"
-        placeholder="Type a max sum"
-      />
-
-      <label htmlFor={dateId} className={clsx(css.picker, "relative")}>
-        <Calendar
-          values={filter}
-          setFieldValue={handleDateChange}
-          id={dateId}
-          range={true}
-          filter={true}
+      <div className="relative">
+        <FilterInput
+          id={minSumId}
+          type="number"
+          register={register}
+          field="minSum"
+          placeholder="Min sum"
         />
-        <svg width="24" height="24" className={css["picker-icon"]}>
-          <use href={`${icons}#icon-date-range`}></use>
-        </svg>
+        {errors.minSum && (
+          <span className={css.error}>{errors.minSum.message}</span>
+        )}
+      </div>
 
-        {/* <ErrorMessage name="date" component="div" className="errorText" /> */}
-      </label>
+      <div className="relative">
+        <FilterInput
+          id={maxSumId}
+          type="number"
+          register={register}
+          field="maxSum"
+          placeholder="Max sum"
+        />
+        {errors.maxSum && (
+          <span className={css.error}>{errors.maxSum.message}</span>
+        )}
+      </div>
+
+      <DateRangeController
+        control={control}
+        id={dateId}
+        className={clsx(css.picker, "relative")}
+        icon={
+          <svg width="24" height="24" className={css["picker-icon"]}>
+            <use href={`${icons}#icon-date-range`}></use>
+          </svg>
+        }
+      />
 
       <FilterInput
         id={commentId}
@@ -142,17 +197,32 @@ const TransactionFilter = () => {
       />
 
       <div className={css.container}>
-        <button type="submit" className={clsx("delete", css.btn)}>
+        <button
+          type="submit"
+          className={clsx("delete", css.btn)}
+          disabled={!isAnyFilterSelected}
+        >
           Apply
         </button>
 
-        <button
-          type="button"
-          onClick={handleReset}
-          className={clsx(css.btn, css["reset-btn"])}
-        >
-          Reset
-        </button>
+        <AnimatePresence>
+          {isAnyFilterSelected && (
+            <motion.div
+              key="reset-button"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <button
+                type="button"
+                onClick={handleReset}
+                className={clsx(css.btn, css["reset-btn"])}
+              >
+                Reset
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </form>
   );

@@ -15,10 +15,10 @@ export const addTransaction = createAsyncThunk(
 
 export const fetchTransactions = createAsyncThunk(
   "transactions/fetchTransactions",
-  async ({ page = 1, perPage }, { rejectWithValue }) => {
+  async ({ page = 1, perPage, filters = {} }, { rejectWithValue }) => {
     try {
       const { data } = await axios.get("/transactions", {
-        params: { page, perPage },
+        params: { page, perPage, ...filters },
       });
 
       return data;

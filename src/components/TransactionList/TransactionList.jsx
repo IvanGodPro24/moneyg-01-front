@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import icons from "../../img/icons.svg";
 import { CiCircleChevUp } from "react-icons/ci";
 import { TfiReload } from "react-icons/tfi";
 import { ClipLoader } from "react-spinners";
@@ -23,9 +22,8 @@ import s from "./TransactionList.module.css";
 import Sum from "../Sum/Sum";
 import Pagination from "../Pagination/Pagination";
 import EmptyTransaction from "../EmptyTransaction/EmptyTransaction";
-import TransactionFilter from "../TransactionFilter/TransactionFilter";
 
-const TransactionList = () => {
+const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const dispatch = useDispatch();
 
   const transactions = useSelector(selectTransactions);
@@ -36,11 +34,8 @@ const TransactionList = () => {
   const hasNextPage = useSelector(selectHasNextPage);
   const hasPreviousPage = useSelector(selectHasPreviousPage);
 
-  const [currentPage, setCurrentPage] = useState(1);
-
   const { isMobile } = useDevice();
   const [showScrollBtn, setShowScrollBtn] = useState(false);
-  const [isShowFilter, setIsShowFilter] = useState(false);
 
   const [isFiltered, setIsFiltered] = useState(false);
   const [sortedTransactions, setSortedTransactions] = useState(
@@ -49,13 +44,11 @@ const TransactionList = () => {
 
   const toggleFiltered = () => setIsFiltered((prev) => !prev);
 
-  const toggleIsShowFilter = () => setIsShowFilter((prev) => !prev);
-
   const handlePerPageChange = (selectedOption) => {
     const newPerPage = selectedOption.value;
 
     dispatch(setPerPage(newPerPage));
-    dispatch(fetchTransactions({ page: 1, perPage: newPerPage }));
+    dispatch(fetchTransactions({ page: 1, perPage: newPerPage, filters }));
     setCurrentPage(1);
   };
 
@@ -67,8 +60,8 @@ const TransactionList = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchTransactions({ page: currentPage, perPage }));
-  }, [dispatch, currentPage, perPage]);
+    dispatch(fetchTransactions({ page: currentPage, perPage, filters }));
+  }, [dispatch, currentPage, perPage, filters]);
 
   useEffect(() => {
     const sortedData = [...(transactions || [])].sort((a, b) =>
@@ -101,22 +94,7 @@ const TransactionList = () => {
   }
 
   return (
-    <div className={s.container}>
-      <button onClick={toggleIsShowFilter} className={s.showFilter}>
-        {isShowFilter ? "Hide Filters" : "Show Filters"}
-        <svg
-          width="14"
-          height="14"
-          className={`${s.icon} ${isShowFilter && s.rotated}`}
-        >
-          <use href={`${icons}#icon-arrow-down`} />
-        </svg>
-      </button>
-
-      <div className={`${s.filterContainer} ${isShowFilter && s.show}`}>
-        <TransactionFilter />
-      </div>
-
+    <>
       <div className={s.tableWrapper}>
         <table className={s.tableHead}>
           <thead className={s.thead}>
@@ -205,7 +183,7 @@ const TransactionList = () => {
         onPageChange={(newPage) => setCurrentPage(newPage)}
         onPerPageChange={handlePerPageChange}
       />
-    </div>
+    </>
   );
 };
 

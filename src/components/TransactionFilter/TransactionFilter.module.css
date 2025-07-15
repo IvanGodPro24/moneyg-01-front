@@ -49,6 +49,19 @@
   transform: translateY(-2px);
 }
 
+.btn:disabled {
+  background: linear-gradient(
+    167deg,
+    rgba(255, 199, 39, 0.4) 0%,
+    rgba(158, 64, 186, 0.4) 61.46%,
+    rgba(112, 0, 255, 0.4) 90.54%
+  );
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 .reset-btn {
   background: var(--white);
   color: var(--text-button);
@@ -58,4 +71,29 @@
 .reset-btn:hover,
 .reset-btn:focus {
   box-shadow: 0 4px 12px var(--white-400);
+}
+
+.error {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  color: var(--dashboard-text); 
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 2px 8px;
+  background-color: rgba(255, 134, 141, 0.1); 
+  border-radius: 8px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

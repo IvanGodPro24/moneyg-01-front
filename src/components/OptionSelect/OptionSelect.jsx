@@ -1,4 +1,5 @@
 import css from "./OptionSelect.module.css";
+import icons from "../../img/icons.svg";
 import Select from "react-select";
 import { useId } from "react";
 import clsx from "clsx";
@@ -15,12 +16,16 @@ const customStyles = {
     boxShadow: "none",
     height: "50px",
     minWidth: "100px",
-    cursor: "pointer",
+    cursor: state.isDisabled ? "not-allowed" : "pointer",
     padding: "0 20px",
     transition: "all 0.3s",
     "&:hover": {
-      border: "1px solid rgba(255, 255, 255, 1)",
+      border: state.isDisabled
+        ? "1px solid rgba(255, 255, 255, 0.6)"
+        : "1px solid rgba(255, 255, 255, 1)",
     },
+    background: state.isDisabled ? "rgba(255, 255, 255, 0.05)" : "transparent",
+    opacity: state.isDisabled ? 0.7 : 1,
   }),
   valueContainer: (provided) => ({
     ...provided,
@@ -34,9 +39,9 @@ const customStyles = {
     margin: 0,
     fontSize: "16px",
   }),
-  placeholder: (provided) => ({
+  placeholder: (provided, state) => ({
     ...provided,
-    color: "#bdbdbd",
+    color: state.isDisabled ? "rgba(189, 189, 189, 0.6)" : "#bdbdbd",
   }),
   menu: (provided) => ({
     ...provided,
@@ -79,14 +84,17 @@ const customStyles = {
   indicatorSeparator: () => ({
     display: "none",
   }),
-  dropdownIndicator: (provided, state) => ({
-    color: "#fff",
-    transition: "transform 0.3s ease",
-    transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : "rotate(0deg)",
-  }),
 };
 
-const OptionSelect = ({ name, options, placeholder, onChange, value }) => {
+const OptionSelect = ({
+  name,
+  options,
+  placeholder,
+  onChange,
+  value,
+  isClearable = false,
+  isDisabled = false,
+}) => {
   const id = useId();
 
   return (
@@ -102,11 +110,38 @@ const OptionSelect = ({ name, options, placeholder, onChange, value }) => {
           name={name}
           options={options}
           styles={customStyles}
+          isClearable={isClearable}
           isSearchable={false}
+          isDisabled={isDisabled}
           value={value}
           onChange={onChange}
           inputId={id}
           placeholder={placeholder}
+          components={{
+            ClearIndicator: ({ innerProps }) => (
+              <div {...innerProps} className={css.container}>
+                <svg width="16" height="16" className={css.icon}>
+                  <use href={`${icons}#icon-close`}></use>
+                </svg>
+              </div>
+            ),
+            DropdownIndicator: ({ innerProps, selectProps }) => (
+              <div
+                {...innerProps}
+                className={clsx(css.container)}
+                style={{
+                  transition: "transform 0.3s ease",
+                  transform: selectProps.menuIsOpen
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)",
+                }}
+              >
+                <svg width="16" height="16">
+                  <use href={`${icons}#icon-arrow-down`}></use>
+                </svg>
+              </div>
+            ),
+          }}
         />
       </label>
     </>

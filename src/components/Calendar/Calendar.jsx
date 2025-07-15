@@ -6,10 +6,12 @@ import { format, isValid, parseISO } from "date-fns";
 const Calendar = ({
   values,
   setFieldValue,
+  onChange,
   id,
   isLoading,
   range = false,
   filter = false,
+  placeholder,
 }) => {
   const formatDateOnly = (date) => {
     if (!date) return null;
@@ -19,24 +21,19 @@ const Calendar = ({
   const handleDateChange = (date) => {
     if (range) {
       const [startDate, endDate] = date;
-      setFieldValue("dateFrom", formatDateOnly(startDate));
-      setFieldValue("dateTo", formatDateOnly(endDate));
+      onChange({
+        dateFrom: formatDateOnly(startDate),
+        dateTo: formatDateOnly(endDate),
+      });
     } else {
       setFieldValue("date", formatDateOnly(date));
     }
   };
 
-  const parseDate = (dateValue) => {
-    if (!dateValue) return null;
-    if (dateValue instanceof Date) return dateValue;
-    if (typeof dateValue === "string") {
-      const parsed = parseISO(dateValue);
-      if (isValid(parsed)) return parsed;
-
-      const fallback = new Date(dateValue);
-      return isValid(fallback) ? fallback : null;
-    }
-    return null;
+  const parseDate = (d) => {
+    if (!d) return null;
+    const parsed = typeof d === "string" ? parseISO(d) : d;
+    return isValid(parsed) ? parsed : null;
   };
 
   const dateFrom = parseDate(values.dateFrom);
@@ -58,7 +55,7 @@ const Calendar = ({
       popperPlacement="bottom-end"
       disabled={isLoading}
       id={id}
-      placeholderText="Select date range"
+      placeholderText={placeholder}
     />
   );
 };

@@ -5,3 +5,14 @@
 .filter {
   width: 200px;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  stroke: #fff;
+  margin-right: 12px;
+}

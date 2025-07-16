@@ -75,14 +75,16 @@
 
 .error {
   position: absolute;
+  width: 212px;
+  overflow: scroll;
   bottom: -18px;
   left: 0;
-  color: var(--dashboard-text); 
+  color: var(--dashboard-text);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
   padding: 2px 8px;
-  background-color: rgba(255, 134, 141, 0.1); 
+  background-color: rgba(255, 134, 141, 0.1);
   border-radius: 8px;
   animation: fadeIn 0.3s ease-in-out;
 }

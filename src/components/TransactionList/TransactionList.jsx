@@ -89,8 +89,16 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
+  const hasActiveFilters = Object.values(filters).some(
+    (value) => value !== null && value !== ""
+  );
+
   if (!isLoading && (!transactions || transactions.length === 0)) {
-    return <EmptyTransaction />;
+    return hasActiveFilters ? (
+      <EmptyTransaction filter={true} />
+    ) : (
+      <EmptyTransaction />
+    );
   }
 
   return (

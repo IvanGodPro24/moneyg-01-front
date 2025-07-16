@@ -87,8 +87,6 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
       comment: data.comment || null,
     };
 
-    console.log(newFilters);
-
     onApplyFilters(newFilters);
   };
 
@@ -108,9 +106,9 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
 
   const filtersValues = watch();
 
-  const isAnyFilterSelected = Object.values(filtersValues).some((value) => {
-    return value !== null && value !== "";
-  });
+  const isAnyFilterSelected = Object.values(filtersValues).some(
+    (value) => value !== null && value !== ""
+  );
 
   const selectedType = watch("type");
 

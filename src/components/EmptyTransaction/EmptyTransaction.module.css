@@ -1,4 +1,4 @@
-.emptyState {
+.empty {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,20 +9,27 @@
   margin: 2rem auto;
 }
 
-.emptyStateIcon {
+.emptyIcon {
   margin-bottom: 1.5rem;
   color: var(--icon-violet);
 }
 
-.emptyStateTitle {
+.emptyTitle {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--white);
   margin-bottom: 0.5rem;
 }
 
-.emptyStateText {
+.emptyText {
   font-size: 1rem;
   color: var(--white-600);
   line-height: 1.5;
+  max-width: 300px;
+}
+
+@media (min-width: 1280px) {
+  .empty {
+    width: 90%;
+  }
 }

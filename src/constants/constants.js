@@ -39,3 +39,16 @@ export const categoriesOptions = [
   { value: "Entertainment", label: "Entertainment" },
   { value: "Other expenses", label: "Other expenses" },
 ];
+
+export const sortOptions = [
+  { label: "Date ↑", value: { field: "date", order: "asc" } },
+  { label: "Date ↓", value: { field: "date", order: "desc" } },
+  { label: "Type ↑", value: { field: "type", order: "asc" } },
+  { label: "Type ↓", value: { field: "type", order: "desc" } },
+  { label: "Category ↑", value: { field: "categoryTitle", order: "asc" } },
+  { label: "Category ↓", value: { field: "categoryTitle", order: "desc" } },
+  { label: "Comment ↑", value: { field: "comment", order: "asc" } },
+  { label: "Comment ↓", value: { field: "comment", order: "desc" } },
+  { label: "Sum ↑", value: { field: "sum", order: "asc" } },
+  { label: "Sum ↓", value: { field: "sum", order: "desc" } },
+];

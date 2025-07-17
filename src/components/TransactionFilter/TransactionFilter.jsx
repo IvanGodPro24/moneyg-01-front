@@ -4,7 +4,7 @@ import * as yup from "yup";
 import OptionSelect from "../OptionSelect/OptionSelect";
 import css from "./TransactionFilter.module.css";
 import icons from "../../img/icons.svg";
-import { useEffect, useId } from "react";
+import { useEffect, useId, useRef } from "react";
 import FilterInput from "../FilterInput/FilterInput";
 import { categoriesOptions, typeOptions } from "../../constants/constants";
 import clsx from "clsx";
@@ -62,6 +62,8 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
   const dateId = useId();
   const commentId = useId();
 
+  const wasFilterApplied = useRef(false);
+
   const {
     register,
     handleSubmit,
@@ -88,6 +90,8 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
     };
 
     onApplyFilters(newFilters);
+
+    wasFilterApplied.current = true;
   };
 
   const handleReset = () => {
@@ -102,6 +106,8 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
     };
 
     onApplyFilters(emptyFilters);
+
+    wasFilterApplied.current = false;
   };
 
   const filtersValues = watch();
@@ -109,6 +115,8 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
   const isAnyFilterSelected = Object.values(filtersValues).some(
     (value) => value !== null && value !== ""
   );
+
+  const shouldShowReset = isAnyFilterSelected || wasFilterApplied.current;
 
   const selectedType = watch("type");
 
@@ -204,7 +212,7 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
         </button>
 
         <AnimatePresence>
-          {isAnyFilterSelected && (
+          {shouldShowReset && (
             <motion.div
               key="reset-button"
               initial={{ opacity: 0, y: -10 }}

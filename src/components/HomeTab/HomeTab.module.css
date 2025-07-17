@@ -35,19 +35,12 @@
   transform: rotate(180deg);
 }
 
-.filterContainer {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: all 0.3s ease;
+.margin {
+  margin-bottom: 46px;
 }
 
-.filterContainer.show {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  margin-top: 46px;
-}
-
-.filterContainer > * {
-  min-height: 0;
+@media (max-width: 767px) {
+  .showFilter {
+    margin-bottom: 24px;
+  }
 }

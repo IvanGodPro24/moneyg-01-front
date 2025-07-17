@@ -4,6 +4,9 @@ import { useState } from "react";
 import TransactionList from "../TransactionList/TransactionList";
 import TransactionModalWrapper from "../TransactionModalWrapper/TransactionModalWrapper";
 import TransactionFilter from "../TransactionFilter/TransactionFilter";
+// eslint-disable-next-line no-unused-vars
+import { AnimatePresence, motion } from "framer-motion";
+import clsx from "clsx";
 
 const HomeTab = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,20 +32,36 @@ const HomeTab = () => {
 
   return (
     <div className={s.container}>
-      <button onClick={toggleIsShowFilter} className={s.showFilter}>
+      <button
+        onClick={toggleIsShowFilter}
+        className={clsx(s.showFilter, isShowFilter && s.margin)}
+      >
         {isShowFilter ? "Hide Filters" : "Show Filters"}
         <svg
           width="14"
           height="14"
-          className={`${s.icon} ${isShowFilter && s.rotated}`}
+          className={clsx(s.icon, isShowFilter && s.rotated)}
         >
           <use href={`${icons}#icon-arrow-down`} />
         </svg>
       </button>
 
-      <div className={`${s.filterContainer} ${isShowFilter && s.show}`}>
-        <TransactionFilter filters={filters} onApplyFilters={onApplyFilters} />
-      </div>
+      <AnimatePresence>
+        {isShowFilter && (
+          <motion.div
+            className={s.filterContainer}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <TransactionFilter
+              filters={filters}
+              onApplyFilters={onApplyFilters}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <TransactionList
         currentPage={currentPage}

@@ -1,0 +1,10 @@
+.th {
+  padding: 24px;
+}
+
+.sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}

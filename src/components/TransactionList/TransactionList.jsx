@@ -19,9 +19,11 @@ import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import useDevice from "../../hooks/useDevice";
 import s from "./TransactionList.module.css";
-import Sum from "../Sum/Sum";
 import Pagination from "../Pagination/Pagination";
 import EmptyTransaction from "../EmptyTransaction/EmptyTransaction";
+import SortableTh from "../SortableTh/SortableTh";
+import OptionSelect from "../OptionSelect/OptionSelect";
+import { sortOptions } from "../../constants/constants";
 
 const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const dispatch = useDispatch();
@@ -37,19 +39,39 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const { isMobile } = useDevice();
   const [showScrollBtn, setShowScrollBtn] = useState(false);
 
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [sortedTransactions, setSortedTransactions] = useState(
-    transactions || []
-  );
-
-  const toggleFiltered = () => setIsFiltered((prev) => !prev);
+  const [sortBy, setSortBy] = useState("type");
+  const [sortOrder, setSortOrder] = useState(null);
 
   const handlePerPageChange = (selectedOption) => {
     const newPerPage = selectedOption.value;
 
     dispatch(setPerPage(newPerPage));
-    dispatch(fetchTransactions({ page: 1, perPage: newPerPage, filters }));
+    dispatch(
+      fetchTransactions({
+        page: 1,
+        perPage: newPerPage,
+        filters,
+        sortOrder,
+        sortBy,
+      })
+    );
     setCurrentPage(1);
+  };
+
+  const setSort = (field, order) => {
+    setSortBy(field);
+    setSortOrder(order);
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (selectedOption) => {
+    if (!selectedOption) {
+      setSortOrder(null);
+      return;
+    }
+
+    const { field, order } = selectedOption.value;
+    setSort(field, order);
   };
 
   const scrollToTop = () => {
@@ -60,19 +82,16 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchTransactions({ page: currentPage, perPage, filters }));
-  }, [dispatch, currentPage, perPage, filters]);
-
-  useEffect(() => {
-    const sortedData = [...(transactions || [])].sort((a, b) =>
-      isFiltered ? a.sum - b.sum : b.sum - a.sum
+    dispatch(
+      fetchTransactions({
+        page: currentPage,
+        perPage,
+        filters,
+        sortOrder,
+        sortBy,
+      })
     );
-    setSortedTransactions(sortedData);
-  }, [isFiltered, transactions]);
-
-  useEffect(() => {
-    setSortedTransactions(transactions || []);
-  }, [transactions]);
+  }, [dispatch, currentPage, perPage, filters, sortOrder, sortBy]);
 
   useEffect(() => {
     if (!isMobile) return;
@@ -107,16 +126,47 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
         <table className={s.tableHead}>
           <thead className={s.thead}>
             <tr>
-              <th className={s.th}>Date</th>
-              <th className={s.th}>Type</th>
-              <th className={s.th}>Category</th>
-              <th className={s.th}>Comment</th>
-              <th className={s.th}>
-                <Sum isFiltered={isFiltered} toggleFiltered={toggleFiltered} />
-              </th>
+              <SortableTh
+                field="date"
+                sortOrder={sortOrder}
+                sortBy={sortBy}
+                onSort={setSort}
+                label="Date"
+              />
+              <SortableTh
+                field="type"
+                sortOrder={sortOrder}
+                sortBy={sortBy}
+                onSort={setSort}
+                label="Type"
+              />
+              <SortableTh
+                field="categoryTitle"
+                sortOrder={sortOrder}
+                sortBy={sortBy}
+                onSort={setSort}
+                label="Category"
+              />
+              <SortableTh
+                field="comment"
+                sortOrder={sortOrder}
+                sortBy={sortBy}
+                onSort={setSort}
+                label="Comment"
+              />
+              <SortableTh
+                field="sum"
+                sortOrder={sortOrder}
+                sortBy={sortBy}
+                onSort={setSort}
+                label="Sum"
+              />
               <th className={s.th}>
                 <button
-                  onClick={() => setSortedTransactions(transactions || [])}
+                  onClick={() => {
+                    setSortOrder(null);
+                    setCurrentPage(1);
+                  }}
                 >
                   <TfiReload className="icon" />
                 </button>
@@ -137,7 +187,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                 </td>
               </tr>
             ) : (
-              sortedTransactions.map((t) => (
+              transactions.map((t) => (
                 <TransactionsItem
                   key={t._id}
                   id={t._id}
@@ -158,19 +208,35 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
           <ClipLoader size={120} color="#3498db" />
         </div>
       ) : (
-        <ul className={s.list}>
-          {transactions.map((t) => (
-            <TransactionCard
-              key={t._id}
-              id={t._id}
-              date={t.date}
-              category={t.categoryId.title}
-              comment={t.comment}
-              sum={t.sum}
-              type={t.type}
-            />
-          ))}
-        </ul>
+        <>
+          <OptionSelect
+            name="sort"
+            options={sortOptions}
+            placeholder="Sort by"
+            isClearable={true}
+            onChange={handleSortChange}
+            value={
+              sortOptions.find(
+                (opt) =>
+                  opt.value.field === sortBy && opt.value.order === sortOrder
+              ) || null
+            }
+          />
+
+          <ul className={s.list}>
+            {transactions.map((t) => (
+              <TransactionCard
+                key={t._id}
+                id={t._id}
+                date={t.date}
+                category={t.categoryId.title}
+                comment={t.comment}
+                sum={t.sum}
+                type={t.type}
+              />
+            ))}
+          </ul>
+        </>
       )}
 
       {isMobile && (

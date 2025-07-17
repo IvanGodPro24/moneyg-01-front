@@ -9,7 +9,7 @@ const Sum = ({ isFiltered, toggleFiltered }) => {
         onClick={toggleFiltered}
         className={isFiltered ? "rotate-180" : "rotate-0"}
       >
-        <TbArrowsSort className="icon"/>
+        <TbArrowsSort className="icon" />
       </button>
     </div>
   );

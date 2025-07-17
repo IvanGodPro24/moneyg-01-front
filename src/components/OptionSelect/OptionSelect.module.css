@@ -6,6 +6,12 @@
   width: 200px;
 }
 
+.sort {
+  display: block;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -15,4 +21,10 @@
 .icon {
   stroke: #fff;
   margin-right: 12px;
+}
+
+@media (min-width: 768px) {
+  .sort {
+    display: none;
+  }
 }

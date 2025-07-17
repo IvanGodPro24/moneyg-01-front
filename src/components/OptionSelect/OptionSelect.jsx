@@ -103,7 +103,8 @@ const OptionSelect = ({
         htmlFor={id}
         className={clsx(
           !name && css.select,
-          ["type", "category"].includes(name) && css.filter
+          ["type", "category"].includes(name) && css.filter,
+          name === "sort" && css.sort
         )}
       >
         <Select

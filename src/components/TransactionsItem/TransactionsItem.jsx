@@ -1,33 +1,26 @@
-import { useDispatch } from "react-redux";
-import { LuPencil } from "react-icons/lu";
+import { LuPencil, LuRepeat } from "react-icons/lu";
 import { ClipLoader } from "react-spinners";
-import { format } from "date-fns";
 import { useState } from "react";
-
 import s from "./TransactionsItem.module.css";
-import { deleteTransaction } from "../../redux/transactions/operations";
 import EditTransaction from "../TransactionForm/EditTransaction/EditTransaction";
 import useModal from "../../hooks/useModal";
+import Modal from "../Modal/Modal";
 
-const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
-  const dispatch = useDispatch();
+const TransactionsItem = ({
+  id,
+  date,
+  category,
+  comment,
+  sum,
+  type,
+  formattedDate,
+  onToggle,
+  onDelete,
+  onRepeat,
+}) => {
+  const repeatModal = useModal();
   const editModal = useModal();
   const [loading, setLoading] = useState(false);
-
-  const handleToggleModal = () => editModal.toggleModal();
-
-  const handleDelete = async () => {
-    setLoading(true);
-    try {
-      await dispatch(deleteTransaction({ _id: id, type: sum })).unwrap();
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const formattedDate = format(new Date(date), "dd.MM.yy");
 
   return (
     <tr className={s.tr}>
@@ -42,7 +35,14 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
         <div className={s.btnContainer}>
           <button
             className={s.edit}
-            onClick={handleToggleModal}
+            onClick={() => onToggle(repeatModal)}
+            disabled={loading}
+          >
+            <LuRepeat />
+          </button>
+          <button
+            className={s.edit}
+            onClick={() => onToggle(editModal)}
             disabled={loading}
           >
             <LuPencil />
@@ -52,7 +52,7 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
               <ClipLoader size={25} color="#3498db" />
             </div>
           ) : (
-            <button className="delete" onClick={handleDelete}>
+            <button className="delete" onClick={() => onDelete(id, setLoading)}>
               Delete
             </button>
           )}
@@ -60,7 +60,7 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
 
         {editModal.isOpen && (
           <EditTransaction
-            onClose={handleToggleModal}
+            onClose={() => onToggle(editModal)}
             _id={id}
             date={date}
             category={category}
@@ -69,6 +69,17 @@ const TransactionsItem = ({ id, date, category, comment, sum, type }) => {
             type={type}
           />
         )}
+
+        <Modal
+          isOpen={repeatModal.isOpen}
+          onConfirm={() => {
+            onRepeat();
+            repeatModal.closeModal();
+          }}
+          onCancel={repeatModal.closeModal}
+          text="Do you want to repeat this transaction?"
+          confirm="repeat"
+        />
       </td>
     </tr>
   );

@@ -1,37 +1,26 @@
-import { useDispatch } from "react-redux";
-import { LuPencil } from "react-icons/lu";
-import { format } from "date-fns";
+import { LuPencil, LuRepeat } from "react-icons/lu";
 import { ClipLoader } from "react-spinners";
-
-import { deleteTransaction } from "../../redux/transactions/operations";
 import s from "./TransactionCard.module.css";
 import { useState } from "react";
 import EditTransaction from "../TransactionForm/EditTransaction/EditTransaction";
 import useModal from "../../hooks/useModal";
+import Modal from "../Modal/Modal";
 
-const TransactionCard = ({ id, date, category, comment, sum, type }) => {
-  const dispatch = useDispatch();
+const TransactionCard = ({
+  id,
+  date,
+  category,
+  comment,
+  sum,
+  type,
+  formattedDate,
+  onToggle,
+  onDelete,
+  onRepeat,
+}) => {
+  const repeatModal = useModal();
   const editModal = useModal();
   const [loading, setLoading] = useState(false);
-
-  const handleToggleModal = () => {
-    if (loading) return;
-    editModal.toggleModal();
-  };
-
-  const handleDelete = async () => {
-    if (editModal.isOpen) return;
-    setLoading(true);
-    try {
-      await dispatch(deleteTransaction({ _id: id, type: sum })).unwrap();
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const formattedDate = format(new Date(date), "dd.MM.yy");
 
   return (
     <li className={`${s.item} ${type === "income" ? s.income : s.expense}`}>
@@ -59,25 +48,34 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
             <ClipLoader size={25} color="#3498db" />
           </div>
         ) : (
-          <button className="delete" onClick={handleDelete}>
+          <button className="delete" onClick={() => onDelete(id, setLoading)}>
             Delete
           </button>
         )}
 
         <button
           className={s.edit}
-          onClick={handleToggleModal}
+          onClick={() => onToggle(editModal)}
           disabled={loading}
         >
           <LuPencil width="14" height="14" />
           <span className={s.text}>Edit</span>
+        </button>
+
+        <button
+          className={s.edit}
+          onClick={() => onToggle(repeatModal)}
+          disabled={loading}
+        >
+          <LuRepeat />
+          <span className={s.text}>Repeat</span>
         </button>
       </div>
 
       {editModal.isOpen && (
         <div className={s.modalBackdrop}>
           <EditTransaction
-            onClose={handleToggleModal}
+            onClose={() => onToggle(editModal)}
             _id={id}
             date={date}
             category={category}
@@ -87,6 +85,17 @@ const TransactionCard = ({ id, date, category, comment, sum, type }) => {
           />
         </div>
       )}
+
+      <Modal
+        isOpen={repeatModal.isOpen}
+        onConfirm={() => {
+          onRepeat();
+          repeatModal.closeModal();
+        }}
+        onCancel={repeatModal.closeModal}
+        text="Do you want to repeat this transaction?"
+        confirm="repeat"
+      />
     </li>
   );
 };

@@ -52,13 +52,13 @@
   .tableHead,
   .tableBody {
     display: table;
-    width: 100%;
+    width: 98%;
     table-layout: fixed;
     border-collapse: collapse;
   }
 
   .tableWrapper {
-    min-width: 704px;
+    width: 102%;
     margin: 0 auto;
     margin-top: 20px;
   }

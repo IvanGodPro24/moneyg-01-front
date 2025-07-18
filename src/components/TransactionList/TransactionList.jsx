@@ -13,7 +13,11 @@ import {
   selectTotalPages,
   selectTransactions,
 } from "../../redux/transactions/selectors";
-import { fetchTransactions } from "../../redux/transactions/operations";
+import {
+  addTransaction,
+  deleteTransaction,
+  fetchTransactions,
+} from "../../redux/transactions/operations";
 import { setPerPage } from "../../redux/transactions/slice";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import TransactionCard from "../TransactionCard/TransactionCard";
@@ -24,9 +28,28 @@ import EmptyTransaction from "../EmptyTransaction/EmptyTransaction";
 import SortableTh from "../SortableTh/SortableTh";
 import OptionSelect from "../OptionSelect/OptionSelect";
 import { sortOptions } from "../../constants/constants";
+import { format } from "date-fns";
 
 const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const dispatch = useDispatch();
+
+  const handleToggleModal = (modal) => modal.toggleModal();
+
+  const handleRepeat = async (transaction) =>
+    dispatch(addTransaction(transaction));
+
+  const handleDelete = async (id, setLoading) => {
+    setLoading(true);
+    try {
+      await dispatch(deleteTransaction(id)).unwrap();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formattedDate = (date) => format(new Date(date), "dd.MM.yy");
 
   const transactions = useSelector(selectTransactions);
   const isLoading = useSelector(selectIsLoading);
@@ -196,6 +219,18 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                   comment={t.comment}
                   sum={t.sum}
                   type={t.type}
+                  formattedDate={formattedDate(t.date)}
+                  onToggle={handleToggleModal}
+                  onDelete={handleDelete}
+                  onRepeat={() =>
+                    handleRepeat({
+                      date: t.date,
+                      category: t.categoryId.title,
+                      comment: t.comment,
+                      sum: t.sum,
+                      type: t.type,
+                    })
+                  }
                 />
               ))
             )}
@@ -233,6 +268,18 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                 comment={t.comment}
                 sum={t.sum}
                 type={t.type}
+                formattedDate={formattedDate(t.date)}
+                onToggle={handleToggleModal}
+                onDelete={handleDelete}
+                onRepeat={() =>
+                  handleRepeat({
+                    date: t.date,
+                    category: t.categoryId.title,
+                    comment: t.comment,
+                    sum: t.sum,
+                    type: t.type,
+                  })
+                }
               />
             ))}
           </ul>

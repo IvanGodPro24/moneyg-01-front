@@ -1,11 +1,11 @@
 import Logo from "../Logo/Logo";
-import s from "./LogoutModel.module.css";
+import s from "./Modal.module.css";
 import icon from "../../img/icons.svg";
 import CancelButton from "../Buttons/CancelButton";
 import AddButton from "../Buttons/AddButton";
 import clsx from "clsx";
 
-const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
+const Modal = ({ isOpen, onConfirm, onCancel, text, confirm }) => {
   if (!isOpen) return null;
 
   const handleBackdropClick = () => onCancel();
@@ -13,7 +13,10 @@ const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
   const stopPropagation = (e) => e.stopPropagation();
 
   return (
-    <div className={s.container} onClick={handleBackdropClick}>
+    <div
+      className={clsx("backdrop", s.container)}
+      onClick={handleBackdropClick}
+    >
       <div className={s.modal} onClick={stopPropagation}>
         <button onClick={onCancel} className="closeButton">
           <svg className="closeSvg" width="16" height="16">
@@ -26,10 +29,10 @@ const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
           <h2 className={s.title}>Money Guard</h2>
         </div>
 
-        <p className={s.text}>Are you sure you want to exit?</p>
+        <p className={s.text}>{text}</p>
 
         <div className={clsx("btn-container", "mt-0")}>
-          <AddButton onClick={onConfirm}>logout</AddButton>
+          <AddButton onClick={onConfirm}>{confirm}</AddButton>
           <CancelButton onClose={onCancel}>cancel</CancelButton>
         </div>
       </div>
@@ -37,4 +40,4 @@ const LogoutModal = ({ isOpen, onConfirm, onCancel }) => {
   );
 };
 
-export default LogoutModal;
+export default Modal;

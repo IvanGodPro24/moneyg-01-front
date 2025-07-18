@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Logo from "../Logo/Logo";
 import { selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
-import LogoutModal from "../LogoutModal/LogoutModal";
+import Modal from "../Modal/Modal";
 import s from "./Header.module.css";
 import clsx from "clsx";
 import UserModal from "../UserModal/UserModal";
@@ -72,10 +72,12 @@ const Header = () => {
           <span className={s.span}>Exit</span>
         </button>
       </div>
-      <LogoutModal
+      <Modal
         isOpen={logoutModal.isOpen}
         onConfirm={handleLogoutConfirm}
         onCancel={logoutModal.closeModal}
+        text="Are you sure you want to exit?"
+        confirm="logout"
       />
     </header>
   );

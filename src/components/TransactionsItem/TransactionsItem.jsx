@@ -6,6 +6,7 @@ import EditTransaction from "../TransactionForm/EditTransaction/EditTransaction"
 import useModal from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import clsx from "clsx";
+import { IoCheckmark } from "react-icons/io5";
 
 const TransactionsItem = ({
   id,
@@ -14,6 +15,7 @@ const TransactionsItem = ({
   comment,
   sum,
   type,
+  copiedId,
   formattedDate,
   onToggle,
   onDelete,
@@ -36,7 +38,7 @@ const TransactionsItem = ({
       <td>
         <div className={s.btnContainer}>
           <button className={s.edit} onClick={onCopy} disabled={loading}>
-            <LuCopy />
+            {copiedId === id ? <IoCheckmark /> : <LuCopy />}
           </button>
           <button
             className={s.edit}

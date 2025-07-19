@@ -35,9 +35,11 @@ import { toast } from "sonner";
 const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const dispatch = useDispatch();
 
+  const [copiedId, setCopiedId] = useState(null);
+
   const handleToggleModal = (modal) => modal.toggleModal();
 
-  const handleCopy = async ({ date, category, comment, sum, type }) => {
+  const handleCopy = async ({ date, category, comment, sum, type, id }) => {
     try {
       await copyTransactionToClipboard({
         date,
@@ -47,6 +49,12 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
         type,
       });
       toast.success("Transaction copied to clipboard");
+
+      setCopiedId(id);
+
+      setTimeout(() => {
+        setCopiedId(null);
+      }, 3000);
     } catch (e) {
       toast.error("Failed to copy transaction", e);
     }
@@ -236,6 +244,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                   comment={t.comment}
                   sum={t.sum}
                   type={t.type}
+                  copiedId={copiedId}
                   formattedDate={formattedDate(t.date)}
                   onToggle={handleToggleModal}
                   onDelete={handleDelete}
@@ -250,6 +259,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                   }
                   onCopy={() =>
                     handleCopy({
+                      id: t._id,
                       date: formattedDate(t.date),
                       category: t.categoryId.title,
                       comment: t.comment,
@@ -294,6 +304,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                 comment={t.comment}
                 sum={t.sum}
                 type={t.type}
+                copiedId={copiedId}
                 formattedDate={formattedDate(t.date)}
                 onToggle={handleToggleModal}
                 onDelete={handleDelete}
@@ -308,6 +319,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                 }
                 onCopy={() =>
                   handleCopy({
+                    id: t._id,
                     date: formattedDate(t.date),
                     category: t.categoryId.title,
                     comment: t.comment,

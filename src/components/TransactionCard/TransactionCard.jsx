@@ -5,6 +5,7 @@ import { useState } from "react";
 import EditTransaction from "../TransactionForm/EditTransaction/EditTransaction";
 import useModal from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
+import { IoCheckmark } from "react-icons/io5";
 
 const TransactionCard = ({
   id,
@@ -13,6 +14,7 @@ const TransactionCard = ({
   comment,
   sum,
   type,
+  copiedId,
   formattedDate,
   onToggle,
   onDelete,
@@ -72,8 +74,8 @@ const TransactionCard = ({
           <span className={s.text}>Repeat</span>
         </button>
         <button className={s.action} onClick={onCopy} disabled={loading}>
-          <LuCopy />
-          <span className={s.text}>Copy</span>
+          {copiedId === id ? <IoCheckmark /> : <LuCopy />}
+          <span className={s.text}>{copiedId === id ? "Copied" : "Copy"}</span>
         </button>
       </div>
 

@@ -1,4 +1,4 @@
-import { LuPencil, LuRepeat } from "react-icons/lu";
+import { LuCopy, LuPencil, LuRepeat } from "react-icons/lu";
 import { ClipLoader } from "react-spinners";
 import s from "./TransactionCard.module.css";
 import { useState } from "react";
@@ -17,6 +17,7 @@ const TransactionCard = ({
   onToggle,
   onDelete,
   onRepeat,
+  onCopy,
 }) => {
   const repeatModal = useModal();
   const editModal = useModal();
@@ -54,7 +55,7 @@ const TransactionCard = ({
         )}
 
         <button
-          className={s.edit}
+          className={s.action}
           onClick={() => onToggle(editModal)}
           disabled={loading}
         >
@@ -63,12 +64,16 @@ const TransactionCard = ({
         </button>
 
         <button
-          className={s.edit}
+          className={s.action}
           onClick={() => onToggle(repeatModal)}
           disabled={loading}
         >
           <LuRepeat />
           <span className={s.text}>Repeat</span>
+        </button>
+        <button className={s.action} onClick={onCopy} disabled={loading}>
+          <LuCopy />
+          <span className={s.text}>Copy</span>
         </button>
       </div>
 

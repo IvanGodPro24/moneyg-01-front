@@ -6,15 +6,31 @@
   color: var(--dashboard-text);
 }
 
+.income,
+.expense {
+  width: 120px;
+  overflow: auto;
+}
+
 .tr {
   border-bottom: 1px solid var(--form-color);
 }
 
 .td {
-  padding: 15px 20px;
+  padding: 15px 15px;
   font-family: var(--font-family);
   font-size: 14px;
   color: var(--white);
+}
+
+.td:nth-child(1),
+.td:nth-child(2) {
+  width: 85px;
+}
+
+.td:nth-child(3),
+.td:nth-child(4) {
+  width: 130px;
 }
 
 .td:nth-child(4) {

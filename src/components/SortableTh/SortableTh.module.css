@@ -1,5 +1,21 @@
 .th {
-  padding: 24px;
+  padding: 16px;
+}
+
+.th:nth-child(1),
+.th:nth-child(2) {
+  width: 85px;
+}
+
+.th:nth-child(3),
+.th:nth-child(4) {
+  width: 130px;
+}
+
+.th:nth-child(5) {
+  display: flex;
+  justify-content: center;
+  width: 120px;
 }
 
 .sort-btn {

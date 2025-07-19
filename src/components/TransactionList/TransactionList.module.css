@@ -104,17 +104,6 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
   }
-
-  .thead th {
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-
-  .th {
-    font-family: var(--font-family);
-    font-weight: 600;
-    color: var(--white);
-  }
 }
 
 @media screen and (min-width: 1280px) {

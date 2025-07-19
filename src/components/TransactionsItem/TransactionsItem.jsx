@@ -1,10 +1,11 @@
-import { LuPencil, LuRepeat } from "react-icons/lu";
+import { LuCopy, LuPencil, LuRepeat } from "react-icons/lu";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
 import s from "./TransactionsItem.module.css";
 import EditTransaction from "../TransactionForm/EditTransaction/EditTransaction";
 import useModal from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
+import clsx from "clsx";
 
 const TransactionsItem = ({
   id,
@@ -17,6 +18,7 @@ const TransactionsItem = ({
   onToggle,
   onDelete,
   onRepeat,
+  onCopy,
 }) => {
   const repeatModal = useModal();
   const editModal = useModal();
@@ -28,11 +30,14 @@ const TransactionsItem = ({
       <td className={s.td}>{type === "income" ? "+" : "-"}</td>
       <td className={s.td}>{category}</td>
       <td className={s.td}>{comment || "-"}</td>
-      <td className={`${type === "income" ? s.income : s.expense}`}>
+      <td className={clsx(type === "income" ? s.income : s.expense)}>
         {sum.toFixed(2)}
       </td>
       <td>
         <div className={s.btnContainer}>
+          <button className={s.edit} onClick={onCopy} disabled={loading}>
+            <LuCopy />
+          </button>
           <button
             className={s.edit}
             onClick={() => onToggle(repeatModal)}

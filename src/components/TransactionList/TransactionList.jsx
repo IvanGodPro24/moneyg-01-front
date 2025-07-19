@@ -29,11 +29,28 @@ import SortableTh from "../SortableTh/SortableTh";
 import OptionSelect from "../OptionSelect/OptionSelect";
 import { sortOptions } from "../../constants/constants";
 import { format } from "date-fns";
+import { copyTransactionToClipboard } from "../../utils/copyTransactionToClipboard";
+import { toast } from "sonner";
 
 const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const dispatch = useDispatch();
 
   const handleToggleModal = (modal) => modal.toggleModal();
+
+  const handleCopy = async ({ date, category, comment, sum, type }) => {
+    try {
+      await copyTransactionToClipboard({
+        date,
+        category,
+        comment,
+        sum,
+        type,
+      });
+      toast.success("Transaction copied to clipboard");
+    } catch (e) {
+      toast.error("Failed to copy transaction", e);
+    }
+  };
 
   const handleRepeat = async (transaction) =>
     dispatch(addTransaction(transaction));
@@ -231,6 +248,15 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                       type: t.type,
                     })
                   }
+                  onCopy={() =>
+                    handleCopy({
+                      date: formattedDate(t.date),
+                      category: t.categoryId.title,
+                      comment: t.comment,
+                      sum: t.sum,
+                      type: t.type,
+                    })
+                  }
                 />
               ))
             )}
@@ -274,6 +300,15 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                 onRepeat={() =>
                   handleRepeat({
                     date: t.date,
+                    category: t.categoryId.title,
+                    comment: t.comment,
+                    sum: t.sum,
+                    type: t.type,
+                  })
+                }
+                onCopy={() =>
+                  handleCopy({
+                    date: formattedDate(t.date),
                     category: t.categoryId.title,
                     comment: t.comment,
                     sum: t.sum,

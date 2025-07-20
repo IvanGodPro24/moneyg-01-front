@@ -15,6 +15,7 @@ const TransactionCard = ({
   sum,
   type,
   copiedId,
+  convertedSum,
   formattedDate,
   onToggle,
   onDelete,
@@ -43,7 +44,7 @@ const TransactionCard = ({
       </p>
       <p className={s.info}>
         <span className={s.text}>Sum</span>
-        {sum}
+        {convertedSum.toFixed(2)}
       </p>
       <div className={s.btn}>
         {loading ? (

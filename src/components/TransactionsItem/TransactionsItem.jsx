@@ -16,6 +16,7 @@ const TransactionsItem = ({
   sum,
   type,
   copiedId,
+  convertedSum,
   formattedDate,
   onToggle,
   onDelete,
@@ -33,7 +34,7 @@ const TransactionsItem = ({
       <td className={s.td}>{category}</td>
       <td className={s.td}>{comment || "-"}</td>
       <td className={clsx(type === "income" ? s.income : s.expense)}>
-        {sum.toFixed(2)}
+        {convertedSum.toFixed(2)}
       </td>
       <td>
         <div className={s.btnContainer}>

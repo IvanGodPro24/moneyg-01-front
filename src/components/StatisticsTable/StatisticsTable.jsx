@@ -1,8 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./StatisticsTable.module.css";
 import Sum from "../Sum/Sum";
+import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 
-const StatisticsTable = ({ data, totalExpenses, totalIncome }) => {
+const StatisticsTable = ({
+  data,
+  totalExpenses,
+  totalIncome,
+  currency,
+  convertedSum,
+}) => {
   const categories = useMemo(() => data || [], [data]);
 
   const [isFiltered, setIsFiltered] = useState(false);
@@ -33,16 +40,25 @@ const StatisticsTable = ({ data, totalExpenses, totalIncome }) => {
               ></span>
               <span className={styles.name}>{item.name}</span>
             </div>
-            <span className={styles.sum}>{item.value.toFixed(2)}</span>
+            <span className={styles.sum}>
+              {convertedSum(item.value).toFixed(2)}
+            </span>
           </li>
         ))}
       </ul>
       <div className={styles.totalBlock}>
         <p className={styles.expenses}>
-          Expenses: <span>{totalExpenses.toFixed(2)}</span>
+          Expenses:{" "}
+          <span>
+            {convertedSum(totalExpenses).toFixed(2)}{" "}
+            {getCurrencySymbol(currency)}
+          </span>
         </p>
         <p className={styles.income}>
-          Income: <span>{totalIncome.toFixed(2)}</span>
+          Income:{" "}
+          <span>
+            {convertedSum(totalIncome).toFixed(2)} {getCurrencySymbol(currency)}
+          </span>
         </p>
       </div>
     </div>

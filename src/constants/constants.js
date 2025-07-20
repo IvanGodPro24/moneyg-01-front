@@ -52,3 +52,5 @@ export const sortOptions = [
   { label: "Sum ↑", value: { field: "sum", order: "asc" } },
   { label: "Sum ↓", value: { field: "sum", order: "desc" } },
 ];
+
+export const currencies = ["UAH", "USD", "EUR"];

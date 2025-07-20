@@ -4,10 +4,11 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import styles from "./Chart.module.css";
 import { useRef, useState } from "react";
 import clsx from "clsx";
+import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Chart = ({ data, totalExpenses }) => {
+const Chart = ({ data, totalExpenses, currency, convertedSum }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const chartRef = useRef();
 
@@ -84,11 +85,15 @@ const Chart = ({ data, totalExpenses }) => {
             <div className={styles.info}>
               <p>{selectedCategory.name}</p>
               <p className={styles.value}>
-                ₴ {selectedCategory.value.toFixed(2)}
+                {getCurrencySymbol(currency)}{" "}
+                {convertedSum(selectedCategory.value).toFixed(2)}
               </p>
             </div>
           ) : (
-            <p>₴ {totalExpenses.toFixed(2)}</p>
+            <p>
+              {getCurrencySymbol(currency)}{" "}
+              {convertedSum(totalExpenses).toFixed(2)}
+            </p>
           )}
         </div>
       </div>

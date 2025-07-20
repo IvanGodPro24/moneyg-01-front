@@ -15,6 +15,8 @@ import styles from "./StatisticsTab.module.css";
 import Chart from "../Chart/Chart";
 import StatisticsDashboard from "../StatisticsDashboard/StatisticsDashboard";
 import StatisticsTable from "../StatisticsTable/StatisticsTable";
+import useExchangeRates from "../../hooks/useExchangeRates";
+import { selectActiveCurrency } from "../../redux/currency/selectors";
 
 const StatisticsTab = () => {
   const dispatch = useDispatch();
@@ -22,11 +24,16 @@ const StatisticsTab = () => {
   const isLoading = useSelector(selectSummaryLoading);
   const totalExpenses = useSelector(selectTotalExpenses);
   const totalIncome = useSelector(selectTotalIncome);
+  const activeCurrency = useSelector(selectActiveCurrency);
+
+  const { convertCurrency } = useExchangeRates();
+
+  const convertedSum = (sum) => convertCurrency(sum, "UAH", activeCurrency);
 
   const coloredData = assignColors(data);
 
   const now = new Date();
-  
+
   const [selectedMonth, setSelectedMonth] = useState({
     value: now.getMonth() + 1,
     label: now.toLocaleString("en-US", { month: "long" }),
@@ -63,7 +70,12 @@ const StatisticsTab = () => {
 
   return (
     <div className={styles.tab}>
-      <Chart data={coloredData} totalExpenses={totalExpenses} />
+      <Chart
+        data={coloredData}
+        totalExpenses={totalExpenses}
+        currency={activeCurrency}
+        convertedSum={convertedSum}
+      />
       <div className={styles.dashboard}>
         <StatisticsDashboard
           selectedMonth={selectedMonth}
@@ -75,6 +87,8 @@ const StatisticsTab = () => {
           data={coloredData}
           totalExpenses={totalExpenses}
           totalIncome={totalIncome}
+          currency={activeCurrency}
+          convertedSum={convertedSum}
         />
       </div>
     </div>

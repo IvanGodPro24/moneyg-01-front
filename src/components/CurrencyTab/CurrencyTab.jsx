@@ -1,57 +1,16 @@
-import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 
 import Svg from "./Svg";
 import s from "./CurrencyTab.module.css";
-import { fetchExchangeRates } from "./apiService";
 import useDevice from "../../hooks/useDevice";
 import clsx from "clsx";
+import useExchangeRates from "../../hooks/useExchangeRates";
 
 const CurrencyTab = () => {
-  const [rates, setRates] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { exchangeRates, loading, error } = useExchangeRates();
   const { isDesktop } = useDevice();
 
   const loaderSize = isDesktop ? 150 : 100;
-
-  const isDataFresh = (cachedTime) => {
-    const now = Date.now();
-    const oneHour = 60 * 60 * 1000;
-    return now - cachedTime < oneHour;
-  };
-
-  useEffect(() => {
-    const getRates = async () => {
-      try {
-        const cachedRates = sessionStorage.getItem("mono_rates");
-        const cachedTime = sessionStorage.getItem("mono_rates_time");
-
-        if (cachedRates && cachedTime && isDataFresh(Number(cachedTime))) {
-          setRates(JSON.parse(cachedRates));
-          setLoading(false);
-          return;
-        }
-
-        const data = await fetchExchangeRates();
-        const filteredRates = data.filter(
-          (rate) =>
-            (rate.currencyCodeA === 840 && rate.currencyCodeB === 980) ||
-            (rate.currencyCodeA === 978 && rate.currencyCodeB === 980)
-        );
-
-        setRates(filteredRates);
-        sessionStorage.setItem("mono_rates", JSON.stringify(filteredRates));
-        sessionStorage.setItem("mono_rates_time", Date.now().toString());
-      } catch (err) {
-        setError(err.message || "Error fetching exchange rates");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getRates();
-  }, []);
 
   if (loading)
     return (
@@ -59,7 +18,12 @@ const CurrencyTab = () => {
         <ClipLoader size={loaderSize} color="#3498db" />
       </div>
     );
+
   if (error) return <p className={s.texError}>Error: {error}</p>;
+
+  const getUSDRate = () => exchangeRates.find((r) => r.currencyCodeA === 840);
+
+  const getEURRate = () => exchangeRates.find((r) => r.currencyCodeA === 978);
 
   return (
     <div className={clsx(s.container, "relative")}>
@@ -72,7 +36,7 @@ const CurrencyTab = () => {
           </tr>
         </thead>
         <tbody>
-          {rates.map((rate) => (
+          {exchangeRates.map((rate) => (
             <tr key={rate.currencyCodeA}>
               <td className={s.td}>
                 {rate.currencyCodeA === 840 ? "USD" : "EUR"}
@@ -87,7 +51,7 @@ const CurrencyTab = () => {
       <div className={s.svgBackground}>
         <div className={s.svgMarkerLeft}>
           <span className={s.markerLabel}>
-            {rates.find((r) => r.currencyCodeA === 840).rateBuy.toFixed(2)}
+            {getUSDRate()?.rateBuy.toFixed(2)}
           </span>
           <svg
             className={s.svg}
@@ -103,7 +67,7 @@ const CurrencyTab = () => {
 
         <div className={s.svgMarkerRight}>
           <span className={s.markerLabel}>
-            {rates.find((r) => r.currencyCodeA === 978).rateBuy.toFixed(2)}
+            {getEURRate()?.rateBuy.toFixed(2)}
           </span>
           <svg
             className={s.svg}

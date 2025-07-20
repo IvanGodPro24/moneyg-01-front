@@ -15,11 +15,17 @@
   text-align: left;
 }
 
+.balance {
+  margin-bottom: 12px;
+}
+
 .title,
 .sum,
 .text {
   font-family: var(--font-family);
   color: var(--white);
+
+  transition: all 0.3s ease-in-out;
 }
 
 .title {
@@ -44,14 +50,94 @@
   margin-left: 4px;
 }
 
+.list {
+  display: none;
+}
+
+.swipe {
+  font-size: 12px;
+  color: var(--white-600);
+  text-align: center;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.currencyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 70px;
+  height: 30px;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--white-400);
+  color: var(--white-400);
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.currencyButton:hover {
+  background: var(--form-color);
+  color: var(--white);
+}
+
+.active .currencyButton {
+  transform: translateY(-2px);
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(115, 74, 239, 0.4);
+}
+
+.loadingText {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  background-color: transparent;
+}
+
 @media screen and (min-width: 768px) {
   .section {
     width: 336px;
   }
+
   .container {
     width: 100%;
     padding-bottom: 12px;
     padding-left: 40px;
+  }
+
+  .swipe {
+    display: none;
+  }
+
+  .list {
+    display: flex;
+    gap: 20px;
   }
 }
 
@@ -68,5 +154,10 @@
 @media screen and (min-width: 1440px) {
   .section {
     width: 540px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
   }
 }

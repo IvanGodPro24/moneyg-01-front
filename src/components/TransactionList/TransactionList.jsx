@@ -19,6 +19,8 @@ import {
   deleteTransaction,
   fetchTransactions,
 } from "../../redux/transactions/operations";
+import useExchangeRates from "../../hooks/useExchangeRates";
+import { selectActiveCurrency } from "../../redux/currency/selectors";
 import { setPerPage } from "../../redux/transactions/slice";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import TransactionCard from "../TransactionCard/TransactionCard";
@@ -76,6 +78,11 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   };
 
   const formattedDate = (date) => format(new Date(date), "dd.MM.yy");
+
+  const { convertCurrency } = useExchangeRates();
+  const activeCurrency = useSelector(selectActiveCurrency);
+
+  const convertedSum = (sum) => convertCurrency(sum, "UAH", activeCurrency);
 
   const transactions = useSelector(selectTransactions);
   const isLoading = useSelector(selectIsLoading);
@@ -248,6 +255,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                   sum={t.sum}
                   type={t.type}
                   copiedId={copiedId}
+                  convertedSum={convertedSum(t.sum)}
                   formattedDate={formattedDate(t.date)}
                   onToggle={handleToggleModal}
                   onDelete={handleDelete}
@@ -308,6 +316,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                 sum={t.sum}
                 type={t.type}
                 copiedId={copiedId}
+                convertedSum={convertedSum(t.sum)}
                 formattedDate={formattedDate(t.date)}
                 onToggle={handleToggleModal}
                 onDelete={handleDelete}

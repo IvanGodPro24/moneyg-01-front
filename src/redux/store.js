@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/slice";
 import transactionReducer from "./transactions/slice";
 import summaryReducer from "./summary/slice";
+import currencyReducer from "./currency/slice";
 
 import {
   persistStore,
@@ -21,13 +22,25 @@ const authPersistConfig = {
   whitelist: ["token"],
 };
 
-const persistedReducer = persistReducer(authPersistConfig, authReducer);
+const currencyPersistConfig = {
+  key: "currency",
+  storage,
+  whitelist: ["activeCurrency"],
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+
+const persistedCurrencyReducer = persistReducer(
+  currencyPersistConfig,
+  currencyReducer
+);
 
 export const store = configureStore({
   reducer: {
-    auth: persistedReducer,
+    auth: persistedAuthReducer,
     transactions: transactionReducer,
     summary: summaryReducer,
+    currency: persistedCurrencyReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

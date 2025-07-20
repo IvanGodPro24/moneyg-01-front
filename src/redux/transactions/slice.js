@@ -25,6 +25,7 @@ const transactionsSlice = createSlice({
     hasNextPage: null,
     hasPreviousPage: null,
     totalPages: null,
+    totalItems: null,
     categories: [],
     isLoading: false,
     error: null,
@@ -49,6 +50,7 @@ const transactionsSlice = createSlice({
         state.page = action.payload.page;
         state.perPage = action.payload.perPage;
         state.totalPages = action.payload.totalPages;
+        state.totalItems = action.payload.totalItems;
         state.hasNextPage = action.payload.hasNextPage;
         state.hasPreviousPage = action.payload.hasPreviousPage;
       })

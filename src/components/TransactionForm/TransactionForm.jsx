@@ -138,7 +138,7 @@ const TransactionForm = ({
                 type="number"
                 id="sum"
                 name="sum"
-                placeholder="0.00"
+                placeholder="0.00 ₴"
                 className={clsx("input", "addSum")}
                 disabled={isLoading}
               />

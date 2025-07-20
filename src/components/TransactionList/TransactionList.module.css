@@ -104,6 +104,14 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
   }
+
+  .total {
+    overflow: scroll;
+  }
+
+  .th {
+    width: 70px;
+  }
 }
 
 @media screen and (min-width: 1280px) {

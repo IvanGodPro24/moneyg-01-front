@@ -10,6 +10,8 @@ export const selectPerPage = (state) => state.transactions.perPage;
 
 export const selectTotalPages = (state) => state.transactions.totalPages;
 
+export const selectTotalItems = (state) => state.transactions.totalItems;
+
 export const selectHasNextPage = (state) => state.transactions.hasNextPage;
 
 export const selectHasPreviousPage = (state) =>

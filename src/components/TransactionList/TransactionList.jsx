@@ -10,6 +10,7 @@ import {
   selectIsLoading,
   selectPage,
   selectPerPage,
+  selectTotalItems,
   selectTotalPages,
   selectTransactions,
 } from "../../redux/transactions/selectors";
@@ -81,6 +82,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const page = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
   const totalPages = useSelector(selectTotalPages);
+  const totalItems = useSelector(selectTotalItems);
   const hasNextPage = useSelector(selectHasNextPage);
   const hasPreviousPage = useSelector(selectHasPreviousPage);
 
@@ -209,6 +211,7 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
                 onSort={setSort}
                 label="Sum"
               />
+              <th className={s.total}>Total: {totalItems}</th>
               <th className={s.th}>
                 <button
                   onClick={() => {

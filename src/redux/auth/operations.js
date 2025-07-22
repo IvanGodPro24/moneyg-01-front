@@ -39,6 +39,37 @@ export const login = createAsyncThunk(
   }
 );
 
+
+export const requestResetEmail = createAsyncThunk(
+  "auth/request-reset-email",
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/auth/request-reset-email", { email });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.data || error.message);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/reset-password",
+  async ({ token, password }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/auth/reset-password", {
+        token,
+        password,
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.data || error.message);
+    }
+  }
+);
+
+
 export const logout = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {

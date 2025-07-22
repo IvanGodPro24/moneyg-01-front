@@ -27,6 +27,7 @@
 }
 
 .form-group-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -84,6 +85,41 @@
   border-radius: 8px;
   margin-bottom: 1.5rem;
   text-align: center;
+}
+
+.error {
+  bottom: -36px;
+}
+
+.forgot {
+  position: absolute;
+  right: 0;
+  bottom: -25%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white-600);
+  padding: 4px 8px;
+
+  transition: all 0.3s ease;
+
+}
+
+.forgot:hover {
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.forgot::after {
+  content: '→';
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+}
+
+.forgot:hover::after {
+  transform: translateX(2px);
 }
 
 .submit-button {

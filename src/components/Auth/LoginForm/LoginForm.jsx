@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../redux/auth/operations";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import clsx from "clsx";
+import { ClipLoader } from "react-spinners";
 
 const schema = yup.object().shape({
   email: yup
@@ -24,6 +25,7 @@ const schema = yup.object().shape({
 const LoginForm = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const toggleShow = () => setShowPassword((prev) => !prev);
 
@@ -38,10 +40,13 @@ const LoginForm = () => {
   });
 
   const onSubmit = async ({ email, password }) => {
+    setLoading(true);
     try {
       await dispatch(login({ email, password })).unwrap();
     } catch (err) {
       setError(err || "An error occurred during login");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -90,13 +95,25 @@ const LoginForm = () => {
             </button>
 
             {errors.password && (
-              <span className="errorText">{errors.password.message}</span>
+              <span className={clsx("errorText", css.error)}>
+                {errors.password.message}
+              </span>
             )}
           </div>
+
+          <Link to="/forgot" className={css.forgot}>
+            Forgot Password?
+          </Link>
         </div>
-        <button type="submit" className={css["submit-button"]}>
-          LOG IN
-        </button>
+
+        {loading ? (
+          <ClipLoader size={50} color="#3498db" />
+        ) : (
+          <button type="submit" className={css["submit-button"]}>
+            LOG IN
+          </button>
+        )}
+
         <Link to="/register" className={css["redirect-button"]}>
           REGISTER
         </Link>

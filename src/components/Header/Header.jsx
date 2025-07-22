@@ -17,6 +17,7 @@ const Header = () => {
   const { name, avatarURL, email, registrationDate } = useSelector(selectUser);
 
   const [avatar, setAvatar] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const logoutModal = useModal();
   const userModal = useModal();
@@ -27,14 +28,16 @@ const Header = () => {
   };
 
   const handleLogoutConfirm = async () => {
+    setLoading(true);
     try {
       await dispatch(logout()).unwrap();
-    } catch (error) {
-      console.log(error.message);
-    } finally {
       localStorage.clear();
       navigate("/login");
       logoutModal.closeModal(false);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,6 +77,7 @@ const Header = () => {
       </div>
       <Modal
         isOpen={logoutModal.isOpen}
+        isLoading={loading}
         onConfirm={handleLogoutConfirm}
         onCancel={logoutModal.closeModal}
         text="Are you sure you want to exit?"

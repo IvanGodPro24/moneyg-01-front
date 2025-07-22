@@ -4,8 +4,9 @@ import icon from "../../img/icons.svg";
 import CancelButton from "../Buttons/CancelButton";
 import AddButton from "../Buttons/AddButton";
 import clsx from "clsx";
+import { ClipLoader } from "react-spinners";
 
-const Modal = ({ isOpen, onConfirm, onCancel, text, confirm }) => {
+const Modal = ({ isOpen, isLoading, onConfirm, onCancel, text, confirm }) => {
   if (!isOpen) return null;
 
   const handleBackdropClick = () => onCancel();
@@ -32,7 +33,11 @@ const Modal = ({ isOpen, onConfirm, onCancel, text, confirm }) => {
         <p className={s.text}>{text}</p>
 
         <div className={clsx("btn-container", "mt-0")}>
-          <AddButton onClick={onConfirm}>{confirm}</AddButton>
+          {isLoading ? (
+            <ClipLoader size={50} color="#3498db" />
+          ) : (
+            <AddButton onClick={onConfirm}>{confirm}</AddButton>
+          )}
           <CancelButton onClose={onCancel}>cancel</CancelButton>
         </div>
       </div>

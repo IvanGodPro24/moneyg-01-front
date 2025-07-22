@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { registered } from "../../../redux/auth/operations";
 import clsx from "clsx";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { ClipLoader } from "react-spinners";
 
 const schema = yup.object().shape({
   name: yup
@@ -39,6 +40,7 @@ const RegistrationForm = () => {
   const [error, setError] = useState("");
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const toggleShow = () => setShowPassword((prev) => !prev);
 
@@ -55,12 +57,15 @@ const RegistrationForm = () => {
   });
 
   const onSubmit = async ({ name, email, password }) => {
+    setLoading(true);
     try {
       await dispatch(registered({ name, email, password })).unwrap();
 
       navigate("/");
     } catch (err) {
       setError(err || "An error occurred during registration");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -159,9 +164,15 @@ const RegistrationForm = () => {
             />
           </div>
         </div>
-        <button type="submit" className={css["submit-button"]}>
-          REGISTER
-        </button>
+
+        {loading ? (
+          <ClipLoader size={50} color="#3498db" />
+        ) : (
+          <button type="submit" className={css["submit-button"]}>
+            REGISTER
+          </button>
+        )}
+
         <Link to="/login" className={css["redirect-button"]}>
           LOG IN
         </Link>

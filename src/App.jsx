@@ -10,6 +10,9 @@ import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Toaster } from "sonner";
 import HomeTab from "./components/HomeTab/HomeTab";
 import CurrencyTab from "./components/CurrencyTab/CurrencyTab";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
+import CheckEmail from "./components/CheckEmail/CheckEmail";
 
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -37,6 +40,10 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/check-email" element={<CheckEmail />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+
           <Route
             path="/"
             element={

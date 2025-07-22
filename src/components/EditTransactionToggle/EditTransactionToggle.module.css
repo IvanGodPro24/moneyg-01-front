@@ -29,12 +29,6 @@
   color: #ff6596;
 }
 
-.inactive {
-  opacity: 0.5;
-  cursor: default;
-  pointer-events: none;
-}
-
 @media screen and (min-width: 768px) {
   .toggleContainer {
     margin-top: 40px;

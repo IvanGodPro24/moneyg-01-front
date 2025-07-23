@@ -38,6 +38,15 @@ import { toast } from "sonner";
 const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const dispatch = useDispatch();
 
+  const transactions = useSelector(selectTransactions);
+  const isLoading = useSelector(selectIsLoading);
+  const page = useSelector(selectPage);
+  const perPage = useSelector(selectPerPage);
+  const totalPages = useSelector(selectTotalPages);
+  const totalItems = useSelector(selectTotalItems);
+  const hasNextPage = useSelector(selectHasNextPage);
+  const hasPreviousPage = useSelector(selectHasPreviousPage);
+
   const [copiedId, setCopiedId] = useState(null);
 
   const handleToggleModal = (modal) => modal.toggleModal();
@@ -63,13 +72,24 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
     }
   };
 
-  const handleRepeat = async (transaction) =>
-    dispatch(addTransaction(transaction));
+  const handleRepeat = async (transaction) => {
+    await dispatch(addTransaction(transaction)).unwrap();
+
+    const newTotalPages = Math.ceil((totalItems + 1) / perPage);
+
+    if (newTotalPages > currentPage) {
+      setCurrentPage(newTotalPages);
+    }
+  };
 
   const handleDelete = async (id, setLoading) => {
     setLoading(true);
     try {
       await dispatch(deleteTransaction(id)).unwrap();
+
+      if (transactions.length === 1 && currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -83,15 +103,6 @@ const TransactionList = ({ currentPage, setCurrentPage, filters }) => {
   const activeCurrency = useSelector(selectActiveCurrency);
 
   const convertedSum = (sum) => convertCurrency(sum, "UAH", activeCurrency);
-
-  const transactions = useSelector(selectTransactions);
-  const isLoading = useSelector(selectIsLoading);
-  const page = useSelector(selectPage);
-  const perPage = useSelector(selectPerPage);
-  const totalPages = useSelector(selectTotalPages);
-  const totalItems = useSelector(selectTotalItems);
-  const hasNextPage = useSelector(selectHasNextPage);
-  const hasPreviousPage = useSelector(selectHasPreviousPage);
 
   const { isMobile } = useDevice();
   const [showScrollBtn, setShowScrollBtn] = useState(false);

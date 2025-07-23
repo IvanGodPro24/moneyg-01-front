@@ -68,7 +68,10 @@ const HomeTab = () => {
         setCurrentPage={setCurrentPage}
         filters={filters}
       />
-      <TransactionModalWrapper />
+      <TransactionModalWrapper
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

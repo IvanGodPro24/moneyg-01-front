@@ -3,7 +3,7 @@ import css from "./TransactionModalWrapper.module.css";
 import icon from "../../img/icons.svg";
 import useModal from "../../hooks/useModal";
 
-const TransactionModalWrapper = () => {
+const TransactionModalWrapper = ({currentPage, setCurrentPage}) => {
   const addModal = useModal();
 
   const handleToggleModal = () => addModal.toggleModal();
@@ -16,7 +16,13 @@ const TransactionModalWrapper = () => {
         </svg>
       </button>
 
-      {addModal.isOpen && <AddTransaction onClose={handleToggleModal} />}
+      {addModal.isOpen && (
+        <AddTransaction
+          onClose={handleToggleModal}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </div>
   );
 };

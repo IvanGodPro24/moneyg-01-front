@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { addTransaction } from "../../../redux/transactions/operations.js";
 import icon from "../../../img/icons.svg";
 import TransactionForm from "../TransactionForm.jsx";
+import {
+  selectPerPage,
+  selectTotalItems,
+} from "../../../redux/transactions/selectors.js";
 
-const AddTransaction = ({ onClose }) => {
+const AddTransaction = ({ onClose, currentPage, setCurrentPage }) => {
   const dispatch = useDispatch();
   const [transactionType, setTransactionType] = useState("expense");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -18,6 +22,9 @@ const AddTransaction = ({ onClose }) => {
     date: new Date(),
     category: "",
   };
+
+  const totalItems = useSelector(selectTotalItems);
+  const perPage = useSelector(selectPerPage);
 
   const onSubmit = async (values, { resetForm }) => {
     const finalData = {
@@ -32,7 +39,14 @@ const AddTransaction = ({ onClose }) => {
 
     setIsLoading(true);
     try {
-      dispatch(addTransaction(finalData));
+      await dispatch(addTransaction(finalData)).unwrap();
+
+      const newTotalPages = Math.ceil((totalItems + 1) / perPage);
+
+      if (newTotalPages > currentPage) {
+        setCurrentPage(newTotalPages);
+      }
+
       resetForm();
       onClose();
     } catch (error) {

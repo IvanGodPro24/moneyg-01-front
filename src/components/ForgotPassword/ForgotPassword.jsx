@@ -76,16 +76,18 @@ const ForgotPassword = () => {
             </div>
           </div>
 
-          {loading ? (
-            <ClipLoader size={50} color="#3498db" />
-          ) : (
-            <button type="submit" className={css["submit-button"]}>
-              reset
-            </button>
-          )}
-          <Link to="/login" className={css["redirect-button"]}>
-            go back
-          </Link>
+         <div className={css['btn-container']}>
+            {loading ? (
+              <ClipLoader size={50} color="#3498db" />
+            ) : (
+              <button type="submit" className={css["submit-button"]}>
+                reset
+              </button>
+            )}
+            <Link to="/login" className={css["redirect-button"]}>
+              go back
+            </Link>
+         </div>
         </form>
       </div>
     </div>

@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(83, 61, 186, 0.1) 0%,
+    rgba(80, 48, 154, 0.1) 100%
+  );
+}
+
+.card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logoAnimation {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: 0 auto 30px;
+}
+
+.googleLogo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.googleIcon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.text {
+  color: var(--white-600);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.progressBar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--icon-violet) 0%,
+    var(--dashboard-text) 100%
+  );
+  border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .logoAnimation {
+    width: 80px;
+    height: 80px;
+  }
+
+  .googleIcon {
+    width: 50px;
+    height: 50px;
+  }
+}

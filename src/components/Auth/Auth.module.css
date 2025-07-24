@@ -104,7 +104,6 @@
   padding: 4px 8px;
 
   transition: all 0.3s ease;
-
 }
 
 .forgot:hover {
@@ -113,13 +112,21 @@
 }
 
 .forgot::after {
-  content: '→';
+  content: "→";
   margin-left: 4px;
   transition: transform 0.3s ease;
 }
 
 .forgot:hover::after {
   transform: translateX(2px);
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .submit-button {
@@ -149,7 +156,6 @@
   display: block;
   width: 100%;
   padding: 1rem;
-  margin-top: 20px;
   background: var(--white);
   color: var(--text-button);
   border-radius: 20px;

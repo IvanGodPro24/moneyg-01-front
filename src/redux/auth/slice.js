@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current, login, logout, registered, updateUser } from "./operations";
+import {
+  current,
+  login,
+  loginWithGoogle,
+  logout,
+  registered,
+  updateUser,
+} from "./operations";
 import { toast } from "sonner";
 import {
   addTransaction,
@@ -39,6 +46,15 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(login.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+
+      .addCase(loginWithGoogle.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(loginWithGoogle.rejected, (state, action) => {
         state.error = action.payload;
       })
 

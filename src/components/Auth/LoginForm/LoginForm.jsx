@@ -9,6 +9,7 @@ import { login } from "../../../redux/auth/operations";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import clsx from "clsx";
 import { ClipLoader } from "react-spinners";
+import GoogleLoginButton from "../../GoogleLoginButton/GoogleLoginButton";
 
 const schema = yup.object().shape({
   email: yup
@@ -105,18 +106,21 @@ const LoginForm = () => {
             Forgot Password?
           </Link>
         </div>
+        <div className={css["btn-container"]}>
+          {loading ? (
+            <ClipLoader size={50} color="#3498db" />
+          ) : (
+            <button type="submit" className={css["submit-button"]}>
+              LOG IN
+            </button>
+          )}
 
-        {loading ? (
-          <ClipLoader size={50} color="#3498db" />
-        ) : (
-          <button type="submit" className={css["submit-button"]}>
-            LOG IN
-          </button>
-        )}
+          <Link to="/register" className={css["redirect-button"]}>
+            REGISTER
+          </Link>
 
-        <Link to="/register" className={css["redirect-button"]}>
-          REGISTER
-        </Link>
+          <GoogleLoginButton />
+        </div>
       </form>
     </div>
   );

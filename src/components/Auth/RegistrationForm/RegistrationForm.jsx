@@ -165,17 +165,19 @@ const RegistrationForm = () => {
           </div>
         </div>
 
-        {loading ? (
-          <ClipLoader size={50} color="#3498db" />
-        ) : (
-          <button type="submit" className={css["submit-button"]}>
-            REGISTER
-          </button>
-        )}
+        <div className={css["btn-container"]}>
+          {loading ? (
+            <ClipLoader size={50} color="#3498db" />
+          ) : (
+            <button type="submit" className={css["submit-button"]}>
+              REGISTER
+            </button>
+          )}
 
-        <Link to="/login" className={css["redirect-button"]}>
-          LOG IN
-        </Link>
+          <Link to="/login" className={css["redirect-button"]}>
+            LOG IN
+          </Link>
+        </div>
       </form>
     </div>
   );

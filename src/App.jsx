@@ -13,6 +13,7 @@ import CurrencyTab from "./components/CurrencyTab/CurrencyTab";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import CheckEmail from "./components/CheckEmail/CheckEmail";
+import GoogleRedirect from "./components/GoogleRedirect/GoogleRedirect";
 
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -43,6 +44,7 @@ function App() {
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/check-email" element={<CheckEmail />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/confirm-google-auth" element={<GoogleRedirect />} />
 
           <Route
             path="/"

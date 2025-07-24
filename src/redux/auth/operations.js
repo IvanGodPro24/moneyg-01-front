@@ -39,7 +39,6 @@ export const login = createAsyncThunk(
   }
 );
 
-
 export const requestResetEmail = createAsyncThunk(
   "auth/request-reset-email",
   async (email, { rejectWithValue }) => {
@@ -69,6 +68,20 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
+export const loginWithGoogle = createAsyncThunk(
+  "auth/googleLogin",
+  async (code, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/auth/confirm-oauth", { code });
+
+      setAuthHeader(response.data.token);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.data || error.message);
+    }
+  }
+);
 
 export const logout = createAsyncThunk(
   "auth/logout",

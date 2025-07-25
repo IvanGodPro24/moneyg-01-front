@@ -82,8 +82,12 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
   }, [filters, reset]);
 
   const onSubmit = (data) => {
+    const selectedType = data.type;
+    const isCategoryDisabled = selectedType === "income";
+
     const newFilters = {
       ...data,
+      categoryTitle: isCategoryDisabled ? null : data.categoryTitle,
       minSum: data.minSum ? Number(data.minSum) : null,
       maxSum: data.maxSum ? Number(data.maxSum) : null,
       comment: data.comment || null,
@@ -121,6 +125,12 @@ const TransactionFilter = ({ filters, onApplyFilters }) => {
   const selectedType = watch("type");
 
   const isCategoryDisabled = selectedType === "income";
+
+  useEffect(() => {
+    if (selectedType === "income" && filtersValues.categoryTitle !== null) {
+      reset({ ...filtersValues, categoryTitle: null });
+    }
+  }, [selectedType, reset, filtersValues]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>

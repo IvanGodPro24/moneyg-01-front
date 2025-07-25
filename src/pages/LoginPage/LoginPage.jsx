@@ -3,9 +3,13 @@ import css from "./LoginPage.module.css";
 
 const LoginPage = () => {
   return (
-    <div className={css.page}>
-      <LoginForm />
-    </div>
+    <>
+      <title>Login</title>
+
+      <div className={css.page}>
+        <LoginForm />
+      </div>
+    </>
   );
 };
 

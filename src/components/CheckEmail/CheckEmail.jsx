@@ -13,6 +13,8 @@ const CheckEmail = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <title>Check Your Email</title>
+
       <div className={css.card}>
         <div className={css.iconContainer}>
           <CiMail size={48} color="var(--icon-violet)" />

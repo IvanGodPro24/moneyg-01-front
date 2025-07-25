@@ -24,10 +24,12 @@ const DashboardPage = () => {
 
   return (
     <>
+      <title>Dashboard</title>
+
       <div className={s.background}></div>
       <Header />
       <main className={s.main}>
-        <div className={clsx(s.container, 'relative')}>
+        <div className={clsx(s.container, "relative")}>
           <div className={s.nav}>
             <Navigation />
             {(isTablet ||

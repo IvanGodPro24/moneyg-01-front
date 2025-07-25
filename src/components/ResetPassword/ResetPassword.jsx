@@ -66,84 +66,90 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className={s.page}>
-      <div className={css.form}>
-        <div className={css.logo}>
-          <img src="/logo.svg" alt="Money Guard" />
-          <h1>Money Guard</h1>
-        </div>
+    <>
+      <title>Reset Password</title>
 
-        {error && <div className={css["error-message"]}>{error}</div>}
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={css["form-group-wrap"]}>
-            <div className={clsx(css["form-group"], "relative")}>
-              <svg className={css["input-icon"]}>
-                <use href="/src/img/icons.svg#icon-lock" />
-              </svg>
-
-              <input
-                type={showPassword ? "text" : "password"}
-                id="newPassword"
-                {...register("newPassword")}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
-
-              <button type="button" className={css.eye} onClick={toggleShow}>
-                {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-              </button>
-
-              {errors.newPassword && (
-                <span className="errorText">{errors.newPassword.message}</span>
-              )}
-            </div>
-            <div className={clsx(css["form-group"], "relative")}>
-              <svg className={css["input-icon"]}>
-                <use href="/src/img/icons.svg#icon-lock" />
-              </svg>
-
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                {...register("password")}
-                placeholder="Confirm password"
-              />
-
-              <button type="button" className={css.eye} onClick={toggleShow}>
-                {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-              </button>
-
-              {errors.password && (
-                <span className="errorText">{errors.password.message}</span>
-              )}
-
-              <div className={css["custom-strength-bar"]}>
-                <div
-                  className={clsx(css["strength-progress"], "relative")}
-                  style={{ width: `${passwordStrength * 25}%` }}
-                ></div>
-              </div>
-              <PasswordStrengthBar
-                password={password}
-                onChangeScore={(score) => {
-                  setPasswordStrength(score);
-                }}
-                style={{ display: "none" }}
-              />
-            </div>
+      <div className={s.page}>
+        <div className={css.form}>
+          <div className={css.logo}>
+            <img src="/logo.svg" alt="Money Guard" />
+            <h1>Money Guard</h1>
           </div>
 
-          {loading ? (
-            <ClipLoader size={50} color="#3498db" />
-          ) : (
-            <button type="submit" className={css["submit-button"]}>
-              change
-            </button>
-          )}
-        </form>
+          {error && <div className={css["error-message"]}>{error}</div>}
+
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={css["form-group-wrap"]}>
+              <div className={clsx(css["form-group"], "relative")}>
+                <svg className={css["input-icon"]}>
+                  <use href="/src/img/icons.svg#icon-lock" />
+                </svg>
+
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="newPassword"
+                  {...register("newPassword")}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                />
+
+                <button type="button" className={css.eye} onClick={toggleShow}>
+                  {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                </button>
+
+                {errors.newPassword && (
+                  <span className="errorText">
+                    {errors.newPassword.message}
+                  </span>
+                )}
+              </div>
+              <div className={clsx(css["form-group"], "relative")}>
+                <svg className={css["input-icon"]}>
+                  <use href="/src/img/icons.svg#icon-lock" />
+                </svg>
+
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  {...register("password")}
+                  placeholder="Confirm password"
+                />
+
+                <button type="button" className={css.eye} onClick={toggleShow}>
+                  {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                </button>
+
+                {errors.password && (
+                  <span className="errorText">{errors.password.message}</span>
+                )}
+
+                <div className={css["custom-strength-bar"]}>
+                  <div
+                    className={clsx(css["strength-progress"], "relative")}
+                    style={{ width: `${passwordStrength * 25}%` }}
+                  ></div>
+                </div>
+                <PasswordStrengthBar
+                  password={password}
+                  onChangeScore={(score) => {
+                    setPasswordStrength(score);
+                  }}
+                  style={{ display: "none" }}
+                />
+              </div>
+            </div>
+
+            {loading ? (
+              <ClipLoader size={50} color="#3498db" />
+            ) : (
+              <button type="submit" className={css["submit-button"]}>
+                change
+              </button>
+            )}
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

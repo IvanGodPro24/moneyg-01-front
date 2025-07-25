@@ -47,50 +47,54 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className={s.page}>
-      <div className={css.form}>
-        <div className={css.logo}>
-          <img src="/logo.svg" alt="Money Guard" />
-          <h1>Money Guard</h1>
-        </div>
+    <>
+      <title>Forgot Password</title>
 
-        {error && <div className={css["error-message"]}>{error}</div>}
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={css["form-group-wrap"]}>
-            <div className={clsx(css["form-group"], "relative")}>
-              <svg className={css["input-icon"]}>
-                <use href="/src/img/icons.svg#icon-email" />
-              </svg>
-
-              <input
-                type="email"
-                id="email"
-                {...register("email")}
-                placeholder="E-mail"
-              />
-
-              {errors.email && (
-                <span className="errorText">{errors.email.message}</span>
-              )}
-            </div>
+      <div className={s.page}>
+        <div className={css.form}>
+          <div className={css.logo}>
+            <img src="/logo.svg" alt="Money Guard" />
+            <h1>Money Guard</h1>
           </div>
 
-         <div className={css['btn-container']}>
-            {loading ? (
-              <ClipLoader size={50} color="#3498db" />
-            ) : (
-              <button type="submit" className={css["submit-button"]}>
-                reset
-              </button>
-            )}
-            <Link to="/login" className={css["redirect-button"]}>
-              go back
-            </Link>
-         </div>
-        </form>
+          {error && <div className={css["error-message"]}>{error}</div>}
+
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={css["form-group-wrap"]}>
+              <div className={clsx(css["form-group"], "relative")}>
+                <svg className={css["input-icon"]}>
+                  <use href="/src/img/icons.svg#icon-email" />
+                </svg>
+
+                <input
+                  type="email"
+                  id="email"
+                  {...register("email")}
+                  placeholder="E-mail"
+                />
+
+                {errors.email && (
+                  <span className="errorText">{errors.email.message}</span>
+                )}
+              </div>
+            </div>
+
+            <div className={css["btn-container"]}>
+              {loading ? (
+                <ClipLoader size={50} color="#3498db" />
+              ) : (
+                <button type="submit" className={css["submit-button"]}>
+                  reset
+                </button>
+              )}
+              <Link to="/login" className={css["redirect-button"]}>
+                go back
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

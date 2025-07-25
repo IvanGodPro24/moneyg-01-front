@@ -5,9 +5,13 @@ import css from "./RegistrationPage.module.css";
 
 const RegistrationPage = () => {
   return (
-    <div className={clsx(s.page, css["registration-page"])}>
-      <RegistrationForm />
-    </div>
+    <>
+      <title>Registration</title>
+
+      <div className={clsx(s.page, css["registration-page"])}>
+        <RegistrationForm />
+      </div>
+    </>
   );
 };
 

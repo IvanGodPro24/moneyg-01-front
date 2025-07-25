@@ -3,12 +3,16 @@ import styles from "./StatisticsPage.module.css";
 
 const StatisticsPage = () => {
   return (
-    <section className={styles.statistics}>
-      <div className={styles.container}>
-        <h2 className={styles.title}>Statistics</h2>
-        <StatisticsTab />
-      </div>
-    </section>
+    <>
+      <title>Statistics</title>
+
+      <section className={styles.statistics}>
+        <div className={styles.container}>
+          <h2 className={styles.title}>Statistics</h2>
+          <StatisticsTab />
+        </div>
+      </section>
+    </>
   );
 };
 

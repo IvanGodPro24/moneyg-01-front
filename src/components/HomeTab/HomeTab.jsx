@@ -31,48 +31,52 @@ const HomeTab = () => {
   };
 
   return (
-    <div className={s.container}>
-      <button
-        onClick={toggleIsShowFilter}
-        className={clsx(s.showFilter, isShowFilter && s.margin)}
-      >
-        {isShowFilter ? "Hide Filters" : "Show Filters"}
-        <svg
-          width="14"
-          height="14"
-          className={clsx(s.icon, isShowFilter && s.rotated)}
+    <>
+      <title>Home</title>
+
+      <div className={s.container}>
+        <button
+          onClick={toggleIsShowFilter}
+          className={clsx(s.showFilter, isShowFilter && s.margin)}
         >
-          <use href={`${icons}#icon-arrow-down`} />
-        </svg>
-      </button>
-
-      <AnimatePresence>
-        {isShowFilter && (
-          <motion.div
-            className={s.filterContainer}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+          {isShowFilter ? "Hide Filters" : "Show Filters"}
+          <svg
+            width="14"
+            height="14"
+            className={clsx(s.icon, isShowFilter && s.rotated)}
           >
-            <TransactionFilter
-              filters={filters}
-              onApplyFilters={onApplyFilters}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <use href={`${icons}#icon-arrow-down`} />
+          </svg>
+        </button>
 
-      <TransactionList
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        filters={filters}
-      />
-      <TransactionModalWrapper
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
-    </div>
+        <AnimatePresence>
+          {isShowFilter && (
+            <motion.div
+              className={s.filterContainer}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <TransactionFilter
+                filters={filters}
+                onApplyFilters={onApplyFilters}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <TransactionList
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          filters={filters}
+        />
+        <TransactionModalWrapper
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
+    </>
   );
 };
 

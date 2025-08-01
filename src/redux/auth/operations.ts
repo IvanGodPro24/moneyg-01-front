@@ -11,7 +11,7 @@ import {
 } from "./auth.types";
 import { RootState } from "../store.types";
 
-axios.defaults.baseURL = "https://moneyg-01-front.onrender.com";
+axios.defaults.baseURL = "https://moneyg-01-back.onrender.com";
 
 const setAuthHeader = (token: string) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;

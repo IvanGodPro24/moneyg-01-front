@@ -1,6 +1,6 @@
-# 💰 MoneyG Frontend
+# Money Guard Frontend
 
-**MoneyG** is a single-page web application (SPA) for personal finance management. It allows users to track incomes and expenses, analyze statistics, and manage their balance. The project is built using React and Vite for high performance and a smooth development experience.
+**MoneyG** is a single-page application (SPA) for managing personal finances. It allows users to track income and expensess, view analytics, manage their balance, and apply filters and sorting to transactions. The project is built with **React**, **Vite**, and **Redux Toolkit** for high performance and a smooth development experience.
 
 ## 🚀 Demo
 
@@ -8,13 +8,17 @@ Try the app here: [moneyg-01-front.onrender.com](https://moneyg-01-front.onrende
 
 ## 🛠️ Technologies Used
 
-- **React** — UI library for building component-based interfaces  
-- **Vite** — Lightning-fast build tool and development server  
-- **Redux Toolkit** — State management  
-- **Redux Thunk** — Middleware for handling async actions  
-- **Formik + Yup** — Form state management and validation  
-- **REST API** — Server communication  
-- **JWT** — Authentication and user management  
+- **React** — Component-based UI library
+- **Vite** — Lightning-fast build tool and dev server
+- **TypeScript** — Static typing for reliable code
+- **Redux Toolkit** — State management
+- **Redux Thunk** — Middleware for handling async actions
+- **JWT** — Authentication and user management
+- **Cloudinary** — Image storage for contact avatars
+- **React-Select** — Custom multi-select dropdowns
+- **React-Datepicker** — Date selection and range filtering
+- **Monobank API** — Live exchange rates
+- **REST API** — Server communication
 
 ## 📦 Installation & Setup
 
@@ -48,11 +52,11 @@ Make sure you have Node.js (v16 or higher) installed.
 
 ## 📈 Features
 
-- 📊 Real-time balance display  
-- ➕➖ Add and remove income or expense transactions  
-- 📅 Filter transactions by date and category  
-- 📈 Visual statistics with charts  
-- 💱 Currency exchange rates from Monobank API  
+- 📊 Real-time balance display
+- ➕➖ Add and remove income or expense transactions
+- 📅 Filter transactions by date and category
+- 📈 Visual statistics with charts
+- 💱 Currency exchange rates from Monobank API
 - 🔐 Secure JWT-based authentication
 
 ## 📁 Project Structure
@@ -62,13 +66,14 @@ moneyg-01-front/
 ├── public/                 # Static assets
 ├── src/
 │   ├── components/         # Reusable UI components
+│   ├── constants/          # Constants
+│   ├── hooks/              # Reusable hooks
 │   ├── pages/              # Application views/pages
 │   ├── redux/              # State and slices
-│   ├── services/           # API logic
 │   ├── utils/              # Helper functions
-│   └── App.jsx             # Main app component
+│   └── App.tsx             # Main app component
 ├── package.json
-└── vite.config.js          # Vite configuration
+└── vite.config.ts          # Vite configuration
 ```
 
 ## 🤝 Contributing

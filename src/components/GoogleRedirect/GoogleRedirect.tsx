@@ -6,7 +6,6 @@ import { loginWithGoogle } from "../../redux/auth/operations";
 import { motion } from "framer-motion";
 import css from "./GoogleRedirect.module.css";
 import icons from "../../img/icons.svg";
-import { toast } from "sonner";
 
 const GoogleRedirect = () => {
   const [searchParams] = useSearchParams();
@@ -22,7 +21,6 @@ const GoogleRedirect = () => {
 
         navigate("/dashboard");
       } catch (error) {
-        toast.error(`Google login failed: ${error}`);
         console.error("Google login failed:", error);
 
         navigate("/");

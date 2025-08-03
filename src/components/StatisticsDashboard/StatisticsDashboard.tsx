@@ -12,7 +12,7 @@ const StatisticsDashboard = ({
 }: StatisticsDashboardProps) => {
   const now = new Date();
 
-  const years = Array.from({ length: 5 }, (_, i) => {
+  const years = Array.from({ length: 6 }, (_, i) => {
     const year = now.getFullYear() - i;
     return { value: year, label: year.toString() };
   });
